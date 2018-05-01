@@ -28,13 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.ManufacturerButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // ManufacturerButton
+            // 
+            this.ManufacturerButton.Location = new System.Drawing.Point(517, 12);
+            this.ManufacturerButton.Name = "ManufacturerButton";
+            this.ManufacturerButton.Size = new System.Drawing.Size(125, 29);
+            this.ManufacturerButton.TabIndex = 0;
+            this.ManufacturerButton.Text = "Производители";
+            this.ManufacturerButton.UseVisualStyleBackColor = true;
+            this.ManufacturerButton.Click += new System.EventHandler(this.ManufacturerButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(654, 280);
+            this.Controls.Add(this.ManufacturerButton);
             this.Name = "MainForm";
             this.Text = "Информационная система цеха";
             this.ResumeLayout(false);
@@ -42,6 +54,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button ManufacturerButton;
     }
 }
 

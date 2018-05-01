@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,16 @@ namespace kip
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void ManufacturerButton_Click(object sender, EventArgs e)
+        {
+            using (var db = new kipEntities())
+            {
+                DbSet<Manufacturers> dbSet = db.Manufacturers;
+                TableForm tableForm = new TableForm(dbSet);
+                tableForm.ShowDialog();
+            }
         }
     }
 }
