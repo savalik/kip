@@ -22,8 +22,7 @@ namespace kip
         {
             using (var db = new kipEntities())
             {
-                DbSet<Manufacturers> dbSet = db.Manufacturers;
-                TableForm tableForm = new TableForm(dbSet);
+                TableForm tableForm = new TableForm();
                 tableForm.ShowDialog();
             }
         }

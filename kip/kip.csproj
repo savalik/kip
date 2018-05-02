@@ -38,6 +38,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="HibernatingRhinos.Profiler.Appender">
+      <HintPath>..\..\..\..\Downloads\EntityFramework.Profiler-v5.0-Build-5023\Appender\net46\HibernatingRhinos.Profiler.Appender.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -54,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataForTable.cs" />
     <Compile Include="Equipment.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
@@ -66,6 +70,7 @@
     <Compile Include="EquipmentTypes.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="FillGrid.cs" />
     <Compile Include="kip.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
