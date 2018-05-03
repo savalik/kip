@@ -20,11 +20,14 @@ namespace kip
 
         private void ManufacturerButton_Click(object sender, EventArgs e)
         {
-            using (var db = new kipEntities())
-            {
-                TableForm tableForm = new TableForm();
-                tableForm.ShowDialog();
-            }
+            TableForm tableForm = new TableForm(FillGrid.TablesEnum.Manufacturers);
+            tableForm.ShowDialog();
+        }
+
+        private void EquipmentTypesButton_Click(object sender, EventArgs e)
+        {
+            TableForm tableForm = new TableForm(FillGrid.TablesEnum.EquipmentTypes);
+            tableForm.ShowDialog();
         }
     }
 }

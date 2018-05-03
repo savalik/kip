@@ -22,12 +22,28 @@ namespace kip
             {
                 using (kipEntities context = new kipEntities())
                 {
-                                    
+                    DataForTable data;
+                    switch (@enum)
+                    {
+                        case TablesEnum.Equipment:
+                            data = new DataForTable<Equipment>(context);
+                            break;
+                        case TablesEnum.EquipmentTypes:
+                            data = new DataForTable<EquipmentTypes>(context);
+                            break;
+                        case TablesEnum.Manufacturers:
+                            data = new DataForTable<Manufacturers>(context);
+                            break;
+                        default:
+                            data = null;
+                            break;
+                    }
 
-                    DataForTable<Manufacturers> data = new DataForTable<Manufacturers>(context);
-
-                    TableDataView.DataSource = data.Source;
-                    TableDataView.Columns[data.Column].Visible = false;
+                    if (data != null)
+                    {
+                        TableDataView.DataSource = data.Source;
+                        TableDataView.Columns[data.Column].Visible = false;
+                    }
                 }
             }
             catch (Exception ex)

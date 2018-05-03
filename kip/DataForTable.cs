@@ -8,11 +8,17 @@ using System.Windows.Forms;
 
 namespace kip
 {
-    class DataForTable <T>
+    class DataForTable
     {
-        public string Column { get; }
-        public BindingSource Source { get; }
+        private string column;
+        private BindingSource source;
 
+        public string Column { get; set; }
+        public BindingSource Source { get; set; }
+    }
+
+    class DataForTable <T> : DataForTable
+    {
         public DataForTable(kipEntities _context)
         {
 
@@ -51,6 +57,8 @@ namespace kip
             switch (table)
             {
                 case "kip.Manufacturers":
+                    return "Equipments";
+                case "kip.EquipmentTypes":
                     return "Equipments";
             }
             return null;

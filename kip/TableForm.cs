@@ -13,14 +13,17 @@ namespace kip
 {
     public partial class TableForm : Form
     {
-        public TableForm()
+        FillGrid.TablesEnum @enum;
+
+        public TableForm(FillGrid.TablesEnum @enum)
         {
+            this.@enum = @enum;
             InitializeComponent();
         }
 
         private void TableForm_Load(object sender, EventArgs e)
         {          
-            FillGrid.Fill(TableDataView,FillGrid.TablesEnum.Manufacturers);
+            FillGrid.Fill(TableDataView, @enum);
         }
     }
 }
