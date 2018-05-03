@@ -42,7 +42,15 @@ namespace kip
                     if (data != null)
                     {
                         TableDataView.DataSource = data.Source;
-                        TableDataView.Columns[data.Column].Visible = false;
+
+                        String[] columns = data.Column.Split(',');
+                        
+                        foreach (DataGridViewColumn k in TableDataView.Columns)
+                        {
+                            foreach (string column in columns)
+                                if (k.DataPropertyName == column)k.Visible = false;
+                        }
+                        
                     }
                 }
             }

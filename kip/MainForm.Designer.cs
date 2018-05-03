@@ -30,6 +30,7 @@
         {
             this.ManufacturerButton = new System.Windows.Forms.Button();
             this.EquipmentTypesButton = new System.Windows.Forms.Button();
+            this.Equipment = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ManufacturerButton
@@ -44,7 +45,7 @@
             // 
             // EquipmentTypesButton
             // 
-            this.EquipmentTypesButton.Location = new System.Drawing.Point(478, 47);
+            this.EquipmentTypesButton.Location = new System.Drawing.Point(308, 47);
             this.EquipmentTypesButton.Name = "EquipmentTypesButton";
             this.EquipmentTypesButton.Size = new System.Drawing.Size(164, 29);
             this.EquipmentTypesButton.TabIndex = 1;
@@ -52,11 +53,22 @@
             this.EquipmentTypesButton.UseVisualStyleBackColor = true;
             this.EquipmentTypesButton.Click += new System.EventHandler(this.EquipmentTypesButton_Click);
             // 
+            // Equipment
+            // 
+            this.Equipment.Location = new System.Drawing.Point(308, 12);
+            this.Equipment.Name = "Equipment";
+            this.Equipment.Size = new System.Drawing.Size(164, 29);
+            this.Equipment.TabIndex = 2;
+            this.Equipment.Text = "Оборудование";
+            this.Equipment.UseVisualStyleBackColor = true;
+            this.Equipment.Click += new System.EventHandler(this.Equipment_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(654, 280);
+            this.Controls.Add(this.Equipment);
             this.Controls.Add(this.EquipmentTypesButton);
             this.Controls.Add(this.ManufacturerButton);
             this.Name = "MainForm";
@@ -69,6 +81,7 @@
 
         private System.Windows.Forms.Button ManufacturerButton;
         private System.Windows.Forms.Button EquipmentTypesButton;
+        private System.Windows.Forms.Button Equipment;
     }
 }
 

@@ -19,8 +19,6 @@ namespace kip
         {
             this.Equipments = new HashSet<Equipment>();
         }
-
-
     
         public int id { get; set; }
         public string name { get; set; }

@@ -22,7 +22,7 @@ namespace kip
     
         public int id { get; set; }
         public string type { get; set; }
-        public string descriptions { get; set; }
+        public string description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Equipment> Equipments { get; set; }

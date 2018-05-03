@@ -57,9 +57,11 @@ namespace kip
             switch (table)
             {
                 case "kip.Manufacturers":
-                    return "Equipments";
+                    return "id,Equipments";
                 case "kip.EquipmentTypes":
-                    return "Equipments";
+                    return "id,Equipments";
+                case "kip.Equipment":
+                    return "id,Manufacturer,EquipmentType";
             }
             return null;
         }
