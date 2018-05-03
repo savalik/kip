@@ -12,17 +12,14 @@ namespace kip
     using System;
     using System.Collections.Generic;
     
-    public partial class Equipment
+    public partial class MVPS
     {
-        public System.Guid id { get; set; }
+        public System.Guid Id { get; set; }
         public string number { get; set; }
-        public System.DateTime repairDate { get; set; }
-        public System.DateTime serviceDate { get; set; }
-        public System.DateTime nextVerificationDate { get; set; }
-        public string termDate { get; set; }
-        public bool isWorking { get; set; }
-        public bool isFree { get; set; }
+        public string series { get; set; }
     
-        public virtual EquipmentType EquipmentType { get; set; }
+        public virtual MVPSRole MVPSRole { get; set; }
+        public virtual MVPSType MVPSType { get; set; }
+        public virtual EquipmentRule EquipmentRule { get; set; }
     }
 }
