@@ -14,6 +14,12 @@ namespace kip
     
     public partial class MVPS
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MVPS()
+        {
+            this.Equipment = new HashSet<Equipment>();
+        }
+    
         public System.Guid Id { get; set; }
         public string number { get; set; }
         public string series { get; set; }
@@ -21,5 +27,7 @@ namespace kip
         public virtual MVPSRole MVPSRole { get; set; }
         public virtual MVPSType MVPSType { get; set; }
         public virtual EquipmentRule EquipmentRule { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Equipment> Equipment { get; set; }
     }
 }

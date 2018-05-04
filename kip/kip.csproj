@@ -165,6 +165,7 @@
       <LastGenOutput>kip.Context.cs</LastGenOutput>
       <DependentUpon>kip.edmx</DependentUpon>
     </Content>
+    <Content Include="kip.edmx.sql" />
     <Content Include="kip.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>kip.edmx</DependentUpon>

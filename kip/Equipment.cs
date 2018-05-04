@@ -24,5 +24,6 @@ namespace kip
         public bool isFree { get; set; }
     
         public virtual EquipmentType EquipmentType { get; set; }
+        public virtual MVPS MVPS { get; set; }
     }
 }
