@@ -35,5 +35,11 @@ namespace kip
             TableForm tableForm = new TableForm(FillGrid.TablesEnum.Equipment);
             tableForm.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EquipmentTypeForm typeForm = new EquipmentTypeForm();
+            typeForm.ShowDialog();
+        }
     }
 }

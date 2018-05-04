@@ -73,6 +73,12 @@
     <Compile Include="EquipmentType.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="EquipmentTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EquipmentTypeForm.Designer.cs">
+      <DependentUpon>EquipmentTypeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FillGrid.cs" />
     <Compile Include="kip.Context.cs">
       <AutoGen>True</AutoGen>
@@ -123,6 +129,9 @@
     <Compile Include="TableForm.Designer.cs">
       <DependentUpon>TableForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="EquipmentTypeForm.resx">
+      <DependentUpon>EquipmentTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

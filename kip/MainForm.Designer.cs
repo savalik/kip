@@ -31,6 +31,7 @@
             this.ManufacturerButton = new System.Windows.Forms.Button();
             this.EquipmentTypesButton = new System.Windows.Forms.Button();
             this.Equipment = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ManufacturerButton
@@ -63,11 +64,22 @@
             this.Equipment.UseVisualStyleBackColor = true;
             this.Equipment.Click += new System.EventHandler(this.Equipment_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(478, 47);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(164, 29);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Производители";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(654, 280);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Equipment);
             this.Controls.Add(this.EquipmentTypesButton);
             this.Controls.Add(this.ManufacturerButton);
@@ -82,6 +94,7 @@
         private System.Windows.Forms.Button ManufacturerButton;
         private System.Windows.Forms.Button EquipmentTypesButton;
         private System.Windows.Forms.Button Equipment;
+        private System.Windows.Forms.Button button1;
     }
 }
 

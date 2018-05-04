@@ -29,10 +29,10 @@ namespace kip
                             data = new DataForTable<Equipment>(context);
                             break;
                         case TablesEnum.EquipmentTypes:
-                            data = new DataForTable<EquipmentTypes>(context);
+                            data = new DataForTable<EquipmentType>(context);
                             break;
                         case TablesEnum.Manufacturers:
-                            data = new DataForTable<Manufacturers>(context);
+                            data = new DataForTable<Manufacturer>(context);
                             break;
                         default:
                             data = null;

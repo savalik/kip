@@ -10,9 +10,6 @@ namespace kip
 {
     class DataForTable
     {
-        private string column;
-        private BindingSource source;
-
         public string Column { get; set; }
         public BindingSource Source { get; set; }
     }
@@ -41,14 +38,14 @@ namespace kip
         {
             switch (typeof(T).ToString())
             {
-                case "kip.Manufacturers":
-                    return _context.Manufacturers.ToList();
-                case "kip.EquipmentTypes":
-                    return _context.EquipmentTypes.ToList();
+                case "kip.Manufacturer":
+                    return _context.ManufacturerSet.ToList();
+                case "kip.EquipmentType":
+                    return _context.EquipmentTypeSet.ToList();
                 case "kip.Equipment":
-                    return _context.Equipment.ToList();
+                    return _context.EquipmentSet.ToList();
                 default:
-                    return null;
+                    throw new Exception("Неожиданно, вы пытались открыть несуществующую таблицу " + typeof(T).ToString());
             }
         }
 
@@ -56,12 +53,12 @@ namespace kip
         {
             switch (table)
             {
-                case "kip.Manufacturers":
-                    return "id,Equipments";
-                case "kip.EquipmentTypes":
-                    return "id,Equipments";
+                case "kip.Manufacturer":
+                    return "id,EquipmentType";
+                case "kip.EquipmentType":
+                    return "id,Manufacturer,EquipmentRule,Equipment";
                 case "kip.Equipment":
-                    return "id,Manufacturer,EquipmentType";
+                    return "id";
             }
             return null;
         }
