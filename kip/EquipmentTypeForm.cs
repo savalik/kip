@@ -36,6 +36,9 @@ namespace kip
                     grid.Columns.Add("systemType", "Тип системы");
                     grid.Columns.Add("manufacturer", "Производитель");
 
+                    grid.AutoResizeColumns();
+                    grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
                     systemTypes = context.SystemTypeSet.ToList();
                     manufacturers = context.ManufacturerSet.ToList();
 
@@ -88,6 +91,47 @@ namespace kip
         private void EquipmentTypeGridView_CellMouseClick(Object sender, DataGridViewCellMouseEventArgs e)
         {
             //EquipmentTypeGridView.ContextMenuStrip = GetMenu();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            EquipmentTypeGridView.Rows.Add();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int row = EquipmentTypeGridView.Rows.Count-1;
+            MessageBox.Show(row.ToString());
+            AddEquipmentType(row);
+        }
+
+        private void AddEquipmentType(int row)
+        {
+            EquipmentType type;
+            using (kipEntities context = new kipEntities())
+            {
+                try
+                {
+                    string strType = EquipmentTypeGridView[2, row].Value.ToString();
+                    string strMan = EquipmentTypeGridView[3, row].Value.ToString();
+                    SystemType systemType = context.SystemTypeSet.Where(b => b.name == strType).SingleOrDefault();
+                    Manufacturer manufacturer = context.ManufacturerSet.Where(b => b.name == strMan).SingleOrDefault();
+                    type = new EquipmentType
+                    {
+                        name = EquipmentTypeGridView[0, row].Value.ToString(),
+                        description = EquipmentTypeGridView[1, row].Value.ToString(),
+                        SystemType = systemType,
+                        Manufacturer = manufacturer
+                    };
+
+                    context.EquipmentTypeSet.Add(type);
+                    context.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

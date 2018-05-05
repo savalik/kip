@@ -36,9 +36,9 @@
             // 
             // ManufacturerButton
             // 
-            this.ManufacturerButton.Location = new System.Drawing.Point(478, 12);
+            this.ManufacturerButton.Location = new System.Drawing.Point(442, 12);
             this.ManufacturerButton.Name = "ManufacturerButton";
-            this.ManufacturerButton.Size = new System.Drawing.Size(164, 29);
+            this.ManufacturerButton.Size = new System.Drawing.Size(200, 29);
             this.ManufacturerButton.TabIndex = 0;
             this.ManufacturerButton.Text = "Производители";
             this.ManufacturerButton.UseVisualStyleBackColor = true;
@@ -46,9 +46,9 @@
             // 
             // EquipmentTypesButton
             // 
-            this.EquipmentTypesButton.Location = new System.Drawing.Point(308, 47);
+            this.EquipmentTypesButton.Location = new System.Drawing.Point(236, 47);
             this.EquipmentTypesButton.Name = "EquipmentTypesButton";
-            this.EquipmentTypesButton.Size = new System.Drawing.Size(164, 29);
+            this.EquipmentTypesButton.Size = new System.Drawing.Size(200, 29);
             this.EquipmentTypesButton.TabIndex = 1;
             this.EquipmentTypesButton.Text = "Типы оборудования";
             this.EquipmentTypesButton.UseVisualStyleBackColor = true;
@@ -56,9 +56,9 @@
             // 
             // Equipment
             // 
-            this.Equipment.Location = new System.Drawing.Point(308, 12);
+            this.Equipment.Location = new System.Drawing.Point(236, 12);
             this.Equipment.Name = "Equipment";
-            this.Equipment.Size = new System.Drawing.Size(164, 29);
+            this.Equipment.Size = new System.Drawing.Size(200, 29);
             this.Equipment.TabIndex = 2;
             this.Equipment.Text = "Оборудование";
             this.Equipment.UseVisualStyleBackColor = true;
@@ -66,11 +66,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(478, 47);
+            this.button1.Location = new System.Drawing.Point(236, 82);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(164, 29);
+            this.button1.Size = new System.Drawing.Size(200, 29);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Производители";
+            this.button1.Text = "Типы оборудования (ред.)";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
