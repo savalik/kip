@@ -17,5 +17,11 @@ namespace kip
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DBform dBform = new DBform();
+            dBform.ShowDialog();
+        }
     }
 }

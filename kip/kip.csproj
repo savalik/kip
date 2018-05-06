@@ -57,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBform.Designer.cs">
+      <DependentUpon>DBform.cs</DependentUpon>
+    </Compile>
     <Compile Include="Equipment.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
@@ -66,6 +72,7 @@
     <Compile Include="EquipmentType.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="juxtaposition.cs" />
     <Compile Include="kip.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -104,11 +111,22 @@
     <Compile Include="MVPSType.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="PartialedEntity\Equipment.cs" />
+    <Compile Include="PartialedEntity\EquipmentRule.cs" />
+    <Compile Include="PartialedEntity\EquipmentType.cs" />
+    <Compile Include="PartialedEntity\Manufacturer.cs" />
+    <Compile Include="PartialedEntity\MVPS.cs" />
+    <Compile Include="PartialedEntity\MVPSRole.cs" />
+    <Compile Include="PartialedEntity\MVPSType.cs" />
+    <Compile Include="PartialedEntity\SystemType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemType.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DBform.resx">
+      <DependentUpon>DBform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -163,5 +181,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
