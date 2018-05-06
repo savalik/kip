@@ -1,4 +1,5 @@
-﻿using System.Data.Entity.Core.Metadata.Edm;
+﻿using System;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
 using System.Windows.Forms;
 
@@ -33,19 +34,94 @@ namespace kip
 
         }
 
+        internal static void ShowForm(ListBox list)
+        {
+            Form form;
+            var str = list.SelectedItem.ToString();
+            switch (str)
+            {
+                case "Оборудование":
+                    //Equipment.FillGrid(view);
+                    break;
+                case "Типы оборудования":
+                    //EquipmentType.FillGrid(view);
+                    break;
+                case "Производители":
+                    //Manufacturer.FillGrid(view);
+                    break;
+                case "Типы систем":
+                    //SystemType.FillGrid(view);
+                    break;
+                case "Роли МВПС":
+                    //MVPSRole.FillGrid(view);
+                    break;
+                case "Типы МВПС":
+                    //MVPSType.FillGrid(view);
+                    break;
+                case "МВПС":
+                    //MVPS.FillGrid(view);
+                    break;
+                case "Правила компелктования":
+                    form = new EquipmentRuleForm();
+                    form.ShowDialog();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        internal static void ShowEditForm(ListBox list, DataGridView view)
+        {
+            Form form;
+            var str = list.SelectedItem.ToString();
+            switch (str)
+            {
+                case "Оборудование":
+                    //Equipment.FillGrid(view);
+                    break;
+                case "Типы оборудования":
+                    //EquipmentType.FillGrid(view);
+                    break;
+                case "Производители":
+                    //Manufacturer.FillGrid(view);
+                    break;
+                case "Типы систем":
+                    //SystemType.FillGrid(view);
+                    break;
+                case "Роли МВПС":
+                    //MVPSRole.FillGrid(view);
+                    break;
+                case "Типы МВПС":
+                    //MVPSType.FillGrid(view);
+                    break;
+                case "МВПС":
+                    //MVPS.FillGrid(view);
+                    break;
+                case "Правила компелктования":
+                    form = new EquipmentRuleForm(view);
+                    form.ShowDialog();
+                    break;
+                default:
+                    break;
+            }
+        }
+
         public static void FillTableList(ListBox list)
         {
-            using (kipEntities context = new kipEntities())
+            if (list.Items.Count == 0)
             {
-
-                var objectContext = ((IObjectContextAdapter)context).ObjectContext;
-
-                var mdw = objectContext.MetadataWorkspace;
-
-                var items = mdw.GetItems<EntityType>(DataSpace.CSpace);
-                foreach (var i in items)
+                using (kipEntities context = new kipEntities())
                 {
-                    list.Items.Add(TableName(i.Name));
+
+                    var objectContext = ((IObjectContextAdapter)context).ObjectContext;
+
+                    var mdw = objectContext.MetadataWorkspace;
+
+                    var items = mdw.GetItems<EntityType>(DataSpace.CSpace);
+                    foreach (var i in items)
+                    {
+                        list.Items.Add(TableName(i.Name));
+                    }
                 }
             }
         }

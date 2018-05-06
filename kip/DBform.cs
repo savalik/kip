@@ -32,7 +32,13 @@ namespace kip
 
         private void AddButton_Click(object sender, EventArgs e)
         {
+            Juxtaposition.ShowForm(TableListBox);
+        }
 
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            Juxtaposition.ShowEditForm(TableListBox,dataGridView1);
+            Juxtaposition.FillTableList(TableListBox);
         }
     }
 }
