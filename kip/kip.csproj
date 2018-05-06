@@ -57,15 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataForTable.cs" />
     <Compile Include="Equipment.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EquipmentForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EquipmentForm.Designer.cs">
-      <DependentUpon>EquipmentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EquipmentRule.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
@@ -73,13 +66,6 @@
     <Compile Include="EquipmentType.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="EquipmentTypeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EquipmentTypeForm.Designer.cs">
-      <DependentUpon>EquipmentTypeForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FillGrid.cs" />
     <Compile Include="kip.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -123,15 +109,6 @@
     <Compile Include="SystemType.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="TableForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TableForm.Designer.cs">
-      <DependentUpon>TableForm.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="EquipmentTypeForm.resx">
-      <DependentUpon>EquipmentTypeForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,9 +121,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TableForm.resx">
-      <DependentUpon>TableForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EntityDeploy Include="kip.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>kip.Designer.cs</LastGenOutput>

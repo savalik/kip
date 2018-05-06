@@ -17,29 +17,5 @@ namespace kip
         {
             InitializeComponent();
         }
-
-        private void ManufacturerButton_Click(object sender, EventArgs e)
-        {
-            TableForm tableForm = new TableForm(FillGrid.TablesEnum.Manufacturers);
-            tableForm.ShowDialog();
-        }
-
-        private void EquipmentTypesButton_Click(object sender, EventArgs e)
-        {
-            TableForm tableForm = new TableForm(FillGrid.TablesEnum.EquipmentTypes);
-            tableForm.ShowDialog();
-        }
-
-        private void Equipment_Click(object sender, EventArgs e)
-        {
-            TableForm tableForm = new TableForm(FillGrid.TablesEnum.Equipment);
-            tableForm.ShowDialog();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            EquipmentTypeForm typeForm = new EquipmentTypeForm();
-            typeForm.ShowDialog();
-        }
     }
 }
