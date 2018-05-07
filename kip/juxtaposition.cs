@@ -47,7 +47,8 @@ namespace kip
                     //Equipment.FillGrid(view);
                     break;
                 case "Типы оборудования":
-                    //EquipmentType.FillGrid(view);
+                    form = new EquipmentTypeForm();
+                    form.ShowDialog();
                     break;
                 case "Производители":
                     form = new ManufacturerForm();
@@ -90,7 +91,8 @@ namespace kip
                         //Equipment.FillGrid(view);
                         break;
                     case "Типы оборудования":
-                        //EquipmentType.FillGrid(view);
+                        form = new EquipmentTypeForm(view);
+                        form.ShowDialog();
                         break;
                     case "Производители":
                         form = new ManufacturerForm(view);
