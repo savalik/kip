@@ -39,20 +39,11 @@ namespace kip
                 type = context.EquipmentTypeSet.Where(b => b.id == id).SingleOrDefault();
 
                 for (int i = 0; i < SysTypeBox.Items.Count; i++)
-                {
-                    if (SysTypeBox.Items[i].ToString() == type.SystemType.name)
-                    {
-                        SysTypeBox.SelectedIndex = i;
-                    }
-                }
-
-                for (int i = 0; i < ManufactBox.Items.Count; i++)
-                {
-                    if (ManufactBox.Items[i].ToString() == type.Manufacturer.name)
-                    {
-                        ManufactBox.SelectedIndex = i;
-                    }
-                }
+                    if (SysTypeBox.Items[i].ToString() == type.SystemType.name) SysTypeBox.SelectedIndex = i;
+                
+                for (int i = 0; i < ManufactBox.Items.Count; i++)                
+                    if (ManufactBox.Items[i].ToString() == type.Manufacturer.name) ManufactBox.SelectedIndex = i;
+                
                 DescriptionBox.Text = type.description;
                 NameBox.Text = type.name;
 

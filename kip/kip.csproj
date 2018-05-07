@@ -81,6 +81,12 @@
     <Compile Include="EntityEditForms\ManufacturerForm.Designer.cs">
       <DependentUpon>ManufacturerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EntityEditForms\MVPSForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\MVPSForm.Designer.cs">
+      <DependentUpon>MVPSForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EntityEditForms\MVPSRoleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EntityEditForms\ManufacturerForm.resx">
       <DependentUpon>ManufacturerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\MVPSForm.resx">
+      <DependentUpon>MVPSForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EntityEditForms\MVPSRoleForm.resx">
       <DependentUpon>MVPSRoleForm.cs</DependentUpon>

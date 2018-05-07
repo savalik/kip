@@ -67,7 +67,8 @@ namespace kip
                     form.ShowDialog();
                     break;
                 case "МВПС":
-                    //MVPS.FillGrid(view);
+                    form = new MVPSForm();
+                    form.ShowDialog();
                     break;
                 case "Правила компелктования":
                     form = new EquipmentRuleForm();
@@ -111,7 +112,8 @@ namespace kip
                         form.ShowDialog();
                         break;
                     case "МВПС":
-                        //MVPS.FillGrid(view);
+                        form = new MVPSForm(view);
+                        form.ShowDialog();
                         break;
                     case "Правила компелктования":
                         form = new EquipmentRuleForm(view);
