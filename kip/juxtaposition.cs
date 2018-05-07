@@ -7,6 +7,9 @@ namespace kip
 {
     public static class Juxtaposition
     {
+        static DataGridView gridView = null;
+        static ListBox listBox = null;
+
         public static string TableName(object table)
         {
             var str = table.ToString();
@@ -53,10 +56,12 @@ namespace kip
                     //SystemType.FillGrid(view);
                     break;
                 case "Роли МВПС":
-                    //MVPSRole.FillGrid(view);
+                    form = new MVPSRoleForm();
+                    form.ShowDialog();
                     break;
                 case "Типы МВПС":
-                    //MVPSType.FillGrid(view);
+                    form = new MVPSTypeForm();
+                    form.ShowDialog();
                     break;
                 case "МВПС":
                     //MVPS.FillGrid(view);
@@ -68,41 +73,52 @@ namespace kip
                 default:
                     break;
             }
+            FillGrid(listBox, gridView);
         }
 
         internal static void ShowEditForm(ListBox list, DataGridView view)
         {
-            Form form;
-            var str = list.SelectedItem.ToString();
-            switch (str)
+            try
             {
-                case "Оборудование":
-                    //Equipment.FillGrid(view);
-                    break;
-                case "Типы оборудования":
-                    //EquipmentType.FillGrid(view);
-                    break;
-                case "Производители":
-                    //Manufacturer.FillGrid(view);
-                    break;
-                case "Типы систем":
-                    //SystemType.FillGrid(view);
-                    break;
-                case "Роли МВПС":
-                    //MVPSRole.FillGrid(view);
-                    break;
-                case "Типы МВПС":
-                    //MVPSType.FillGrid(view);
-                    break;
-                case "МВПС":
-                    //MVPS.FillGrid(view);
-                    break;
-                case "Правила компелктования":
-                    form = new EquipmentRuleForm(view);
-                    form.ShowDialog();
-                    break;
-                default:
-                    break;
+                Form form;
+                var str = list.SelectedItem.ToString();
+                switch (str)
+                {
+                    case "Оборудование":
+                        //Equipment.FillGrid(view);
+                        break;
+                    case "Типы оборудования":
+                        //EquipmentType.FillGrid(view);
+                        break;
+                    case "Производители":
+                        //Manufacturer.FillGrid(view);
+                        break;
+                    case "Типы систем":
+                        //SystemType.FillGrid(view);
+                        break;
+                    case "Роли МВПС":
+                        form = new MVPSRoleForm(view);
+                        form.ShowDialog();
+                        break;
+                    case "Типы МВПС":
+                        form = new MVPSTypeForm(view);
+                        form.ShowDialog();
+                        break;
+                    case "МВПС":
+                        //MVPS.FillGrid(view);
+                        break;
+                    case "Правила компелктования":
+                        form = new EquipmentRuleForm(view);
+                        form.ShowDialog();
+                        break;
+                    default:
+                        break;
+                }
+                FillGrid(listBox, gridView);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -129,6 +145,9 @@ namespace kip
         public static void FillGrid(ListBox list, DataGridView view)
         {
             var str = list.SelectedItem.ToString();
+            gridView = view;
+            listBox = list;
+
             switch (str)
             {
                 case "Оборудование":

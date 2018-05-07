@@ -104,6 +104,8 @@ namespace kip
                     EquipmentTypeBox.Items.Add(eq.name);
                     InRuleEqId.Add(eq.id);
                 }
+
+                AddButton.Text = "Сохранить";
             }
         }
 
@@ -150,7 +152,7 @@ namespace kip
 
         private void EquipmentTypeBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int index = EquipmentTypeBox_.IndexFromPoint(e.Location);
+            int index = EquipmentTypeBox.IndexFromPoint(e.Location);
             if (index != ListBox.NoMatches)
             {
                 EquipmentTypeBox.Items.RemoveAt(index);
@@ -188,13 +190,13 @@ namespace kip
                     }
                     else
                     {
-                        
                         int key = rule.Id;
                         EquipmentRule freshRule = context.EquipmentRuleSet.Where(b => b.Id == key).SingleOrDefault();
-                        freshRule.MVPSRole = role;
-                        freshRule.MVPSType = type;
-                        freshRule.EquipmentType = eqList;
+                        if (freshRule.MVPSRole != role) freshRule.MVPSRole = role;
+                        if (freshRule.MVPSType != type) freshRule.MVPSType = type;
+                        if (freshRule.EquipmentType != eqList) freshRule.EquipmentType = eqList;
                     }
+                    
                     context.SaveChanges();
 
                 }

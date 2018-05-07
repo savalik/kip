@@ -40,5 +40,15 @@ namespace kip
             Juxtaposition.ShowEditForm(TableListBox,dataGridView1);
             Juxtaposition.FillTableList(TableListBox);
         }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Функция пока не реализована. Извините.");
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

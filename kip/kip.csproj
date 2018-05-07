@@ -69,6 +69,18 @@
     <Compile Include="EntityEditForms\EquipmentRuleForm.Designer.cs">
       <DependentUpon>EquipmentRuleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EntityEditForms\MVPSRoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\MVPSRoleForm.Designer.cs">
+      <DependentUpon>MVPSRoleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityEditForms\MVPSTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\MVPSTypeForm.Designer.cs">
+      <DependentUpon>MVPSTypeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Equipment.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
@@ -135,6 +147,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EntityEditForms\EquipmentRuleForm.resx">
       <DependentUpon>EquipmentRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\MVPSRoleForm.resx">
+      <DependentUpon>MVPSRoleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\MVPSTypeForm.resx">
+      <DependentUpon>MVPSTypeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
