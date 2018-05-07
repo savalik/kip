@@ -59,6 +59,7 @@ namespace kip
             {
                 try
                 {
+                    if (MVPSTypeBox.Text == "Введите название типа МВПС") throw new Exception("Введите коректное название типа МВПС");
                     if (type != null)
                     {
                         int key = type.Id;

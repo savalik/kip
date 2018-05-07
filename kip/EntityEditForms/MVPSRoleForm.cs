@@ -59,6 +59,7 @@ namespace kip
             {
                 try
                 {
+                    if (MVPSRoleBox.Text == "Введите название роли МВПС") throw new Exception("Введите коректное название роли МВПС");
                     if (role != null)
                     {
                         int key = role.Id;

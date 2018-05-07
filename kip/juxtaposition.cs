@@ -53,7 +53,8 @@ namespace kip
                     //Manufacturer.FillGrid(view);
                     break;
                 case "Типы систем":
-                    //SystemType.FillGrid(view);
+                    form = new SystemTypeForm();
+                    form.ShowDialog();
                     break;
                 case "Роли МВПС":
                     form = new MVPSRoleForm();
@@ -94,7 +95,8 @@ namespace kip
                         //Manufacturer.FillGrid(view);
                         break;
                     case "Типы систем":
-                        //SystemType.FillGrid(view);
+                        form = new SystemTypeForm(view);
+                        form.ShowDialog();
                         break;
                     case "Роли МВПС":
                         form = new MVPSRoleForm(view);

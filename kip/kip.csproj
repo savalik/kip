@@ -81,6 +81,12 @@
     <Compile Include="EntityEditForms\MVPSTypeForm.Designer.cs">
       <DependentUpon>MVPSTypeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EntityEditForms\SystemTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\SystemTypeForm.Designer.cs">
+      <DependentUpon>SystemTypeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Equipment.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
@@ -153,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EntityEditForms\MVPSTypeForm.resx">
       <DependentUpon>MVPSTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\SystemTypeForm.resx">
+      <DependentUpon>SystemTypeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
