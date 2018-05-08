@@ -72,12 +72,12 @@ namespace kip
                 eq = context.EquipmentSet.Where(b => b.id == id).SingleOrDefault();
 
                 NumberBox.Text = eq.number;
-                RepairDate.Text = eq.repairDate.ToShortDateString();
-                ServiceDate.Text = eq.repairDate.ToShortDateString();
-                VerificationDate.Text = eq.repairDate.ToShortDateString();
+                RepairDate.Text = eq.repairDate.ToString("dd.MM.yy");
+                ServiceDate.Text = eq.serviceDate.ToString("dd.MM.yy");
+                VerificationDate.Text = eq.nextVerificationDate.ToString("dd.MM.yy");
                 if (eq.termDate.HasValue)
                 {
-                    var shortString = eq.termDate.Value.ToShortDateString();
+                    var shortString = eq.termDate.Value.ToString("dd.MM.yy");
                     TerminationDate.Text = shortString;
                 }
                 else TerminationDate.Text = "";
