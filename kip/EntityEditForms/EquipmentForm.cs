@@ -74,12 +74,20 @@ namespace kip
                 NumberBox.Text = eq.number;
                 RepairDate.Text = eq.repairDate.ToString("dd.MM.yy");
                 ServiceDate.Text = eq.serviceDate.ToString("dd.MM.yy");
-                VerificationDate.Text = eq.nextVerificationDate.ToString("dd.MM.yy");
+
+                if (eq.nextVerificationDate.HasValue)
+                {
+                    var shortString = eq.nextVerificationDate.Value.ToString("dd.MM.yy");
+                    VerificationDate.Text = shortString;
+                }
+
                 if (eq.termDate.HasValue)
                 {
                     var shortString = eq.termDate.Value.ToString("dd.MM.yy");
                     TerminationDate.Text = shortString;
                 }
+
+
                 else TerminationDate.Text = "";
                 IsWorking.Checked = eq.isWorking;
                 IsFree.Checked = eq.isFree;
@@ -103,12 +111,18 @@ namespace kip
                     var type = context.EquipmentTypeSet.Where(b => b.id == typeId).SingleOrDefault();
                     DateTime dateTimeRepair = DateTime.Parse(RepairDate.Text);
                     DateTime dateTimeService = DateTime.Parse(ServiceDate.Text);
-                    DateTime dateTimeVerification = DateTime.Parse(VerificationDate.Text);
-                    DateTime? termD;
-                    DateTime term;
-                    bool hasTerm = DateTime.TryParse(TerminationDate.Text, out term);
-                    if (hasTerm) termD = term;
-                    else termD = null;
+                    //DateTime dateTimeVerification = DateTime.Parse(VerificationDate.Text);
+
+                    DateTime? VerificationDate;
+                    DateTime? TerminationDate;
+
+                    bool hasDate = DateTime.TryParse(this.VerificationDate.Text, out DateTime term);
+                    if (hasDate) VerificationDate = term;
+                    else VerificationDate = null;
+                    
+                    hasDate = DateTime.TryParse(this.TerminationDate.Text, out term);
+                    if (hasDate) TerminationDate = term;
+                    else TerminationDate = null;
 
                     if (eq != null)
                     {
@@ -119,8 +133,8 @@ namespace kip
                         if (equipment.number != NumberBox.Text) equipment.number = NumberBox.Text;
                         if (equipment.repairDate != dateTimeRepair) equipment.repairDate = dateTimeRepair;
                         if (equipment.serviceDate != dateTimeService) equipment.serviceDate = dateTimeService;
-                        if (equipment.nextVerificationDate != dateTimeVerification) equipment.nextVerificationDate = dateTimeVerification;
-                        if (equipment.termDate != termD) equipment.termDate = termD;
+                        if (equipment.nextVerificationDate != VerificationDate) equipment.nextVerificationDate = VerificationDate;
+                        if (equipment.termDate != TerminationDate) equipment.termDate = TerminationDate;
                         if (equipment.isWorking != IsWorking.Checked) equipment.isWorking = IsWorking.Checked;
                         if (equipment.isFree != IsFree.Checked) equipment.isFree = IsFree.Checked;
 
@@ -135,8 +149,8 @@ namespace kip
                             number = NumberBox.Text,
                             repairDate = dateTimeRepair,
                             serviceDate = dateTimeService,
-                            nextVerificationDate = dateTimeVerification,
-                            termDate = termD,
+                            nextVerificationDate = VerificationDate,
+                            termDate = TerminationDate,
                             isWorking = IsWorking.Checked,
                             isFree = IsFree.Checked
                         };
@@ -162,7 +176,7 @@ namespace kip
             if (NumberBox.Text == "") throw new Exception("Введите номер блока");
             if (!DateTime.TryParse(RepairDate.Text, out DateTime time)) throw new Exception("Введена некорректная дата в поле даты ремонта. Введите дату вида - дд.мм.гг");
             if (!DateTime.TryParse(ServiceDate.Text, out time)) throw new Exception("Введена некорректная дата в поле даты обслуживания. Введите дату вида - дд.мм.гг");
-            if (!DateTime.TryParse(VerificationDate.Text, out time)) throw new Exception("Введена некорректная дата в поле даты поверки. Введите дату вида - дд.мм.гг");
+            //if (!DateTime.TryParse(VerificationDate.Text, out time)) throw new Exception("Введена некорректная дата в поле даты поверки. Введите дату вида - дд.мм.гг");
         }
 
         private void EquipmentForm_Load(object sender, EventArgs e)

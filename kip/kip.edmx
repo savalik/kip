@@ -29,7 +29,7 @@
           <Property Name="number" Type="nchar" MaxLength="12" Nullable="false" />
           <Property Name="repairDate" Type="datetime" Nullable="false" />
           <Property Name="serviceDate" Type="datetime" Nullable="false" />
-          <Property Name="nextVerificationDate" Type="datetime" Nullable="false" />
+          <Property Name="nextVerificationDate" Type="datetime" />
           <Property Name="termDate" Type="datetime" />
           <Property Name="isWorking" Type="bit" Nullable="false" />
           <Property Name="isFree" Type="bit" Nullable="false" />
@@ -288,7 +288,7 @@
           <Property Name="number" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="repairDate" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="serviceDate" Type="DateTime" Precision="3" Nullable="false" />
-          <Property Name="nextVerificationDate" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="nextVerificationDate" Type="DateTime" Precision="3" Nullable="true" />
           <Property Name="termDate" Type="DateTime" Nullable="true" Precision="3" />
           <Property Name="isWorking" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="EquipmentType" Relationship="kipModel.EquipmentTypeEquipment" FromRole="Equipment" ToRole="EquipmentType" />

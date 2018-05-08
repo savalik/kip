@@ -18,7 +18,7 @@ namespace kip
         public string number { get; set; }
         public System.DateTime repairDate { get; set; }
         public System.DateTime serviceDate { get; set; }
-        public System.DateTime nextVerificationDate { get; set; }
+        public Nullable<System.DateTime> nextVerificationDate { get; set; }
         public Nullable<System.DateTime> termDate { get; set; }
         public bool isWorking { get; set; }
         public bool isFree { get; set; }
