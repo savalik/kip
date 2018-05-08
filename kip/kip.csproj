@@ -63,6 +63,12 @@
     <Compile Include="DBform.Designer.cs">
       <DependentUpon>DBform.cs</DependentUpon>
     </Compile>
+    <Compile Include="EntityEditForms\EquipmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\EquipmentForm.Designer.cs">
+      <DependentUpon>EquipmentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EntityEditForms\EquipmentRuleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,9 @@
     </Compile>
     <EmbeddedResource Include="DBform.resx">
       <DependentUpon>DBform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\EquipmentForm.resx">
+      <DependentUpon>EquipmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EntityEditForms\EquipmentRuleForm.resx">
       <DependentUpon>EquipmentRuleForm.cs</DependentUpon>

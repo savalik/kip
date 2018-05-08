@@ -70,7 +70,6 @@
             this.NumberBox.Name = "NumberBox";
             this.NumberBox.Size = new System.Drawing.Size(98, 22);
             this.NumberBox.TabIndex = 2;
-            //this.NumberBox.TextChanged += new System.EventHandler(this.NumberBox_TextChanged);
             this.NumberBox.LostFocus += new System.EventHandler(this.NumberBox_LostFocus);
             // 
             // label2
@@ -130,16 +129,16 @@
             // 
             this.CancesButton.Location = new System.Drawing.Point(30, 334);
             this.CancesButton.Name = "CancesButton";
-            this.CancesButton.Size = new System.Drawing.Size(80, 33);
+            this.CancesButton.Size = new System.Drawing.Size(96, 33);
             this.CancesButton.TabIndex = 9;
             this.CancesButton.Text = "Отмена";
             this.CancesButton.UseVisualStyleBackColor = true;
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(487, 334);
+            this.AddButton.Location = new System.Drawing.Point(471, 334);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(80, 33);
+            this.AddButton.Size = new System.Drawing.Size(96, 33);
             this.AddButton.TabIndex = 10;
             this.AddButton.Text = "Добавить";
             this.AddButton.UseVisualStyleBackColor = true;

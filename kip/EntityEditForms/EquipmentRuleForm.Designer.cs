@@ -51,6 +51,7 @@
             // 
             // MVPSRoleBox_
             // 
+            this.MVPSRoleBox_.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MVPSRoleBox_.FormattingEnabled = true;
             this.MVPSRoleBox_.Location = new System.Drawing.Point(268, 12);
             this.MVPSRoleBox_.Name = "MVPSRoleBox_";
@@ -60,6 +61,7 @@
             // 
             // MVPSTypeBox_
             // 
+            this.MVPSTypeBox_.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MVPSTypeBox_.FormattingEnabled = true;
             this.MVPSTypeBox_.Location = new System.Drawing.Point(268, 42);
             this.MVPSTypeBox_.Name = "MVPSTypeBox_";
@@ -69,6 +71,7 @@
             // 
             // SystemTypeBox
             // 
+            this.SystemTypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SystemTypeBox.FormattingEnabled = true;
             this.SystemTypeBox.Location = new System.Drawing.Point(268, 81);
             this.SystemTypeBox.Name = "SystemTypeBox";

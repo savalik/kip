@@ -59,6 +59,7 @@
             // 
             // SysTypeBox
             // 
+            this.SysTypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SysTypeBox.FormattingEnabled = true;
             this.SysTypeBox.Location = new System.Drawing.Point(52, 128);
             this.SysTypeBox.Name = "SysTypeBox";
@@ -67,6 +68,7 @@
             // 
             // ManufactBox
             // 
+            this.ManufactBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ManufactBox.DropDownWidth = 230;
             this.ManufactBox.FormattingEnabled = true;
             this.ManufactBox.Location = new System.Drawing.Point(52, 81);

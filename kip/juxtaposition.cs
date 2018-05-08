@@ -34,7 +34,6 @@ namespace kip
                 default:
                     return "";
             }
-
         }
 
         internal static void ShowForm(ListBox list)
@@ -44,7 +43,8 @@ namespace kip
             switch (str)
             {
                 case "Оборудование":
-                    //Equipment.FillGrid(view);
+                    form = new EquipmentForm();
+                    form.ShowDialog();
                     break;
                 case "Типы оборудования":
                     form = new EquipmentTypeForm();
@@ -89,7 +89,8 @@ namespace kip
                 switch (str)
                 {
                     case "Оборудование":
-                        //Equipment.FillGrid(view);
+                        form = new EquipmentForm(view);
+                        form.ShowDialog();
                         break;
                     case "Типы оборудования":
                         form = new EquipmentTypeForm(view);

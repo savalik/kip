@@ -12,14 +12,16 @@ namespace kip
         public DataGridViewRow GetRow()
         {
             var row = new DataGridViewRow();
+            string shortString = null;
+            if (termDate.HasValue) shortString = termDate.Value.ToShortDateString();
 
             row.Cells.Add(new DataGridViewTextBoxCell { Value = id });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = EquipmentType.name });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = number });
-            row.Cells.Add(new DataGridViewTextBoxCell { Value = repairDate });
-            row.Cells.Add(new DataGridViewTextBoxCell { Value = serviceDate });
-            row.Cells.Add(new DataGridViewTextBoxCell { Value = nextVerificationDate });
-            row.Cells.Add(new DataGridViewTextBoxCell { Value = termDate});
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = repairDate.ToShortDateString() });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = serviceDate.ToShortDateString() });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = nextVerificationDate.ToShortDateString() });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = shortString});
             row.Cells.Add(new DataGridViewTextBoxCell { Value = isWorking});
             row.Cells.Add(new DataGridViewTextBoxCell { Value = isFree });
 
@@ -40,6 +42,9 @@ namespace kip
                 view.Columns.Add("termDate", "Эксплуатировать до");
                 view.Columns.Add("isWorking", "Исправен");
                 view.Columns.Add("isFree", "Свободнен");
+
+                view.Columns[0].Visible = false;
+                view.Columns[6].Visible = false;
             }
             catch (Exception ex)
             {
