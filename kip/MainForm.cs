@@ -23,5 +23,11 @@ namespace kip
             DBform dBform = new DBform();
             dBform.ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            EquipmentInstallForm dBform = new EquipmentInstallForm();
+            dBform.ShowDialog();
+        }
     }
 }

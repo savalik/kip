@@ -114,6 +114,12 @@
     <Compile Include="Equipment.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="EquipmentInstallForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EquipmentInstallForm.Designer.cs">
+      <DependentUpon>EquipmentInstallForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EquipmentRule.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
@@ -198,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EntityEditForms\SystemTypeForm.resx">
       <DependentUpon>SystemTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EquipmentInstallForm.resx">
+      <DependentUpon>EquipmentInstallForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
