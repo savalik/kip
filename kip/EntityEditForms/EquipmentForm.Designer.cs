@@ -54,7 +54,7 @@
             this.IsFree.Location = new System.Drawing.Point(19, 362);
             this.IsFree.Name = "IsFree";
             this.IsFree.Size = new System.Drawing.Size(94, 21);
-            this.IsFree.TabIndex = 0;
+            this.IsFree.TabIndex = 7;
             this.IsFree.Text = "Свободен";
             this.IsFree.UseVisualStyleBackColor = true;
             // 
@@ -64,7 +64,7 @@
             this.IsWorking.Location = new System.Drawing.Point(19, 335);
             this.IsWorking.Name = "IsWorking";
             this.IsWorking.Size = new System.Drawing.Size(94, 21);
-            this.IsWorking.TabIndex = 1;
+            this.IsWorking.TabIndex = 6;
             this.IsWorking.Text = "Исправен";
             this.IsWorking.UseVisualStyleBackColor = true;
             // 
@@ -93,7 +93,7 @@
             this.TypeBox.Location = new System.Drawing.Point(12, 80);
             this.TypeBox.Name = "TypeBox";
             this.TypeBox.Size = new System.Drawing.Size(265, 24);
-            this.TypeBox.TabIndex = 9;
+            this.TypeBox.TabIndex = 1;
             // 
             // label4
             // 
@@ -118,7 +118,7 @@
             this.NumberBox.Location = new System.Drawing.Point(15, 127);
             this.NumberBox.Name = "NumberBox";
             this.NumberBox.Size = new System.Drawing.Size(100, 22);
-            this.NumberBox.TabIndex = 10;
+            this.NumberBox.TabIndex = 2;
             // 
             // label3
             // 
@@ -161,16 +161,17 @@
             this.CancesButton.Location = new System.Drawing.Point(12, 427);
             this.CancesButton.Name = "CancesButton";
             this.CancesButton.Size = new System.Drawing.Size(89, 33);
-            this.CancesButton.TabIndex = 20;
+            this.CancesButton.TabIndex = 10;
             this.CancesButton.Text = "Отмена";
             this.CancesButton.UseVisualStyleBackColor = true;
+            this.CancesButton.Click += new System.EventHandler(this.CancesButton_Click);
             // 
             // AddButton
             // 
             this.AddButton.Location = new System.Drawing.Point(197, 427);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(89, 33);
-            this.AddButton.TabIndex = 21;
+            this.AddButton.TabIndex = 8;
             this.AddButton.Text = "Добавить";
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
@@ -181,7 +182,7 @@
             this.RepairDate.Mask = "00/00/00";
             this.RepairDate.Name = "RepairDate";
             this.RepairDate.Size = new System.Drawing.Size(100, 22);
-            this.RepairDate.TabIndex = 22;
+            this.RepairDate.TabIndex = 3;
             this.RepairDate.ValidatingType = typeof(System.DateTime);
             // 
             // ServiceDate
@@ -190,7 +191,7 @@
             this.ServiceDate.Mask = "00/00/00";
             this.ServiceDate.Name = "ServiceDate";
             this.ServiceDate.Size = new System.Drawing.Size(100, 22);
-            this.ServiceDate.TabIndex = 23;
+            this.ServiceDate.TabIndex = 4;
             // 
             // VerificationDate
             // 
@@ -198,7 +199,7 @@
             this.VerificationDate.Mask = "00/00/00";
             this.VerificationDate.Name = "VerificationDate";
             this.VerificationDate.Size = new System.Drawing.Size(100, 22);
-            this.VerificationDate.TabIndex = 24;
+            this.VerificationDate.TabIndex = 5;
             // 
             // TerminationDate
             // 
@@ -206,7 +207,7 @@
             this.TerminationDate.Mask = "00/00/00";
             this.TerminationDate.Name = "TerminationDate";
             this.TerminationDate.Size = new System.Drawing.Size(100, 22);
-            this.TerminationDate.TabIndex = 25;
+            this.TerminationDate.TabIndex = 9;
             // 
             // EquipmentForm
             // 

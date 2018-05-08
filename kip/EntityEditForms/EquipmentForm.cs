@@ -42,6 +42,26 @@ namespace kip
                 }
 
                 IdBox.Text = Guid.NewGuid().ToString();
+
+                if (eq != null)
+                {
+                    try
+                    {
+                        IsWorking.Checked = eq.isWorking;
+                        IsFree.Checked = eq.isFree;
+
+                        for (int i = 0; i < TypeBox.Items.Count; i++)
+                            if (TypeBox.Items[i].ToString() == eq.EquipmentType.name) TypeBox.SelectedIndex = i;
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        eq = null;
+                    }
+                }
             }
         }
 
@@ -128,6 +148,10 @@ namespace kip
                 {
                     MessageBox.Show(ex.Message);
                 }
+                finally
+                {
+                    Close();
+                }
             }
         }
 
@@ -144,6 +168,11 @@ namespace kip
         private void EquipmentForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void CancesButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
