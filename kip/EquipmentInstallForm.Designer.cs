@@ -35,10 +35,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.mvpsGrid = new System.Windows.Forms.DataGridView();
-            this.EquipmentType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SystemType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EquipmentNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ServiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MVPSNumberBox = new System.Windows.Forms.ComboBox();
             this.MVPSSeriesBox = new System.Windows.Forms.ComboBox();
             this.equipmentGrid = new System.Windows.Forms.DataGridView();
@@ -46,6 +42,11 @@
             this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.blockId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EquipmentType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SystemType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EquipmentNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ServiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.mvpsGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.equipmentGrid)).BeginInit();
             this.SuspendLayout();
@@ -110,6 +111,7 @@
             // 
             this.mvpsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.mvpsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.blockId,
             this.EquipmentType,
             this.SystemType,
             this.EquipmentNumber,
@@ -121,31 +123,8 @@
             this.mvpsGrid.Size = new System.Drawing.Size(557, 531);
             this.mvpsGrid.TabIndex = 20;
             this.mvpsGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mvpsGrid_CellClick);
+            this.mvpsGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mvpsGrid_CellContentClick_1);
             this.mvpsGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mvpsGrid_CellDoubleClick);
-            // 
-            // EquipmentType
-            // 
-            this.EquipmentType.HeaderText = "Тип оборудования";
-            this.EquipmentType.Name = "EquipmentType";
-            this.EquipmentType.Width = 120;
-            // 
-            // SystemType
-            // 
-            this.SystemType.HeaderText = "Тип системы";
-            this.SystemType.Name = "SystemType";
-            this.SystemType.Width = 150;
-            // 
-            // EquipmentNumber
-            // 
-            this.EquipmentNumber.HeaderText = "Номер блока";
-            this.EquipmentNumber.Name = "EquipmentNumber";
-            this.EquipmentNumber.Width = 120;
-            // 
-            // ServiceDate
-            // 
-            this.ServiceDate.HeaderText = "Дата обслуживания";
-            this.ServiceDate.Name = "ServiceDate";
-            this.ServiceDate.Width = 120;
             // 
             // MVPSNumberBox
             // 
@@ -185,25 +164,64 @@
             // 
             this.eqId.HeaderText = "id";
             this.eqId.Name = "eqId";
+            this.eqId.ReadOnly = true;
             this.eqId.Visible = false;
             // 
             // type
             // 
             this.type.HeaderText = "Тип блока";
             this.type.Name = "type";
+            this.type.ReadOnly = true;
             this.type.Width = 110;
             // 
             // number
             // 
             this.number.HeaderText = "Номер блока";
             this.number.Name = "number";
+            this.number.ReadOnly = true;
             this.number.Width = 120;
             // 
             // date
             // 
             this.date.HeaderText = "Дата обслуживания";
             this.date.Name = "date";
+            this.date.ReadOnly = true;
             this.date.Width = 120;
+            // 
+            // blockId
+            // 
+            this.blockId.HeaderText = "Id";
+            this.blockId.Name = "blockId";
+            this.blockId.ReadOnly = true;
+            this.blockId.Visible = false;
+            // 
+            // EquipmentType
+            // 
+            this.EquipmentType.HeaderText = "Тип оборудования";
+            this.EquipmentType.Name = "EquipmentType";
+            this.EquipmentType.ReadOnly = true;
+            this.EquipmentType.Width = 120;
+            // 
+            // SystemType
+            // 
+            this.SystemType.HeaderText = "Тип системы";
+            this.SystemType.Name = "SystemType";
+            this.SystemType.ReadOnly = true;
+            this.SystemType.Width = 150;
+            // 
+            // EquipmentNumber
+            // 
+            this.EquipmentNumber.HeaderText = "Номер блока";
+            this.EquipmentNumber.Name = "EquipmentNumber";
+            this.EquipmentNumber.ReadOnly = true;
+            this.EquipmentNumber.Width = 120;
+            // 
+            // ServiceDate
+            // 
+            this.ServiceDate.HeaderText = "Дата обслуживания";
+            this.ServiceDate.Name = "ServiceDate";
+            this.ServiceDate.ReadOnly = true;
+            this.ServiceDate.Width = 120;
             // 
             // EquipmentInstallForm
             // 
@@ -239,10 +257,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView mvpsGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EquipmentType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SystemType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EquipmentNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ServiceDate;
         private System.Windows.Forms.ComboBox MVPSNumberBox;
         private System.Windows.Forms.ComboBox MVPSSeriesBox;
         private System.Windows.Forms.DataGridView equipmentGrid;
@@ -250,5 +264,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn type;
         private System.Windows.Forms.DataGridViewTextBoxColumn number;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn blockId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EquipmentType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SystemType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EquipmentNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ServiceDate;
     }
 }

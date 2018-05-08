@@ -152,20 +152,21 @@ namespace kip
                         {
                             string cell1=null, cell2 = null,cell3 = null, cell4 = null;
                             var block = mvps.Equipment.Where(b => b.EquipmentType == rule).SingleOrDefault();
-
+                            Guid? cell0 = null;
                             cell1 = rule.name;
                             cell2 = rule.SystemType.name;
                             if (block != null)
                             {
+                                 cell0 = block.id;
                                  cell3 = block.number;
-                                 cell4 = block.serviceDate.ToString("dd.mm.yy");
+                                 cell4 = block.serviceDate.ToString("dd.MM.yy");
                             }
 
-                            mvpsGrid.Rows.Add(cell1,cell2,cell3,cell4);
+                            mvpsGrid.Rows.Add(cell0,cell1,cell2,cell3,cell4);
                             i++;
                         }
 
-                        FillEquipmentGrid(mvpsGrid[0, 0].Value.ToString());
+                        FillEquipmentGrid(mvpsGrid[1, 0].Value.ToString());
                         //var equipments = mvps.Equipment
 
                     }
@@ -218,18 +219,32 @@ namespace kip
 
         private void mvpsGrid_CellDoubleClick(Object sender, DataGridViewCellEventArgs e)
         {
+            if (CheckAllSelected() && !CheckEmpty())
+            {
+                using (kipEntities context = new kipEntities())
+                {
+                    Guid id = Guid.Parse(mvpsGrid[0, e.RowIndex].Value.ToString());
+                    Equipment equipment = context.EquipmentSet.Where(b => b.id == id).SingleOrDefault();
 
-            System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
-            messageBoxCS.AppendFormat("{0} = {1}", "ColumnIndex", e.ColumnIndex);
-            messageBoxCS.AppendLine();
-            messageBoxCS.AppendFormat("{0} = {1}", "RowIndex", e.RowIndex);
-            messageBoxCS.AppendLine();
-            MessageBox.Show(messageBoxCS.ToString(), "CellDoubleClick Event");
+                    DialogResult result = MessageBox.Show("Снять " + equipment.EquipmentType.name + " № " + equipment.number + " ?", "Снять блок с МВПС?", MessageBoxButtons.YesNo);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        MVPS mvps = context.MVPSSet.Where(b => b.Id == mvpsGuid).SingleOrDefault();
+
+                        equipment.isFree = true;
+                        mvps.Equipment.Remove(equipment);
+
+                        context.SaveChanges();
+                    }
+                }
+                FillGrid();
+            }
         }
 
         private void mvpsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            FillEquipmentGrid(mvpsGrid[0,e.RowIndex].Value.ToString());
+            FillEquipmentGrid(mvpsGrid[1,e.RowIndex].Value.ToString());
         }
 
         private void FillEquipmentGrid(string v)
@@ -279,8 +294,8 @@ namespace kip
             {
                 string value = "";
                 int row = mvpsGrid.CurrentRow.Index;
-                if(mvpsGrid[2, row].Value != null)
-                value = mvpsGrid[2, row].Value.ToString();
+                if(mvpsGrid[3, row].Value != null)
+                value = mvpsGrid[3, row].Value.ToString();
                 if (value != "") return false;
                 else return true;
             }
@@ -289,6 +304,11 @@ namespace kip
                 MessageBox.Show(ex.Message);
                 return true;
             }
+        }
+
+        private void mvpsGrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
