@@ -226,16 +226,29 @@ namespace kip
                     Guid id = Guid.Parse(mvpsGrid[0, e.RowIndex].Value.ToString());
                     Equipment equipment = context.EquipmentSet.Where(b => b.id == id).SingleOrDefault();
 
-                    DialogResult result = MessageBox.Show("Снять " + equipment.EquipmentType.name + " № " + equipment.number + " ?", "Снять блок с МВПС?", MessageBoxButtons.YesNo);
+                    DialogResult result = MessageBox.Show("Нажмите \"Да\", если блок снимается по неисправности. Если блок снимается по другой причине - нажмите \"Нет\"", "Снимаем " + equipment.EquipmentType.name + " № " + equipment.number, MessageBoxButtons.YesNoCancel);
 
-                    if (result == DialogResult.Yes)
+                    MVPS mvps = context.MVPSSet.Where(b => b.Id == mvpsGuid).SingleOrDefault();
+
+                    equipment.isFree = true;
+                    mvps.Equipment.Remove(equipment);
+                    context.SaveChanges();
+
+                    switch (result)
                     {
-                        MVPS mvps = context.MVPSSet.Where(b => b.Id == mvpsGuid).SingleOrDefault();
-
-                        equipment.isFree = true;
-                        mvps.Equipment.Remove(equipment);
-
-                        context.SaveChanges();
+                        case DialogResult.Yes:
+                            equipment.isWorking = false;
+                            equipment.isFree = true;
+                            mvps.Equipment.Remove(equipment);
+                            context.SaveChanges();
+                            break;
+                        case DialogResult.No:
+                            equipment.isFree = true;
+                            mvps.Equipment.Remove(equipment);
+                            context.SaveChanges();
+                            break;
+                        case DialogResult.Cancel:
+                            break;
                     }
                 }
                 FillGrid();
@@ -252,7 +265,7 @@ namespace kip
             using (kipEntities context = new kipEntities())
                 try
                 {
-                    var equipments = context.EquipmentSet.Where(b => (b.EquipmentType.name == v) && (b.isFree)).ToList();
+                    var equipments = context.EquipmentSet.Where(b => (b.EquipmentType.name == v) && (b.isFree) && (b.isWorking)).ToList();
                     equipmentGrid.Rows.Clear();
                     foreach (var eq in equipments)
                         equipmentGrid.Rows.Add(eq.id, eq.EquipmentType.name ,eq.number.ToString(), eq.serviceDate.ToString("dd.MM.yy"));
