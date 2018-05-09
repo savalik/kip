@@ -29,5 +29,10 @@ namespace kip
             EquipmentInstallForm dBform = new EquipmentInstallForm();
             dBform.ShowDialog();
         }
+
+        private void CloseFormButton_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
