@@ -14,11 +14,13 @@ namespace kip
     public partial class MainForm : Form
     {
         static Worker worker;
+        static LoginForm LoginForm;
 
-        public MainForm(Worker loggedWorker)
+        public MainForm(Worker loggedWorker, LoginForm Form)
         {
             InitializeComponent();
             worker = loggedWorker;
+            LoginForm = Form;
             FillForm();
         }
 
@@ -49,6 +51,11 @@ namespace kip
         private void MainForm_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LoginForm.Show();
         }
     }
 }

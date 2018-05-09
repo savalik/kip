@@ -60,7 +60,7 @@ namespace kip
             switch (position)
             {
                 case 6:
-                    MainForm main = new MainForm(worker);
+                    MainForm main = new MainForm(worker, this);
                     this.Hide();
                     main.Show();
                     break;
@@ -69,12 +69,42 @@ namespace kip
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+            
+        }
 
+        private void LoginForm_Activated(object sender, EventArgs e)
+        {
+            PersonnelNumberBox.Text = "";
+            PasswordBox.Text = "";
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
+            ///ToDo: не пускать этот код в продакшн
+            using (kipEntities context = new kipEntities())
+            {
+                SHA1 sha = new SHA1CryptoServiceProvider();
+                var buffer = Encoding.Unicode.GetBytes("kip");
+                byte[] result = sha.ComputeHash(buffer);
+
+                Worker worker = context.WorkerSet.Include("Position").Where(b => b.PersonnelNumber == 11179474).SingleOrDefault();
+
+                string inSystemHash = worker.PinCodeHash;
+                string hash = Convert.ToBase64String(result);
+
+                if (inSystemHash != hash) throw new Exception("Не удалось войти в систему. Проверьте правильность ввода логина и пароля, или свяжитесь с разработчиком");
+                else
+                {
+                    var position = worker.Position.Id;
+                    GetNextForm(position, worker);
+                }
+
+            }
         }
     }
 }
