@@ -23,6 +23,12 @@
         <AssociationConnector Association="kipModel.EquipmentTypeEquipment" />
         <AssociationConnector Association="kipModel.EquipmentRuleMVPS" />
         <AssociationConnector Association="kipModel.MVPSEquipment" />
+        <EntityTypeShape EntityType="kipModel.ReplacingLog" Width="1.5" PointX="10.625" PointY="6.625" />
+        <AssociationConnector Association="kipModel.MVPSReplacingLog" />
+        <EntityTypeShape EntityType="kipModel.Worker" Width="1.5" PointX="13" PointY="6.25" />
+        <EntityTypeShape EntityType="kipModel.Position" Width="1.5" PointX="13" PointY="4" />
+        <AssociationConnector Association="kipModel.PositionWorker" />
+        <AssociationConnector Association="kipModel.WorkerReplacingLog" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

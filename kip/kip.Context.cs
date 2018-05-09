@@ -33,5 +33,8 @@ namespace kip
         public virtual DbSet<MVPSType> MVPSTypeSet { get; set; }
         public virtual DbSet<MVPS> MVPSSet { get; set; }
         public virtual DbSet<EquipmentRule> EquipmentRuleSet { get; set; }
+        public virtual DbSet<ReplacingLog> ReplacingLogSet { get; set; }
+        public virtual DbSet<Worker> WorkerSet { get; set; }
+        public virtual DbSet<Position> PositionSet { get; set; }
     }
 }

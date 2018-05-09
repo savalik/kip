@@ -4,279 +4,360 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="kipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="EquipmentRuleEquipmentType">
-          <Key>
-            <PropertyRef Name="EquipmentRule_Id" />
-            <PropertyRef Name="EquipmentType_id" />
-          </Key>
-          <Property Name="EquipmentRule_Id" Type="int" Nullable="false" />
-          <Property Name="EquipmentType_id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="EquipmentRuleSet">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MVPSRole_Id" Type="int" Nullable="false" />
-          <Property Name="MVPSType_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="EquipmentSet">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="number" Type="nchar" MaxLength="12" Nullable="false" />
-          <Property Name="repairDate" Type="datetime" Nullable="false" />
-          <Property Name="serviceDate" Type="datetime" Nullable="false" />
-          <Property Name="nextVerificationDate" Type="datetime" />
-          <Property Name="termDate" Type="datetime" />
-          <Property Name="isWorking" Type="bit" Nullable="false" />
-          <Property Name="isFree" Type="bit" Nullable="false" />
-          <Property Name="EquipmentType_id" Type="int" Nullable="false" />
-          <Property Name="MVPS_Id" Type="uniqueidentifier" />
-        </EntityType>
-        <EntityType Name="EquipmentTypeSet">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="description" Type="nvarchar(max)" />
-          <Property Name="SystemType_Id" Type="int" Nullable="false" />
-          <Property Name="Manufacturer_id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ManufacturerSet">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nchar" MaxLength="50" />
-          <Property Name="address" Type="nvarchar(max)" />
-          <Property Name="phone" Type="nchar" MaxLength="16" />
-          <Property Name="email" Type="nchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="MVPSRoleSet">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="MVPSSet">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="number" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="series" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="MVPSRole_Id" Type="int" Nullable="false" />
-          <Property Name="MVPSType_Id" Type="int" Nullable="false" />
-          <Property Name="EquipmentRule_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="MVPSTypeSet">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SystemTypeSet">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_EquipmentRuleEquipmentType_EquipmentRule">
-          <End Role="EquipmentRuleSet" Type="Self.EquipmentRuleSet" Multiplicity="1" />
-          <End Role="EquipmentRuleEquipmentType" Type="Self.EquipmentRuleEquipmentType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EquipmentRuleSet">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="EquipmentRuleEquipmentType">
-              <PropertyRef Name="EquipmentRule_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EquipmentRuleEquipmentType_EquipmentType">
-          <End Role="EquipmentTypeSet" Type="Self.EquipmentTypeSet" Multiplicity="1" />
-          <End Role="EquipmentRuleEquipmentType" Type="Self.EquipmentRuleEquipmentType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EquipmentTypeSet">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="EquipmentRuleEquipmentType">
-              <PropertyRef Name="EquipmentType_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EquipmentRuleMVPS">
-          <End Role="EquipmentRuleSet" Type="Self.EquipmentRuleSet" Multiplicity="1" />
-          <End Role="MVPSSet" Type="Self.MVPSSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EquipmentRuleSet">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MVPSSet">
-              <PropertyRef Name="EquipmentRule_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EquipmentTypeEquipment">
-          <End Role="EquipmentTypeSet" Type="Self.EquipmentTypeSet" Multiplicity="1" />
-          <End Role="EquipmentSet" Type="Self.EquipmentSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EquipmentTypeSet">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="EquipmentSet">
-              <PropertyRef Name="EquipmentType_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ManufacturerEquipmentType">
-          <End Role="ManufacturerSet" Type="Self.ManufacturerSet" Multiplicity="1" />
-          <End Role="EquipmentTypeSet" Type="Self.EquipmentTypeSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ManufacturerSet">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="EquipmentTypeSet">
-              <PropertyRef Name="Manufacturer_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MVPSEquipment">
-          <End Role="MVPSSet" Type="Self.MVPSSet" Multiplicity="0..1" />
-          <End Role="EquipmentSet" Type="Self.EquipmentSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MVPSSet">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="EquipmentSet">
-              <PropertyRef Name="MVPS_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MVPSMVPSRole">
-          <End Role="MVPSRoleSet" Type="Self.MVPSRoleSet" Multiplicity="1" />
-          <End Role="MVPSSet" Type="Self.MVPSSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MVPSRoleSet">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MVPSSet">
-              <PropertyRef Name="MVPSRole_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MVPSRoleEquipmentRule">
-          <End Role="MVPSRoleSet" Type="Self.MVPSRoleSet" Multiplicity="1" />
-          <End Role="EquipmentRuleSet" Type="Self.EquipmentRuleSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MVPSRoleSet">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="EquipmentRuleSet">
-              <PropertyRef Name="MVPSRole_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MVPSTypeEquipmentRule">
-          <End Role="MVPSTypeSet" Type="Self.MVPSTypeSet" Multiplicity="1" />
-          <End Role="EquipmentRuleSet" Type="Self.EquipmentRuleSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MVPSTypeSet">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="EquipmentRuleSet">
-              <PropertyRef Name="MVPSType_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MVPSTypeMVPS">
-          <End Role="MVPSTypeSet" Type="Self.MVPSTypeSet" Multiplicity="1" />
-          <End Role="MVPSSet" Type="Self.MVPSSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MVPSTypeSet">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MVPSSet">
-              <PropertyRef Name="MVPSType_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SystemTypeEquipmentType">
-          <End Role="SystemTypeSet" Type="Self.SystemTypeSet" Multiplicity="1" />
-          <End Role="EquipmentTypeSet" Type="Self.EquipmentTypeSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SystemTypeSet">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="EquipmentTypeSet">
-              <PropertyRef Name="SystemType_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="kipModelStoreContainer">
-          <EntitySet Name="EquipmentRuleEquipmentType" EntityType="Self.EquipmentRuleEquipmentType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EquipmentRuleSet" EntityType="Self.EquipmentRuleSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EquipmentSet" EntityType="Self.EquipmentSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EquipmentTypeSet" EntityType="Self.EquipmentTypeSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ManufacturerSet" EntityType="Self.ManufacturerSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MVPSRoleSet" EntityType="Self.MVPSRoleSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MVPSSet" EntityType="Self.MVPSSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MVPSTypeSet" EntityType="Self.MVPSTypeSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SystemTypeSet" EntityType="Self.SystemTypeSet" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_EquipmentRuleEquipmentType_EquipmentRule" Association="Self.FK_EquipmentRuleEquipmentType_EquipmentRule">
-            <End Role="EquipmentRuleSet" EntitySet="EquipmentRuleSet" />
-            <End Role="EquipmentRuleEquipmentType" EntitySet="EquipmentRuleEquipmentType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EquipmentRuleEquipmentType_EquipmentType" Association="Self.FK_EquipmentRuleEquipmentType_EquipmentType">
-            <End Role="EquipmentTypeSet" EntitySet="EquipmentTypeSet" />
-            <End Role="EquipmentRuleEquipmentType" EntitySet="EquipmentRuleEquipmentType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EquipmentRuleMVPS" Association="Self.FK_EquipmentRuleMVPS">
-            <End Role="EquipmentRuleSet" EntitySet="EquipmentRuleSet" />
-            <End Role="MVPSSet" EntitySet="MVPSSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EquipmentTypeEquipment" Association="Self.FK_EquipmentTypeEquipment">
-            <End Role="EquipmentTypeSet" EntitySet="EquipmentTypeSet" />
-            <End Role="EquipmentSet" EntitySet="EquipmentSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ManufacturerEquipmentType" Association="Self.FK_ManufacturerEquipmentType">
-            <End Role="ManufacturerSet" EntitySet="ManufacturerSet" />
-            <End Role="EquipmentTypeSet" EntitySet="EquipmentTypeSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MVPSEquipment" Association="Self.FK_MVPSEquipment">
-            <End Role="MVPSSet" EntitySet="MVPSSet" />
-            <End Role="EquipmentSet" EntitySet="EquipmentSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MVPSMVPSRole" Association="Self.FK_MVPSMVPSRole">
-            <End Role="MVPSRoleSet" EntitySet="MVPSRoleSet" />
-            <End Role="MVPSSet" EntitySet="MVPSSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MVPSRoleEquipmentRule" Association="Self.FK_MVPSRoleEquipmentRule">
-            <End Role="MVPSRoleSet" EntitySet="MVPSRoleSet" />
-            <End Role="EquipmentRuleSet" EntitySet="EquipmentRuleSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MVPSTypeEquipmentRule" Association="Self.FK_MVPSTypeEquipmentRule">
-            <End Role="MVPSTypeSet" EntitySet="MVPSTypeSet" />
-            <End Role="EquipmentRuleSet" EntitySet="EquipmentRuleSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MVPSTypeMVPS" Association="Self.FK_MVPSTypeMVPS">
-            <End Role="MVPSTypeSet" EntitySet="MVPSTypeSet" />
-            <End Role="MVPSSet" EntitySet="MVPSSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SystemTypeEquipmentType" Association="Self.FK_SystemTypeEquipmentType">
-            <End Role="SystemTypeSet" EntitySet="SystemTypeSet" />
-            <End Role="EquipmentTypeSet" EntitySet="EquipmentTypeSet" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="kipModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="kipModelStoreContainer">
+    <EntitySet Name="EquipmentSet" EntityType="kipModel.Store.EquipmentSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EquipmentTypeSet" EntityType="kipModel.Store.EquipmentTypeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ManufacturerSet" EntityType="kipModel.Store.ManufacturerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SystemTypeSet" EntityType="kipModel.Store.SystemTypeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MVPSRoleSet" EntityType="kipModel.Store.MVPSRoleSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MVPSTypeSet" EntityType="kipModel.Store.MVPSTypeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MVPSSet" EntityType="kipModel.Store.MVPSSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EquipmentRuleSet" EntityType="kipModel.Store.EquipmentRuleSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ReplacingLogSet" EntityType="kipModel.Store.ReplacingLogSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WorkerSet" EntityType="kipModel.Store.WorkerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PositionSet" EntityType="kipModel.Store.PositionSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EquipmentRuleEquipmentType" EntityType="kipModel.Store.EquipmentRuleEquipmentType" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="SystemTypeEquipmentType" Association="kipModel.Store.SystemTypeEquipmentType">
+      <End Role="SystemType" EntitySet="SystemTypeSet" />
+      <End Role="EquipmentType" EntitySet="EquipmentTypeSet" />
+    </AssociationSet>
+    <AssociationSet Name="ManufacturerEquipmentType" Association="kipModel.Store.ManufacturerEquipmentType">
+      <End Role="Manufacturer" EntitySet="ManufacturerSet" />
+      <End Role="EquipmentType" EntitySet="EquipmentTypeSet" />
+    </AssociationSet>
+    <AssociationSet Name="MVPSMVPSRole" Association="kipModel.Store.MVPSMVPSRole">
+      <End Role="MVPS" EntitySet="MVPSSet" />
+      <End Role="MVPSRole" EntitySet="MVPSRoleSet" />
+    </AssociationSet>
+    <AssociationSet Name="MVPSTypeMVPS" Association="kipModel.Store.MVPSTypeMVPS">
+      <End Role="MVPSType" EntitySet="MVPSTypeSet" />
+      <End Role="MVPS" EntitySet="MVPSSet" />
+    </AssociationSet>
+    <AssociationSet Name="MVPSRoleEquipmentRule" Association="kipModel.Store.MVPSRoleEquipmentRule">
+      <End Role="MVPSRole" EntitySet="MVPSRoleSet" />
+      <End Role="EquipmentRule" EntitySet="EquipmentRuleSet" />
+    </AssociationSet>
+    <AssociationSet Name="MVPSTypeEquipmentRule" Association="kipModel.Store.MVPSTypeEquipmentRule">
+      <End Role="MVPSType" EntitySet="MVPSTypeSet" />
+      <End Role="EquipmentRule" EntitySet="EquipmentRuleSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EquipmentRuleEquipmentType_EquipmentRule" Association="kipModel.Store.FK_EquipmentRuleEquipmentType_EquipmentRule">
+      <End Role="EquipmentRule" EntitySet="EquipmentRuleSet" />
+      <End Role="EquipmentRuleEquipmentType" EntitySet="EquipmentRuleEquipmentType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EquipmentRuleEquipmentType_EquipmentType" Association="kipModel.Store.FK_EquipmentRuleEquipmentType_EquipmentType">
+      <End Role="EquipmentType" EntitySet="EquipmentTypeSet" />
+      <End Role="EquipmentRuleEquipmentType" EntitySet="EquipmentRuleEquipmentType" />
+    </AssociationSet>
+    <AssociationSet Name="EquipmentTypeEquipment" Association="kipModel.Store.EquipmentTypeEquipment">
+      <End Role="EquipmentType" EntitySet="EquipmentTypeSet" />
+      <End Role="Equipment" EntitySet="EquipmentSet" />
+    </AssociationSet>
+    <AssociationSet Name="EquipmentRuleMVPS" Association="kipModel.Store.EquipmentRuleMVPS">
+      <End Role="EquipmentRule" EntitySet="EquipmentRuleSet" />
+      <End Role="MVPS" EntitySet="MVPSSet" />
+    </AssociationSet>
+    <AssociationSet Name="MVPSEquipment" Association="kipModel.Store.MVPSEquipment">
+      <End Role="MVPS" EntitySet="MVPSSet" />
+      <End Role="Equipment" EntitySet="EquipmentSet" />
+    </AssociationSet>
+    <AssociationSet Name="MVPSReplacingLog" Association="kipModel.Store.MVPSReplacingLog">
+      <End Role="MVPS" EntitySet="MVPSSet" />
+      <End Role="ReplacingLog" EntitySet="ReplacingLogSet" />
+    </AssociationSet>
+    <AssociationSet Name="PositionWorker" Association="kipModel.Store.PositionWorker">
+      <End Role="Position" EntitySet="PositionSet" />
+      <End Role="Worker" EntitySet="WorkerSet" />
+    </AssociationSet>
+    <AssociationSet Name="WorkerReplacingLog" Association="kipModel.Store.WorkerReplacingLog">
+      <End Role="Worker" EntitySet="WorkerSet" />
+      <End Role="ReplacingLog" EntitySet="ReplacingLogSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="EquipmentSet">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="number" Type="nchar" Nullable="false" MaxLength="12" />
+    <Property Name="repairDate" Type="datetime" Nullable="false" />
+    <Property Name="serviceDate" Type="datetime" Nullable="false" />
+    <Property Name="nextVerificationDate" Type="datetime" Nullable="true" />
+    <Property Name="termDate" Type="datetime" Nullable="true" />
+    <Property Name="isWorking" Type="bit" Nullable="false" />
+    <Property Name="isFree" Type="bit" Nullable="false" />
+    <Property Name="EquipmentType_id" Type="int" Nullable="false" />
+    <Property Name="MVPS_Id" Type="uniqueidentifier" Nullable="true" />
+  </EntityType>
+  <EntityType Name="EquipmentTypeSet">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SystemType_Id" Type="int" Nullable="false" />
+    <Property Name="Manufacturer_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ManufacturerSet">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nchar" Nullable="true" MaxLength="50" />
+    <Property Name="address" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="phone" Type="nchar" Nullable="true" MaxLength="16" />
+    <Property Name="email" Type="nchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SystemTypeSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MVPSRoleSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MVPSTypeSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MVPSSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="number" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="series" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MVPSRole_Id" Type="int" Nullable="false" />
+    <Property Name="MVPSType_Id" Type="int" Nullable="false" />
+    <Property Name="EquipmentRule_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EquipmentRuleSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MVPSRole_Id" Type="int" Nullable="false" />
+    <Property Name="MVPSType_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReplacingLogSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Removed" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Installed" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MVPS_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Worker_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkerSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Family" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PersonnelNumber" Type="int" Nullable="false" />
+    <Property Name="PinCodeHash" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Position_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PositionSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EquipmentRuleEquipmentType">
+    <Key>
+      <PropertyRef Name="EquipmentRule_Id" />
+      <PropertyRef Name="EquipmentType_id" />
+    </Key>
+    <Property Name="EquipmentRule_Id" Type="int" Nullable="false" />
+    <Property Name="EquipmentType_id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="SystemTypeEquipmentType">
+    <End Role="SystemType" Type="kipModel.Store.SystemTypeSet" Multiplicity="1" />
+    <End Role="EquipmentType" Type="kipModel.Store.EquipmentTypeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EquipmentType">
+        <PropertyRef Name="SystemType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ManufacturerEquipmentType">
+    <End Role="Manufacturer" Type="kipModel.Store.ManufacturerSet" Multiplicity="1" />
+    <End Role="EquipmentType" Type="kipModel.Store.EquipmentTypeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="EquipmentType">
+        <PropertyRef Name="Manufacturer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MVPSMVPSRole">
+    <End Role="MVPS" Type="kipModel.Store.MVPSSet" Multiplicity="*" />
+    <End Role="MVPSRole" Type="kipModel.Store.MVPSRoleSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MVPSRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MVPS">
+        <PropertyRef Name="MVPSRole_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MVPSTypeMVPS">
+    <End Role="MVPSType" Type="kipModel.Store.MVPSTypeSet" Multiplicity="1" />
+    <End Role="MVPS" Type="kipModel.Store.MVPSSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MVPSType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MVPS">
+        <PropertyRef Name="MVPSType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MVPSRoleEquipmentRule">
+    <End Role="MVPSRole" Type="kipModel.Store.MVPSRoleSet" Multiplicity="1" />
+    <End Role="EquipmentRule" Type="kipModel.Store.EquipmentRuleSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MVPSRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EquipmentRule">
+        <PropertyRef Name="MVPSRole_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MVPSTypeEquipmentRule">
+    <End Role="MVPSType" Type="kipModel.Store.MVPSTypeSet" Multiplicity="1" />
+    <End Role="EquipmentRule" Type="kipModel.Store.EquipmentRuleSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MVPSType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EquipmentRule">
+        <PropertyRef Name="MVPSType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EquipmentTypeEquipment">
+    <End Role="EquipmentType" Type="kipModel.Store.EquipmentTypeSet" Multiplicity="1" />
+    <End Role="Equipment" Type="kipModel.Store.EquipmentSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EquipmentType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Equipment">
+        <PropertyRef Name="EquipmentType_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EquipmentRuleMVPS">
+    <End Role="EquipmentRule" Type="kipModel.Store.EquipmentRuleSet" Multiplicity="1" />
+    <End Role="MVPS" Type="kipModel.Store.MVPSSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EquipmentRule">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MVPS">
+        <PropertyRef Name="EquipmentRule_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MVPSEquipment">
+    <End Role="MVPS" Type="kipModel.Store.MVPSSet" Multiplicity="0..1" />
+    <End Role="Equipment" Type="kipModel.Store.EquipmentSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MVPS">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Equipment">
+        <PropertyRef Name="MVPS_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MVPSReplacingLog">
+    <End Role="MVPS" Type="kipModel.Store.MVPSSet" Multiplicity="1" />
+    <End Role="ReplacingLog" Type="kipModel.Store.ReplacingLogSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MVPS">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReplacingLog">
+        <PropertyRef Name="MVPS_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PositionWorker">
+    <End Role="Position" Type="kipModel.Store.PositionSet" Multiplicity="1" />
+    <End Role="Worker" Type="kipModel.Store.WorkerSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Worker">
+        <PropertyRef Name="Position_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WorkerReplacingLog">
+    <End Role="Worker" Type="kipModel.Store.WorkerSet" Multiplicity="1" />
+    <End Role="ReplacingLog" Type="kipModel.Store.ReplacingLogSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReplacingLog">
+        <PropertyRef Name="Worker_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EquipmentRuleEquipmentType_EquipmentRule">
+    <End Role="EquipmentRule" Type="kipModel.Store.EquipmentRuleSet" Multiplicity="1" />
+    <End Role="EquipmentRuleEquipmentType" Type="kipModel.Store.EquipmentRuleEquipmentType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EquipmentRule">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EquipmentRuleEquipmentType">
+        <PropertyRef Name="EquipmentRule_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EquipmentRuleEquipmentType_EquipmentType">
+    <End Role="EquipmentRuleEquipmentType" Type="kipModel.Store.EquipmentRuleEquipmentType" Multiplicity="*" />
+    <End Role="EquipmentType" Type="kipModel.Store.EquipmentTypeSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="EquipmentType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="EquipmentRuleEquipmentType">
+        <PropertyRef Name="EquipmentType_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="kipModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -367,6 +448,21 @@
             <End Role="MVPS" EntitySet="MVPSSet" />
             <End Role="Equipment" EntitySet="EquipmentSet" />
           </AssociationSet>
+          <EntitySet Name="ReplacingLogSet" EntityType="kipModel.ReplacingLog" />
+          <AssociationSet Name="MVPSReplacingLog" Association="kipModel.MVPSReplacingLog">
+            <End Role="MVPS" EntitySet="MVPSSet" />
+            <End Role="ReplacingLog" EntitySet="ReplacingLogSet" />
+          </AssociationSet>
+          <EntitySet Name="WorkerSet" EntityType="kipModel.Worker" />
+          <EntitySet Name="PositionSet" EntityType="kipModel.Position" />
+          <AssociationSet Name="PositionWorker" Association="kipModel.PositionWorker">
+            <End Role="Position" EntitySet="PositionSet" />
+            <End Role="Worker" EntitySet="WorkerSet" />
+          </AssociationSet>
+          <AssociationSet Name="WorkerReplacingLog" Association="kipModel.WorkerReplacingLog">
+            <End Role="Worker" EntitySet="WorkerSet" />
+            <End Role="ReplacingLog" EntitySet="ReplacingLogSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="SystemType">
           <Key>
@@ -414,6 +510,7 @@
           <NavigationProperty Name="MVPSType" Relationship="kipModel.MVPSTypeMVPS" FromRole="MVPS" ToRole="MVPSType" />
           <NavigationProperty Name="EquipmentRule" Relationship="kipModel.EquipmentRuleMVPS" FromRole="MVPS" ToRole="EquipmentRule" />
           <NavigationProperty Name="Equipment" Relationship="kipModel.MVPSEquipment" FromRole="MVPS" ToRole="Equipment" />
+          <NavigationProperty Name="ReplacingLog" Relationship="kipModel.MVPSReplacingLog" FromRole="MVPS" ToRole="ReplacingLog" />
           </EntityType>
         <Association Name="MVPSMVPSRole">
           <End Type="kipModel.MVPS" Role="MVPS" Multiplicity="*" />
@@ -456,6 +553,50 @@
         <Association Name="MVPSEquipment">
           <End Type="kipModel.MVPS" Role="MVPS" Multiplicity="0..1" />
           <End Type="kipModel.Equipment" Role="Equipment" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ReplacingLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="MVPS" Relationship="kipModel.MVPSReplacingLog" FromRole="ReplacingLog" ToRole="MVPS" />
+          <NavigationProperty Name="Worker" Relationship="kipModel.WorkerReplacingLog" FromRole="ReplacingLog" ToRole="Worker" />
+          <Property Name="Removed" Type="Guid" Nullable="false" />
+          <Property Name="Installed" Type="Guid" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="MVPSReplacingLog">
+          <End Type="kipModel.MVPS" Role="MVPS" Multiplicity="1" />
+          <End Type="kipModel.ReplacingLog" Role="ReplacingLog" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Family" Type="String" Nullable="false" />
+          <Property Name="Patronymic" Type="String" Nullable="false" />
+          <Property Name="PersonnelNumber" Type="Int32" Nullable="false" />
+          <Property Name="PinCodeHash" Type="String" Nullable="false" />
+          <NavigationProperty Name="Position" Relationship="kipModel.PositionWorker" FromRole="Worker" ToRole="Position" />
+          <NavigationProperty Name="ReplacingLog" Relationship="kipModel.WorkerReplacingLog" FromRole="Worker" ToRole="ReplacingLog" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="kipModel.PositionWorker" FromRole="Position" ToRole="Worker" />
+        </EntityType>
+        <Association Name="PositionWorker">
+          <End Type="kipModel.Position" Role="Position" Multiplicity="1" />
+          <End Type="kipModel.Worker" Role="Worker" Multiplicity="*" />
+        </Association>
+        <Association Name="WorkerReplacingLog">
+          <End Type="kipModel.Worker" Role="Worker" Multiplicity="1" />
+          <End Type="kipModel.ReplacingLog" Role="ReplacingLog" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -538,6 +679,36 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ReplacingLogSet">
+      <EntityTypeMapping TypeName="IsTypeOf(kipModel.ReplacingLog)">
+        <MappingFragment StoreEntitySet="ReplacingLogSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Removed" ColumnName="Removed" />
+          <ScalarProperty Name="Installed" ColumnName="Installed" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(kipModel.Worker)">
+        <MappingFragment StoreEntitySet="WorkerSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Family" ColumnName="Family" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="PersonnelNumber" ColumnName="PersonnelNumber" />
+          <ScalarProperty Name="PinCodeHash" ColumnName="PinCodeHash" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PositionSet">
+      <EntityTypeMapping TypeName="IsTypeOf(kipModel.Position)">
+        <MappingFragment StoreEntitySet="PositionSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="SystemTypeEquipmentType" TypeName="kipModel.SystemTypeEquipmentType" StoreEntitySet="EquipmentTypeSet">
       <EndProperty Name="SystemType">
         <ScalarProperty Name="Id" ColumnName="SystemType_Id" />
@@ -617,7 +788,31 @@
       <EndProperty Name="Equipment">
         <ScalarProperty Name="id" ColumnName="id" />
       </EndProperty>
-            <Condition ColumnName="MVPS_Id" IsNull="false" />
+      <Condition ColumnName="MVPS_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MVPSReplacingLog" TypeName="kipModel.MVPSReplacingLog" StoreEntitySet="ReplacingLogSet">
+      <EndProperty Name="MVPS">
+        <ScalarProperty Name="Id" ColumnName="MVPS_Id" />
+      </EndProperty>
+      <EndProperty Name="ReplacingLog">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PositionWorker" TypeName="kipModel.PositionWorker" StoreEntitySet="WorkerSet">
+      <EndProperty Name="Position">
+        <ScalarProperty Name="Id" ColumnName="Position_Id" />
+      </EndProperty>
+      <EndProperty Name="Worker">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="WorkerReplacingLog" TypeName="kipModel.WorkerReplacingLog" StoreEntitySet="ReplacingLogSet">
+      <EndProperty Name="Worker">
+        <ScalarProperty Name="Id" ColumnName="Worker_Id" />
+      </EndProperty>
+      <EndProperty Name="ReplacingLog">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>

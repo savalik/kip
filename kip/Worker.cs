@@ -12,24 +12,22 @@ namespace kip
     using System;
     using System.Collections.Generic;
     
-    public partial class MVPS
+    public partial class Worker
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MVPS()
+        public Worker()
         {
-            this.Equipment = new HashSet<Equipment>();
             this.ReplacingLog = new HashSet<ReplacingLog>();
         }
     
-        public System.Guid Id { get; set; }
-        public string number { get; set; }
-        public string series { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Family { get; set; }
+        public string Patronymic { get; set; }
+        public int PersonnelNumber { get; set; }
+        public string PinCodeHash { get; set; }
     
-        public virtual MVPSRole MVPSRole { get; set; }
-        public virtual MVPSType MVPSType { get; set; }
-        public virtual EquipmentRule EquipmentRule { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipment> Equipment { get; set; }
+        public virtual Position Position { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReplacingLog> ReplacingLog { get; set; }
     }
