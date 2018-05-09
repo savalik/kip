@@ -13,9 +13,20 @@ namespace kip
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        static Worker worker;
+
+        public MainForm(Worker loggedWorker)
         {
             InitializeComponent();
+            worker = loggedWorker;
+            FillForm();
+        }
+
+        private void FillForm()
+        {
+            UserLabel.Text = worker.Family + " " + worker.Name + " " + worker.Patronymic;
+            PersonnelNumberlLabel.Text = worker.PersonnelNumber.ToString();
+            PositionLabel.Text = worker.Position.name;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,6 +44,11 @@ namespace kip
         private void CloseFormButton_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

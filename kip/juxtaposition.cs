@@ -31,6 +31,12 @@ namespace kip
                     return "МВПС";
                 case "EquipmentRule":
                     return "Правила компелктования";
+                case "ReplacingLog":
+                    return "Замены оборудования";
+                case "Worker":
+                    return "Работники";
+                case "Position":
+                    return "Должности";
                 default:
                     return "";
             }
@@ -183,6 +189,16 @@ namespace kip
                 case "Правила компелктования":
                     EquipmentRule.FillGrid(view);
                     break;
+                case "Замены оборудования":
+                    ReplacingLog.FillGrid(view);
+                    break;
+                case "Работники":
+                    Worker.FillGrid(view);
+                    break;
+                case "Должности":
+                    Position.FillGrid(view);
+                    break;
+
                 default:
                     break;
             }

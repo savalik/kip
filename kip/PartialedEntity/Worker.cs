@@ -7,14 +7,18 @@ using System.Windows.Forms;
 
 namespace kip
 {
-    public partial class MVPSType
+    public partial class Worker
     {
         public DataGridViewRow GetRow()
         {
             var row = new DataGridViewRow();
 
             row.Cells.Add(new DataGridViewTextBoxCell { Value = Id });
-            row.Cells.Add(new DataGridViewTextBoxCell { Value = name });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = Family });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = Name });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = Patronymic });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = PersonnelNumber });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = Position.name });
 
             return row;
         }
@@ -25,7 +29,11 @@ namespace kip
             {
                 view.Columns.Clear();
                 view.Columns.Add("id", "ID");
-                view.Columns.Add("name", "Название");
+                view.Columns.Add("Family", "Фамилия");
+                view.Columns.Add("Name", "Имя");
+                view.Columns.Add("Patronymic", "Отчество");
+                view.Columns.Add("PersonnelNumber", "Табельный номер");
+                view.Columns.Add("Position", "Должность");
             }
             catch (Exception ex)
             {
@@ -37,12 +45,12 @@ namespace kip
         {
             using (kipEntities context = new kipEntities())
             {
-                var k = context.MVPSTypeSet.ToList();
+                var k = context.WorkerSet.ToList();
 
                 GetColumns(view);
                 view.Rows.Clear();
-
-                foreach (MVPSType z in k)
+                
+                foreach (Worker z in k)
                 {
                     view.Rows.Add(z.GetRow());
                 }

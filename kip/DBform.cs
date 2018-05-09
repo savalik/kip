@@ -22,7 +22,6 @@ namespace kip
         private void DBform_Load(object sender, EventArgs e)
         {
             Juxtaposition.FillTableList(TableListBox);
-            //this.WindowState = FormWindowState.Maximized;
         }
 
         private void TableListBox_SelectedIndexChanged(object sender, EventArgs e)

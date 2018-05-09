@@ -178,7 +178,10 @@
     <Compile Include="PartialedEntity\MVPS.cs" />
     <Compile Include="PartialedEntity\MVPSRole.cs" />
     <Compile Include="PartialedEntity\MVPSType.cs" />
+    <Compile Include="PartialedEntity\Position.cs" />
+    <Compile Include="PartialedEntity\ReplacingLog.cs" />
     <Compile Include="PartialedEntity\SystemType.cs" />
+    <Compile Include="PartialedEntity\Worker.cs" />
     <Compile Include="Position.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>

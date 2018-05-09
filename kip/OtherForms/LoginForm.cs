@@ -39,7 +39,7 @@ namespace kip
                 var buffer = Encoding.Unicode.GetBytes(Password);
                 byte[] result = sha.ComputeHash(buffer);
 
-                Worker worker = context.WorkerSet.Where(b => b.PersonnelNumber == PersonnelNumber).SingleOrDefault();
+                Worker worker = context.WorkerSet.Include("Position").Where(b => b.PersonnelNumber == PersonnelNumber).SingleOrDefault();
 
                 string inSystemHash = worker.PinCodeHash;
                 string hash = Convert.ToBase64String(result);
@@ -48,19 +48,19 @@ namespace kip
                 else
                 {
                     var position = worker.Position.Id;
-                    GetNextForm(position);
+                    GetNextForm(position, worker);
                 }
 
             }
                 
         }
 
-        private void GetNextForm(int position)
+        private void GetNextForm(int position, Worker worker)
         {
             switch (position)
             {
                 case 6:
-                    MainForm main = new MainForm();
+                    MainForm main = new MainForm(worker);
                     this.Hide();
                     main.Show();
                     break;

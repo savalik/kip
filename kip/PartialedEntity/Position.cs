@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace kip
 {
-    public partial class MVPSType
+    public partial class Position
     {
         public DataGridViewRow GetRow()
         {
@@ -25,7 +25,7 @@ namespace kip
             {
                 view.Columns.Clear();
                 view.Columns.Add("id", "ID");
-                view.Columns.Add("name", "Название");
+                view.Columns.Add("name", "Должность");
             }
             catch (Exception ex)
             {
@@ -37,12 +37,12 @@ namespace kip
         {
             using (kipEntities context = new kipEntities())
             {
-                var k = context.MVPSTypeSet.ToList();
+                var k = context.PositionSet.ToList();
 
                 GetColumns(view);
                 view.Rows.Clear();
 
-                foreach (MVPSType z in k)
+                foreach (Position z in k)
                 {
                     view.Rows.Add(z.GetRow());
                 }
