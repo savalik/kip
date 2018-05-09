@@ -109,6 +109,7 @@
             // 
             // mvpsGrid
             // 
+            this.mvpsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.mvpsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.mvpsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.blockId,
@@ -119,6 +120,7 @@
             this.mvpsGrid.Location = new System.Drawing.Point(157, 12);
             this.mvpsGrid.Name = "mvpsGrid";
             this.mvpsGrid.ReadOnly = true;
+            this.mvpsGrid.RowHeadersVisible = false;
             this.mvpsGrid.RowTemplate.Height = 24;
             this.mvpsGrid.Size = new System.Drawing.Size(557, 531);
             this.mvpsGrid.TabIndex = 20;
@@ -146,6 +148,7 @@
             // 
             // equipmentGrid
             // 
+            this.equipmentGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.equipmentGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.equipmentGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.eqId,
@@ -155,6 +158,7 @@
             this.equipmentGrid.Location = new System.Drawing.Point(720, 12);
             this.equipmentGrid.Name = "equipmentGrid";
             this.equipmentGrid.ReadOnly = true;
+            this.equipmentGrid.RowHeadersVisible = false;
             this.equipmentGrid.RowTemplate.Height = 24;
             this.equipmentGrid.Size = new System.Drawing.Size(395, 531);
             this.equipmentGrid.TabIndex = 23;
@@ -172,21 +176,18 @@
             this.type.HeaderText = "Тип блока";
             this.type.Name = "type";
             this.type.ReadOnly = true;
-            this.type.Width = 110;
             // 
             // number
             // 
             this.number.HeaderText = "Номер блока";
             this.number.Name = "number";
             this.number.ReadOnly = true;
-            this.number.Width = 120;
             // 
             // date
             // 
             this.date.HeaderText = "Дата обслуживания";
             this.date.Name = "date";
             this.date.ReadOnly = true;
-            this.date.Width = 120;
             // 
             // blockId
             // 
@@ -200,28 +201,24 @@
             this.EquipmentType.HeaderText = "Тип оборудования";
             this.EquipmentType.Name = "EquipmentType";
             this.EquipmentType.ReadOnly = true;
-            this.EquipmentType.Width = 120;
             // 
             // SystemType
             // 
             this.SystemType.HeaderText = "Тип системы";
             this.SystemType.Name = "SystemType";
             this.SystemType.ReadOnly = true;
-            this.SystemType.Width = 150;
             // 
             // EquipmentNumber
             // 
             this.EquipmentNumber.HeaderText = "Номер блока";
             this.EquipmentNumber.Name = "EquipmentNumber";
             this.EquipmentNumber.ReadOnly = true;
-            this.EquipmentNumber.Width = 120;
             // 
             // ServiceDate
             // 
             this.ServiceDate.HeaderText = "Дата обслуживания";
             this.ServiceDate.Name = "ServiceDate";
             this.ServiceDate.ReadOnly = true;
-            this.ServiceDate.Width = 120;
             // 
             // EquipmentInstallForm
             // 

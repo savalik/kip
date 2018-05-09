@@ -257,6 +257,7 @@ namespace kip
 
         private void mvpsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex != -1)
             FillEquipmentGrid(mvpsGrid[1,e.RowIndex].Value.ToString());
         }
 

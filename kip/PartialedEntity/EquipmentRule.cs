@@ -54,13 +54,14 @@ namespace kip
 
                 GetColumns(view);
                 view.Rows.Clear();
-
+                view.RowTemplate.Height = 40;
                 //ToDo: и тут
                 foreach (EquipmentRule z in k)
                 {
                     view.Rows.Add(z.GetRow());
                 }
             }
+            
         }
     }
 }
