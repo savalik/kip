@@ -88,21 +88,9 @@ namespace kip
             ///ToDo: не пускать этот код в продакшн
             using (kipEntities context = new kipEntities())
             {
-                SHA1 sha = new SHA1CryptoServiceProvider();
-                var buffer = Encoding.Unicode.GetBytes("kip");
-                byte[] result = sha.ComputeHash(buffer);
-
                 Worker worker = context.WorkerSet.Include("Position").Where(b => b.PersonnelNumber == 11179474).SingleOrDefault();
-
-                string inSystemHash = worker.PinCodeHash;
-                string hash = Convert.ToBase64String(result);
-
-                if (inSystemHash != hash) throw new Exception("Не удалось войти в систему. Проверьте правильность ввода логина и пароля, или свяжитесь с разработчиком");
-                else
-                {
-                    var position = worker.Position.Id;
-                    GetNextForm(position, worker);
-                }
+                var position = worker.Position.Id;
+                GetNextForm(position, worker);
 
             }
         }

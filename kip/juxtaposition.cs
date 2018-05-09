@@ -80,6 +80,10 @@ namespace kip
                     form = new EquipmentRuleForm();
                     form.ShowDialog();
                     break;
+                case "Работники":
+                    form = new WorkerForm();
+                    form.ShowDialog();
+                    break;
                 default:
                     break;
             }
@@ -124,6 +128,10 @@ namespace kip
                         break;
                     case "Правила компелктования":
                         form = new EquipmentRuleForm(view);
+                        form.ShowDialog();
+                        break;
+                    case "Работники":
+                        form = new WorkerForm(view);
                         form.ShowDialog();
                         break;
                     default:
