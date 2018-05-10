@@ -15,11 +15,13 @@ namespace kip
     public partial class ReplacingLog
     {
         public int Id { get; set; }
-        public System.Guid Removed { get; set; }
-        public System.Guid Installed { get; set; }
         public string description { get; set; }
+        public System.DateTime date { get; set; }
+        public bool onShedule { get; set; }
     
         public virtual MVPS MVPS { get; set; }
         public virtual Worker Worker { get; set; }
+        public virtual Equipment Installed { get; set; }
+        public virtual Equipment Removed { get; set; }
     }
 }

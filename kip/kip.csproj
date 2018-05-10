@@ -132,6 +132,9 @@
     <Compile Include="Equipment.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="EquipmentEvent.cs">
+      <DependentUpon>kipEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="EquipmentInstallForm.cs">
       <SubType>Form</SubType>
     </Compile>

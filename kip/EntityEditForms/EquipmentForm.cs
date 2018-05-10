@@ -38,7 +38,7 @@ namespace kip
                 foreach (var type in types)
                 {
                     TypeBox.Items.Add(type.name);
-                    typeIds.Add(type.id);
+                    typeIds.Add(type.Id);
                 }
 
                 IdBox.Text = Guid.NewGuid().ToString();
@@ -69,7 +69,7 @@ namespace kip
         {
             using (kipEntities context = new kipEntities())
             {
-                eq = context.EquipmentSet.Where(b => b.id == id).SingleOrDefault();
+                eq = context.EquipmentSet.Where(b => b.Id == id).SingleOrDefault();
 
                 NumberBox.Text = eq.number;
                 RepairDate.Text = eq.repairDate.ToString("dd.MM.yy");
@@ -108,7 +108,7 @@ namespace kip
                 {
                     CheckFields();
                     int typeId = typeIds[TypeBox.SelectedIndex];
-                    var type = context.EquipmentTypeSet.Where(b => b.id == typeId).SingleOrDefault();
+                    var type = context.EquipmentTypeSet.Where(b => b.Id == typeId).SingleOrDefault();
                     DateTime dateTimeRepair = DateTime.Parse(RepairDate.Text);
                     DateTime dateTimeService = DateTime.Parse(ServiceDate.Text);
                     //DateTime dateTimeVerification = DateTime.Parse(VerificationDate.Text);
@@ -126,10 +126,10 @@ namespace kip
 
                     if (eq != null)
                     {
-                        Guid id = eq.id;
-                        Equipment equipment = context.EquipmentSet.Where(b => b.id == id).SingleOrDefault();
+                        Guid id = eq.Id;
+                        Equipment equipment = context.EquipmentSet.Where(b => b.Id == id).SingleOrDefault();
 
-                        if (equipment.EquipmentType.id != typeId) equipment.EquipmentType = type;
+                        if (equipment.EquipmentType.Id != typeId) equipment.EquipmentType = type;
                         if (equipment.number != NumberBox.Text) equipment.number = NumberBox.Text;
                         if (equipment.repairDate != dateTimeRepair) equipment.repairDate = dateTimeRepair;
                         if (equipment.serviceDate != dateTimeService) equipment.serviceDate = dateTimeService;
@@ -144,7 +144,7 @@ namespace kip
                     {
                         eq = new Equipment
                         {
-                            id = Guid.Parse(IdBox.Text),
+                            Id = Guid.Parse(IdBox.Text),
                             EquipmentType = type,
                             number = NumberBox.Text,
                             repairDate = dateTimeRepair,

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/09/2018 13:00:56
+-- Date Created: 05/10/2018 15:07:46
 -- Generated from EDMX file: C:\Users\User\source\repos\kip\kip\kip.edmx
 -- --------------------------------------------------
 
@@ -17,26 +17,17 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_EquipmentRuleEquipmentType_EquipmentRule]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[EquipmentRuleEquipmentType] DROP CONSTRAINT [FK_EquipmentRuleEquipmentType_EquipmentRule];
-GO
-IF OBJECT_ID(N'[dbo].[FK_EquipmentRuleEquipmentType_EquipmentType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[EquipmentRuleEquipmentType] DROP CONSTRAINT [FK_EquipmentRuleEquipmentType_EquipmentType];
-GO
-IF OBJECT_ID(N'[dbo].[FK_EquipmentRuleMVPS]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[MVPSSet] DROP CONSTRAINT [FK_EquipmentRuleMVPS];
-GO
-IF OBJECT_ID(N'[dbo].[FK_EquipmentTypeEquipment]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[EquipmentSet] DROP CONSTRAINT [FK_EquipmentTypeEquipment];
+IF OBJECT_ID(N'[dbo].[FK_SystemTypeEquipmentType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentTypeSet] DROP CONSTRAINT [FK_SystemTypeEquipmentType];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ManufacturerEquipmentType]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[EquipmentTypeSet] DROP CONSTRAINT [FK_ManufacturerEquipmentType];
 GO
-IF OBJECT_ID(N'[dbo].[FK_MVPSEquipment]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[EquipmentSet] DROP CONSTRAINT [FK_MVPSEquipment];
-GO
 IF OBJECT_ID(N'[dbo].[FK_MVPSMVPSRole]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[MVPSSet] DROP CONSTRAINT [FK_MVPSMVPSRole];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MVPSTypeMVPS]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MVPSSet] DROP CONSTRAINT [FK_MVPSTypeMVPS];
 GO
 IF OBJECT_ID(N'[dbo].[FK_MVPSRoleEquipmentRule]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[EquipmentRuleSet] DROP CONSTRAINT [FK_MVPSRoleEquipmentRule];
@@ -44,23 +35,35 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_MVPSTypeEquipmentRule]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[EquipmentRuleSet] DROP CONSTRAINT [FK_MVPSTypeEquipmentRule];
 GO
-IF OBJECT_ID(N'[dbo].[FK_MVPSTypeMVPS]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[MVPSSet] DROP CONSTRAINT [FK_MVPSTypeMVPS];
+IF OBJECT_ID(N'[dbo].[FK_EquipmentRuleEquipmentType_EquipmentRule]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentRuleEquipmentType] DROP CONSTRAINT [FK_EquipmentRuleEquipmentType_EquipmentRule];
 GO
-IF OBJECT_ID(N'[dbo].[FK_SystemTypeEquipmentType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[EquipmentTypeSet] DROP CONSTRAINT [FK_SystemTypeEquipmentType];
+IF OBJECT_ID(N'[dbo].[FK_EquipmentRuleEquipmentType_EquipmentType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentRuleEquipmentType] DROP CONSTRAINT [FK_EquipmentRuleEquipmentType_EquipmentType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EquipmentTypeEquipment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentSet] DROP CONSTRAINT [FK_EquipmentTypeEquipment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EquipmentRuleMVPS]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MVPSSet] DROP CONSTRAINT [FK_EquipmentRuleMVPS];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MVPSEquipment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentSet] DROP CONSTRAINT [FK_MVPSEquipment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MVPSReplacingLog]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ReplacingLogSet] DROP CONSTRAINT [FK_MVPSReplacingLog];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PositionWorker]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WorkerSet] DROP CONSTRAINT [FK_PositionWorker];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorkerReplacingLog]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ReplacingLogSet] DROP CONSTRAINT [FK_WorkerReplacingLog];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[EquipmentRuleEquipmentType]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[EquipmentRuleEquipmentType];
-GO
-IF OBJECT_ID(N'[dbo].[EquipmentRuleSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[EquipmentRuleSet];
-GO
 IF OBJECT_ID(N'[dbo].[EquipmentSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[EquipmentSet];
 GO
@@ -70,17 +73,32 @@ GO
 IF OBJECT_ID(N'[dbo].[ManufacturerSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ManufacturerSet];
 GO
+IF OBJECT_ID(N'[dbo].[SystemTypeSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SystemTypeSet];
+GO
 IF OBJECT_ID(N'[dbo].[MVPSRoleSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MVPSRoleSet];
-GO
-IF OBJECT_ID(N'[dbo].[MVPSSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[MVPSSet];
 GO
 IF OBJECT_ID(N'[dbo].[MVPSTypeSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MVPSTypeSet];
 GO
-IF OBJECT_ID(N'[dbo].[SystemTypeSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SystemTypeSet];
+IF OBJECT_ID(N'[dbo].[MVPSSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MVPSSet];
+GO
+IF OBJECT_ID(N'[dbo].[EquipmentRuleSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EquipmentRuleSet];
+GO
+IF OBJECT_ID(N'[dbo].[ReplacingLogSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ReplacingLogSet];
+GO
+IF OBJECT_ID(N'[dbo].[WorkerSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WorkerSet];
+GO
+IF OBJECT_ID(N'[dbo].[PositionSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PositionSet];
+GO
+IF OBJECT_ID(N'[dbo].[EquipmentRuleEquipmentType]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EquipmentRuleEquipmentType];
 GO
 
 -- --------------------------------------------------
@@ -89,7 +107,7 @@ GO
 
 -- Creating table 'EquipmentSet'
 CREATE TABLE [dbo].[EquipmentSet] (
-    [id] uniqueidentifier  NOT NULL,
+    [Id] uniqueidentifier  NOT NULL,
     [number] nchar(12)  NOT NULL,
     [repairDate] datetime  NOT NULL,
     [serviceDate] datetime  NOT NULL,
@@ -97,24 +115,24 @@ CREATE TABLE [dbo].[EquipmentSet] (
     [termDate] datetime  NULL,
     [isWorking] bit  NOT NULL,
     [isFree] bit  NOT NULL,
-    [EquipmentType_id] int  NOT NULL,
+    [EquipmentType_Id] int  NOT NULL,
     [MVPS_Id] uniqueidentifier  NULL
 );
 GO
 
 -- Creating table 'EquipmentTypeSet'
 CREATE TABLE [dbo].[EquipmentTypeSet] (
-    [id] int IDENTITY(1,1) NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [name] nvarchar(max)  NOT NULL,
     [description] nvarchar(max)  NULL,
     [SystemType_Id] int  NOT NULL,
-    [Manufacturer_id] int  NOT NULL
+    [Manufacturer_Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'ManufacturerSet'
 CREATE TABLE [dbo].[ManufacturerSet] (
-    [id] int IDENTITY(1,1) NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [name] nchar(50)  NULL,
     [address] nvarchar(max)  NULL,
     [phone] nchar(16)  NULL,
@@ -166,11 +184,13 @@ GO
 -- Creating table 'ReplacingLogSet'
 CREATE TABLE [dbo].[ReplacingLogSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Removed] uniqueidentifier  NOT NULL,
-    [Installed] uniqueidentifier  NOT NULL,
-    [description] nvarchar(max)  NOT NULL,
+    [description] nvarchar(max)  NULL,
+    [date] datetime  NOT NULL,
+    [onShedule] bit  NOT NULL,
     [MVPS_Id] uniqueidentifier  NOT NULL,
-    [Worker_Id] int  NOT NULL
+    [Worker_Id] int  NOT NULL,
+    [Installed_Id] uniqueidentifier  NOT NULL,
+    [Removed_Id] uniqueidentifier  NOT NULL
 );
 GO
 
@@ -193,10 +213,20 @@ CREATE TABLE [dbo].[PositionSet] (
 );
 GO
 
+-- Creating table 'EquipmentEventSet'
+CREATE TABLE [dbo].[EquipmentEventSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [date] datetime  NOT NULL,
+    [description] nvarchar(max)  NULL,
+    [event] smallint  NOT NULL,
+    [Equipment_Id] uniqueidentifier  NOT NULL
+);
+GO
+
 -- Creating table 'EquipmentRuleEquipmentType'
 CREATE TABLE [dbo].[EquipmentRuleEquipmentType] (
     [EquipmentRule_Id] int  NOT NULL,
-    [EquipmentType_id] int  NOT NULL
+    [EquipmentType_Id] int  NOT NULL
 );
 GO
 
@@ -204,22 +234,22 @@ GO
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
 
--- Creating primary key on [id] in table 'EquipmentSet'
+-- Creating primary key on [Id] in table 'EquipmentSet'
 ALTER TABLE [dbo].[EquipmentSet]
 ADD CONSTRAINT [PK_EquipmentSet]
-    PRIMARY KEY CLUSTERED ([id] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [id] in table 'EquipmentTypeSet'
+-- Creating primary key on [Id] in table 'EquipmentTypeSet'
 ALTER TABLE [dbo].[EquipmentTypeSet]
 ADD CONSTRAINT [PK_EquipmentTypeSet]
-    PRIMARY KEY CLUSTERED ([id] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [id] in table 'ManufacturerSet'
+-- Creating primary key on [Id] in table 'ManufacturerSet'
 ALTER TABLE [dbo].[ManufacturerSet]
 ADD CONSTRAINT [PK_ManufacturerSet]
-    PRIMARY KEY CLUSTERED ([id] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'SystemTypeSet'
@@ -270,10 +300,16 @@ ADD CONSTRAINT [PK_PositionSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [EquipmentRule_Id], [EquipmentType_id] in table 'EquipmentRuleEquipmentType'
+-- Creating primary key on [Id] in table 'EquipmentEventSet'
+ALTER TABLE [dbo].[EquipmentEventSet]
+ADD CONSTRAINT [PK_EquipmentEventSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [EquipmentRule_Id], [EquipmentType_Id] in table 'EquipmentRuleEquipmentType'
 ALTER TABLE [dbo].[EquipmentRuleEquipmentType]
 ADD CONSTRAINT [PK_EquipmentRuleEquipmentType]
-    PRIMARY KEY CLUSTERED ([EquipmentRule_Id], [EquipmentType_id] ASC);
+    PRIMARY KEY CLUSTERED ([EquipmentRule_Id], [EquipmentType_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -295,19 +331,19 @@ ON [dbo].[EquipmentTypeSet]
     ([SystemType_Id]);
 GO
 
--- Creating foreign key on [Manufacturer_id] in table 'EquipmentTypeSet'
+-- Creating foreign key on [Manufacturer_Id] in table 'EquipmentTypeSet'
 ALTER TABLE [dbo].[EquipmentTypeSet]
 ADD CONSTRAINT [FK_ManufacturerEquipmentType]
-    FOREIGN KEY ([Manufacturer_id])
+    FOREIGN KEY ([Manufacturer_Id])
     REFERENCES [dbo].[ManufacturerSet]
-        ([id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ManufacturerEquipmentType'
 CREATE INDEX [IX_FK_ManufacturerEquipmentType]
 ON [dbo].[EquipmentTypeSet]
-    ([Manufacturer_id]);
+    ([Manufacturer_Id]);
 GO
 
 -- Creating foreign key on [MVPSRole_Id] in table 'MVPSSet'
@@ -379,34 +415,34 @@ ADD CONSTRAINT [FK_EquipmentRuleEquipmentType_EquipmentRule]
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [EquipmentType_id] in table 'EquipmentRuleEquipmentType'
+-- Creating foreign key on [EquipmentType_Id] in table 'EquipmentRuleEquipmentType'
 ALTER TABLE [dbo].[EquipmentRuleEquipmentType]
 ADD CONSTRAINT [FK_EquipmentRuleEquipmentType_EquipmentType]
-    FOREIGN KEY ([EquipmentType_id])
+    FOREIGN KEY ([EquipmentType_Id])
     REFERENCES [dbo].[EquipmentTypeSet]
-        ([id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_EquipmentRuleEquipmentType_EquipmentType'
 CREATE INDEX [IX_FK_EquipmentRuleEquipmentType_EquipmentType]
 ON [dbo].[EquipmentRuleEquipmentType]
-    ([EquipmentType_id]);
+    ([EquipmentType_Id]);
 GO
 
--- Creating foreign key on [EquipmentType_id] in table 'EquipmentSet'
+-- Creating foreign key on [EquipmentType_Id] in table 'EquipmentSet'
 ALTER TABLE [dbo].[EquipmentSet]
 ADD CONSTRAINT [FK_EquipmentTypeEquipment]
-    FOREIGN KEY ([EquipmentType_id])
+    FOREIGN KEY ([EquipmentType_Id])
     REFERENCES [dbo].[EquipmentTypeSet]
-        ([id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_EquipmentTypeEquipment'
 CREATE INDEX [IX_FK_EquipmentTypeEquipment]
 ON [dbo].[EquipmentSet]
-    ([EquipmentType_id]);
+    ([EquipmentType_Id]);
 GO
 
 -- Creating foreign key on [EquipmentRule_Id] in table 'MVPSSet'
@@ -482,6 +518,51 @@ GO
 CREATE INDEX [IX_FK_WorkerReplacingLog]
 ON [dbo].[ReplacingLogSet]
     ([Worker_Id]);
+GO
+
+-- Creating foreign key on [Installed_Id] in table 'ReplacingLogSet'
+ALTER TABLE [dbo].[ReplacingLogSet]
+ADD CONSTRAINT [FK_EquipmentReplacingLog]
+    FOREIGN KEY ([Installed_Id])
+    REFERENCES [dbo].[EquipmentSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_EquipmentReplacingLog'
+CREATE INDEX [IX_FK_EquipmentReplacingLog]
+ON [dbo].[ReplacingLogSet]
+    ([Installed_Id]);
+GO
+
+-- Creating foreign key on [Removed_Id] in table 'ReplacingLogSet'
+ALTER TABLE [dbo].[ReplacingLogSet]
+ADD CONSTRAINT [FK_EquipmentReplacingLog1]
+    FOREIGN KEY ([Removed_Id])
+    REFERENCES [dbo].[EquipmentSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_EquipmentReplacingLog1'
+CREATE INDEX [IX_FK_EquipmentReplacingLog1]
+ON [dbo].[ReplacingLogSet]
+    ([Removed_Id]);
+GO
+
+-- Creating foreign key on [Equipment_Id] in table 'EquipmentEventSet'
+ALTER TABLE [dbo].[EquipmentEventSet]
+ADD CONSTRAINT [FK_EquipmentEquipmentEvent]
+    FOREIGN KEY ([Equipment_Id])
+    REFERENCES [dbo].[EquipmentSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_EquipmentEquipmentEvent'
+CREATE INDEX [IX_FK_EquipmentEquipmentEvent]
+ON [dbo].[EquipmentEventSet]
+    ([Equipment_Id]);
 GO
 
 -- --------------------------------------------------

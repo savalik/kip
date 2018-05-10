@@ -21,7 +21,7 @@ namespace kip
             this.Equipment = new HashSet<Equipment>();
         }
     
-        public int id { get; set; }
+        public int Id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
     

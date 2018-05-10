@@ -36,7 +36,7 @@ namespace kip
         {
             using (kipEntities context = new kipEntities())
             {
-                type = context.EquipmentTypeSet.Where(b => b.id == id).SingleOrDefault();
+                type = context.EquipmentTypeSet.Where(b => b.Id == id).SingleOrDefault();
 
                 for (int i = 0; i < SysTypeBox.Items.Count; i++)
                     if (SysTypeBox.Items[i].ToString() == type.SystemType.name) SysTypeBox.SelectedIndex = i;
@@ -71,7 +71,7 @@ namespace kip
                     foreach (Manufacturer manufact in manufacts)
                     {
                         ManufactBox.Items.Add(manufact.name);
-                        manufactId.Add(manufact.id);
+                        manufactId.Add(manufact.Id);
                     }
                     
                 }
@@ -98,7 +98,7 @@ namespace kip
                     int _sysTypeId = sysTypeId[SysTypeBox.SelectedIndex];
                     int _manufactId = manufactId[ManufactBox.SelectedIndex];
                     var sysType = context.SystemTypeSet.Where(b => b.Id == _sysTypeId).SingleOrDefault();
-                    var manf = context.ManufacturerSet.Where(b => b.id == _manufactId).SingleOrDefault();
+                    var manf = context.ManufacturerSet.Where(b => b.Id == _manufactId).SingleOrDefault();
                     
                     if (type == null)
                     {
@@ -112,8 +112,8 @@ namespace kip
                     }
                     else
                     {
-                        int key = type.id;
-                        EquipmentType freshEqType = context.EquipmentTypeSet.Where(b => b.id == key).SingleOrDefault();
+                        int key = type.Id;
+                        EquipmentType freshEqType = context.EquipmentTypeSet.Where(b => b.Id == key).SingleOrDefault();
                         if (freshEqType.name != NameBox.Text) freshEqType.name = NameBox.Text;
                         if (freshEqType.description != DescriptionBox.Text) freshEqType.description = DescriptionBox.Text;
                         if (freshEqType.SystemType != sysType) freshEqType.SystemType = sysType;

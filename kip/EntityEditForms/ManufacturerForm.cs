@@ -37,7 +37,7 @@ namespace kip
         {
             using (kipEntities context = new kipEntities())
             {
-                manufacturer = context.ManufacturerSet.Where(b => b.id == id).SingleOrDefault();
+                manufacturer = context.ManufacturerSet.Where(b => b.Id == id).SingleOrDefault();
                 ManufacturerNameBox.Text = manufacturer.name;
                 ManufacturerAddressBox.Text = manufacturer.address;
                 ManufacturerPhoneBox.Text = manufacturer.phone;
@@ -68,8 +68,8 @@ namespace kip
                     CheckFields();
                     if (manufacturer != null)
                     {
-                        int key = manufacturer.id;
-                        Manufacturer freshMan = context.ManufacturerSet.Where(b => b.id == key).SingleOrDefault();
+                        int key = manufacturer.Id;
+                        Manufacturer freshMan = context.ManufacturerSet.Where(b => b.Id == key).SingleOrDefault();
                         string str = ManufacturerNameBox.Text;
                         if ((freshMan.name != str) && (str != "")) freshMan.name = str;
                         if ((ManufacturerAddressBox.Text != "") && (ManufacturerAddressBox.Text != freshMan.address)) freshMan.address = ManufacturerAddressBox.Text;

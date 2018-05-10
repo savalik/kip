@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0ef75f37a2d74b61b7a1172bce6dc294" Name="Diagram1" ZoomLevel="82">
+      <Diagram DiagramId="0ef75f37a2d74b61b7a1172bce6dc294" Name="Diagram1" ZoomLevel="71">
         <EntityTypeShape EntityType="kipModel.Equipment" Width="1.5" PointX="10.625" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="kipModel.EquipmentType" Width="1.75" PointX="4.375" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="kipModel.Manufacturer" Width="1.5" PointX="2.375" PointY="3.5" IsExpanded="true" />
@@ -29,6 +29,10 @@
         <EntityTypeShape EntityType="kipModel.Position" Width="1.5" PointX="13" PointY="4" />
         <AssociationConnector Association="kipModel.PositionWorker" />
         <AssociationConnector Association="kipModel.WorkerReplacingLog" />
+        <AssociationConnector Association="kipModel.EquipmentReplacingLog" />
+        <AssociationConnector Association="kipModel.EquipmentReplacingLog1" />
+        <EntityTypeShape EntityType="kipModel.EquipmentEvent" Width="1.5" PointX="13" PointY="1.25" />
+        <AssociationConnector Association="kipModel.EquipmentEquipmentEvent" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -17,6 +17,7 @@
     <EntitySet Name="ReplacingLogSet" EntityType="kipModel.Store.ReplacingLogSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="WorkerSet" EntityType="kipModel.Store.WorkerSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PositionSet" EntityType="kipModel.Store.PositionSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EquipmentEventSet" EntityType="kipModel.Store.EquipmentEventSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="EquipmentRuleEquipmentType" EntityType="kipModel.Store.EquipmentRuleEquipmentType" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="SystemTypeEquipmentType" Association="kipModel.Store.SystemTypeEquipmentType">
       <End Role="SystemType" EntitySet="SystemTypeSet" />
@@ -74,12 +75,24 @@
       <End Role="Worker" EntitySet="WorkerSet" />
       <End Role="ReplacingLog" EntitySet="ReplacingLogSet" />
     </AssociationSet>
+    <AssociationSet Name="EquipmentReplacingLog" Association="kipModel.Store.EquipmentReplacingLog">
+      <End Role="Equipment" EntitySet="EquipmentSet" />
+      <End Role="ReplacingLog" EntitySet="ReplacingLogSet" />
+    </AssociationSet>
+    <AssociationSet Name="EquipmentReplacingLog1" Association="kipModel.Store.EquipmentReplacingLog1">
+      <End Role="Equipment" EntitySet="EquipmentSet" />
+      <End Role="ReplacingLog" EntitySet="ReplacingLogSet" />
+    </AssociationSet>
+    <AssociationSet Name="EquipmentEquipmentEvent" Association="kipModel.Store.EquipmentEquipmentEvent">
+      <End Role="Equipment" EntitySet="EquipmentSet" />
+      <End Role="EquipmentEvent" EntitySet="EquipmentEventSet" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="EquipmentSet">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="number" Type="nchar" Nullable="false" MaxLength="12" />
     <Property Name="repairDate" Type="datetime" Nullable="false" />
     <Property Name="serviceDate" Type="datetime" Nullable="false" />
@@ -87,24 +100,24 @@
     <Property Name="termDate" Type="datetime" Nullable="true" />
     <Property Name="isWorking" Type="bit" Nullable="false" />
     <Property Name="isFree" Type="bit" Nullable="false" />
-    <Property Name="EquipmentType_id" Type="int" Nullable="false" />
+    <Property Name="EquipmentType_Id" Type="int" Nullable="false" />
     <Property Name="MVPS_Id" Type="uniqueidentifier" Nullable="true" />
   </EntityType>
   <EntityType Name="EquipmentTypeSet">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="description" Type="nvarchar(max)" Nullable="true" />
     <Property Name="SystemType_Id" Type="int" Nullable="false" />
-    <Property Name="Manufacturer_id" Type="int" Nullable="false" />
+    <Property Name="Manufacturer_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ManufacturerSet">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nchar" Nullable="true" MaxLength="50" />
     <Property Name="address" Type="nvarchar(max)" Nullable="true" />
     <Property Name="phone" Type="nchar" Nullable="true" MaxLength="16" />
@@ -156,11 +169,13 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Removed" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Installed" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="onShedule" Type="bit" Nullable="false" />
     <Property Name="MVPS_Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Worker_Id" Type="int" Nullable="false" />
+    <Property Name="Installed_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Removed_Id" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="WorkerSet">
     <Key>
@@ -181,13 +196,23 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="EquipmentEventSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="event" Type="smallint" Nullable="false" />
+    <Property Name="Equipment_Id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
   <EntityType Name="EquipmentRuleEquipmentType">
     <Key>
       <PropertyRef Name="EquipmentRule_Id" />
-      <PropertyRef Name="EquipmentType_id" />
+      <PropertyRef Name="EquipmentType_Id" />
     </Key>
     <Property Name="EquipmentRule_Id" Type="int" Nullable="false" />
-    <Property Name="EquipmentType_id" Type="int" Nullable="false" />
+    <Property Name="EquipmentType_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="SystemTypeEquipmentType">
     <End Role="SystemType" Type="kipModel.Store.SystemTypeSet" Multiplicity="1" />
@@ -206,10 +231,10 @@
     <End Role="EquipmentType" Type="kipModel.Store.EquipmentTypeSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Manufacturer">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="EquipmentType">
-        <PropertyRef Name="Manufacturer_id" />
+        <PropertyRef Name="Manufacturer_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -266,10 +291,10 @@
     <End Role="Equipment" Type="kipModel.Store.EquipmentSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="EquipmentType">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Equipment">
-        <PropertyRef Name="EquipmentType_id" />
+        <PropertyRef Name="EquipmentType_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -333,6 +358,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="EquipmentReplacingLog">
+    <End Role="Equipment" Type="kipModel.Store.EquipmentSet" Multiplicity="1" />
+    <End Role="ReplacingLog" Type="kipModel.Store.ReplacingLogSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReplacingLog">
+        <PropertyRef Name="Installed_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EquipmentReplacingLog1">
+    <End Role="Equipment" Type="kipModel.Store.EquipmentSet" Multiplicity="1" />
+    <End Role="ReplacingLog" Type="kipModel.Store.ReplacingLogSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReplacingLog">
+        <PropertyRef Name="Removed_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EquipmentEquipmentEvent">
+    <End Role="Equipment" Type="kipModel.Store.EquipmentSet" Multiplicity="1" />
+    <End Role="EquipmentEvent" Type="kipModel.Store.EquipmentEventSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EquipmentEvent">
+        <PropertyRef Name="Equipment_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_EquipmentRuleEquipmentType_EquipmentRule">
     <End Role="EquipmentRule" Type="kipModel.Store.EquipmentRuleSet" Multiplicity="1" />
     <End Role="EquipmentRuleEquipmentType" Type="kipModel.Store.EquipmentRuleEquipmentType" Multiplicity="*" />
@@ -350,10 +411,10 @@
     <End Role="EquipmentType" Type="kipModel.Store.EquipmentTypeSet" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="EquipmentType">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="EquipmentRuleEquipmentType">
-        <PropertyRef Name="EquipmentType_id" />
+        <PropertyRef Name="EquipmentType_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -363,9 +424,9 @@
       <Schema Namespace="kipModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Equipment">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="number" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="repairDate" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="serviceDate" Type="DateTime" Precision="3" Nullable="false" />
@@ -375,12 +436,15 @@
           <NavigationProperty Name="EquipmentType" Relationship="kipModel.EquipmentTypeEquipment" FromRole="Equipment" ToRole="EquipmentType" />
           <Property Name="isFree" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="MVPS" Relationship="kipModel.MVPSEquipment" FromRole="Equipment" ToRole="MVPS" />
+          <NavigationProperty Name="InstallingLog" Relationship="kipModel.EquipmentReplacingLog" FromRole="Equipment" ToRole="ReplacingLog" />
+          <NavigationProperty Name="RemovingLog" Relationship="kipModel.EquipmentReplacingLog1" FromRole="Equipment" ToRole="ReplacingLog" />
+          <NavigationProperty Name="EquipmentEvent" Relationship="kipModel.EquipmentEquipmentEvent" FromRole="Equipment" ToRole="EquipmentEvent" />
         </EntityType>
         <EntityType Name="EquipmentType">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SystemType" Relationship="kipModel.SystemTypeEquipmentType" FromRole="EquipmentType" ToRole="SystemType" />
@@ -390,9 +454,9 @@
         </EntityType>
         <EntityType Name="Manufacturer">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="phone" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
@@ -462,6 +526,19 @@
           <AssociationSet Name="WorkerReplacingLog" Association="kipModel.WorkerReplacingLog">
             <End Role="Worker" EntitySet="WorkerSet" />
             <End Role="ReplacingLog" EntitySet="ReplacingLogSet" />
+          </AssociationSet>
+          <AssociationSet Name="EquipmentReplacingLog" Association="kipModel.EquipmentReplacingLog">
+            <End Role="Equipment" EntitySet="EquipmentSet" />
+            <End Role="ReplacingLog" EntitySet="ReplacingLogSet" />
+          </AssociationSet>
+          <AssociationSet Name="EquipmentReplacingLog1" Association="kipModel.EquipmentReplacingLog1">
+            <End Role="Equipment" EntitySet="EquipmentSet" />
+            <End Role="ReplacingLog" EntitySet="ReplacingLogSet" />
+          </AssociationSet>
+          <EntitySet Name="EquipmentEventSet" EntityType="kipModel.EquipmentEvent" />
+          <AssociationSet Name="EquipmentEquipmentEvent" Association="kipModel.EquipmentEquipmentEvent">
+            <End Role="Equipment" EntitySet="EquipmentSet" />
+            <End Role="EquipmentEvent" EntitySet="EquipmentEventSet" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="SystemType">
@@ -561,9 +638,11 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="MVPS" Relationship="kipModel.MVPSReplacingLog" FromRole="ReplacingLog" ToRole="MVPS" />
           <NavigationProperty Name="Worker" Relationship="kipModel.WorkerReplacingLog" FromRole="ReplacingLog" ToRole="Worker" />
-          <Property Name="Removed" Type="Guid" Nullable="false" />
-          <Property Name="Installed" Type="Guid" Nullable="false" />
-          <Property Name="description" Type="String" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="true" />
+          <NavigationProperty Name="Installed" Relationship="kipModel.EquipmentReplacingLog" FromRole="ReplacingLog" ToRole="Equipment" />
+          <NavigationProperty Name="Removed" Relationship="kipModel.EquipmentReplacingLog1" FromRole="ReplacingLog" ToRole="Equipment" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="onShedule" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="MVPSReplacingLog">
           <End Type="kipModel.MVPS" Role="MVPS" Multiplicity="1" />
@@ -598,6 +677,28 @@
           <End Type="kipModel.Worker" Role="Worker" Multiplicity="1" />
           <End Type="kipModel.ReplacingLog" Role="ReplacingLog" Multiplicity="*" />
         </Association>
+        <Association Name="EquipmentReplacingLog">
+          <End Type="kipModel.Equipment" Role="Equipment" Multiplicity="1" />
+          <End Type="kipModel.ReplacingLog" Role="ReplacingLog" Multiplicity="*" />
+        </Association>
+        <Association Name="EquipmentReplacingLog1">
+          <End Type="kipModel.Equipment" Role="Equipment" Multiplicity="1" />
+          <End Type="kipModel.ReplacingLog" Role="ReplacingLog" Multiplicity="*" />
+        </Association>
+        <EntityType Name="EquipmentEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="true" />
+          <Property Name="event" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Equipment" Relationship="kipModel.EquipmentEquipmentEvent" FromRole="EquipmentEvent" ToRole="Equipment" />
+        </EntityType>
+        <Association Name="EquipmentEquipmentEvent">
+          <End Type="kipModel.Equipment" Role="Equipment" Multiplicity="1" />
+          <End Type="kipModel.EquipmentEvent" Role="EquipmentEvent" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -607,7 +708,7 @@
     <EntitySetMapping Name="EquipmentSet">
       <EntityTypeMapping TypeName="IsTypeOf(kipModel.Equipment)">
         <MappingFragment StoreEntitySet="EquipmentSet">
-          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="number" ColumnName="number" />
           <ScalarProperty Name="repairDate" ColumnName="repairDate" />
           <ScalarProperty Name="serviceDate" ColumnName="serviceDate" />
@@ -621,7 +722,7 @@
     <EntitySetMapping Name="EquipmentTypeSet">
       <EntityTypeMapping TypeName="IsTypeOf(kipModel.EquipmentType)">
         <MappingFragment StoreEntitySet="EquipmentTypeSet">
-          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="description" ColumnName="description" />
         </MappingFragment>
@@ -630,7 +731,7 @@
     <EntitySetMapping Name="ManufacturerSet">
       <EntityTypeMapping TypeName="IsTypeOf(kipModel.Manufacturer)">
         <MappingFragment StoreEntitySet="ManufacturerSet">
-          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="address" ColumnName="address" />
           <ScalarProperty Name="phone" ColumnName="phone" />
@@ -683,9 +784,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(kipModel.ReplacingLog)">
         <MappingFragment StoreEntitySet="ReplacingLogSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Removed" ColumnName="Removed" />
-          <ScalarProperty Name="Installed" ColumnName="Installed" />
           <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="onShedule" ColumnName="onShedule" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -709,20 +810,30 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="EquipmentEventSet">
+      <EntityTypeMapping TypeName="IsTypeOf(kipModel.EquipmentEvent)">
+        <MappingFragment StoreEntitySet="EquipmentEventSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="event" ColumnName="event" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="SystemTypeEquipmentType" TypeName="kipModel.SystemTypeEquipmentType" StoreEntitySet="EquipmentTypeSet">
       <EndProperty Name="SystemType">
         <ScalarProperty Name="Id" ColumnName="SystemType_Id" />
       </EndProperty>
       <EndProperty Name="EquipmentType">
-        <ScalarProperty Name="id" ColumnName="id" />
+        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="ManufacturerEquipmentType" TypeName="kipModel.ManufacturerEquipmentType" StoreEntitySet="EquipmentTypeSet">
       <EndProperty Name="Manufacturer">
-        <ScalarProperty Name="id" ColumnName="Manufacturer_id" />
+        <ScalarProperty Name="Id" ColumnName="Manufacturer_Id" />
       </EndProperty>
       <EndProperty Name="EquipmentType">
-        <ScalarProperty Name="id" ColumnName="id" />
+        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="MVPSMVPSRole" TypeName="kipModel.MVPSMVPSRole" StoreEntitySet="MVPSSet">
@@ -762,15 +873,15 @@
         <ScalarProperty Name="Id" ColumnName="EquipmentRule_Id" />
       </EndProperty>
       <EndProperty Name="EquipmentType">
-        <ScalarProperty Name="id" ColumnName="EquipmentType_id" />
+        <ScalarProperty Name="Id" ColumnName="EquipmentType_Id" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="EquipmentTypeEquipment" TypeName="kipModel.EquipmentTypeEquipment" StoreEntitySet="EquipmentSet">
       <EndProperty Name="EquipmentType">
-        <ScalarProperty Name="id" ColumnName="EquipmentType_id" />
+        <ScalarProperty Name="Id" ColumnName="EquipmentType_Id" />
       </EndProperty>
       <EndProperty Name="Equipment">
-        <ScalarProperty Name="id" ColumnName="id" />
+        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="EquipmentRuleMVPS" TypeName="kipModel.EquipmentRuleMVPS" StoreEntitySet="MVPSSet">
@@ -786,7 +897,7 @@
         <ScalarProperty Name="Id" ColumnName="MVPS_Id" />
       </EndProperty>
       <EndProperty Name="Equipment">
-        <ScalarProperty Name="id" ColumnName="id" />
+        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
       <Condition ColumnName="MVPS_Id" IsNull="false" />
     </AssociationSetMapping>
@@ -811,6 +922,30 @@
         <ScalarProperty Name="Id" ColumnName="Worker_Id" />
       </EndProperty>
       <EndProperty Name="ReplacingLog">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EquipmentReplacingLog" TypeName="kipModel.EquipmentReplacingLog" StoreEntitySet="ReplacingLogSet">
+      <EndProperty Name="Equipment">
+        <ScalarProperty Name="Id" ColumnName="Installed_Id" />
+      </EndProperty>
+      <EndProperty Name="ReplacingLog">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EquipmentReplacingLog1" TypeName="kipModel.EquipmentReplacingLog1" StoreEntitySet="ReplacingLogSet">
+      <EndProperty Name="Equipment">
+        <ScalarProperty Name="Id" ColumnName="Removed_Id" />
+      </EndProperty>
+      <EndProperty Name="ReplacingLog">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EquipmentEquipmentEvent" TypeName="kipModel.EquipmentEquipmentEvent" StoreEntitySet="EquipmentEventSet">
+      <EndProperty Name="Equipment">
+        <ScalarProperty Name="Id" ColumnName="Equipment_Id" />
+      </EndProperty>
+      <EndProperty Name="EquipmentEvent">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

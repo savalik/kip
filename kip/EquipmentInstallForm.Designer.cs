@@ -124,9 +124,9 @@
             this.mvpsGrid.RowTemplate.Height = 24;
             this.mvpsGrid.Size = new System.Drawing.Size(557, 531);
             this.mvpsGrid.TabIndex = 20;
-            this.mvpsGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mvpsGrid_CellClick);
-            this.mvpsGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mvpsGrid_CellContentClick_1);
-            this.mvpsGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mvpsGrid_CellDoubleClick);
+            this.mvpsGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MvpsGrid_CellClick);
+            this.mvpsGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MvpsGrid_CellContentClick_1);
+            this.mvpsGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MvpsGrid_CellDoubleClick);
             // 
             // MVPSNumberBox
             // 
@@ -162,7 +162,7 @@
             this.equipmentGrid.RowTemplate.Height = 24;
             this.equipmentGrid.Size = new System.Drawing.Size(395, 531);
             this.equipmentGrid.TabIndex = 23;
-            this.equipmentGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.equipmentGrid_CellDoubleClick);
+            this.equipmentGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EquipmentGrid_CellDoubleClick);
             // 
             // eqId
             // 

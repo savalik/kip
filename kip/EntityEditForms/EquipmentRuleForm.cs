@@ -102,7 +102,7 @@ namespace kip
                 foreach(EquipmentType eq in rule.EquipmentType)
                 {
                     EquipmentTypeBox.Items.Add(eq.name);
-                    InRuleEqId.Add(eq.id);
+                    InRuleEqId.Add(eq.Id);
                 }
 
                 AddButton.Text = "Сохранить";
@@ -125,7 +125,7 @@ namespace kip
                 foreach (EquipmentType eq in eqType)
                 {
                     EquipmentTypeBox_.Items.Add(eq.name);
-                    eqTypeId.Add(eq.id);
+                    eqTypeId.Add(eq.Id);
                 }
             }
         }
@@ -174,7 +174,7 @@ namespace kip
 
                     foreach (int k in InRuleEqId)
                     {
-                        var equipmentTypes = context.EquipmentTypeSet.Where(b => b.id == k).SingleOrDefault();
+                        var equipmentTypes = context.EquipmentTypeSet.Where(b => b.Id == k).SingleOrDefault();
                         eqList.Add(equipmentTypes);
                     }
 

@@ -18,9 +18,9 @@ namespace kip
                 string insStr = null;
                 string mvpsStr = null;
                 string workerStr = null;
-
-                Equipment rem = context.EquipmentSet.Where(b => b.id == Removed).SingleOrDefault();
-                Equipment ins = context.EquipmentSet.Where(b => b.id == Installed).SingleOrDefault();
+                //тут что то не так.
+                Equipment rem = context.EquipmentSet.Where(b => b.Id == Removed.Id).SingleOrDefault();
+                Equipment ins = context.EquipmentSet.Where(b => b.Id == Installed.Id).SingleOrDefault();
                 if (rem != null) remStr = rem.EquipmentType.name + " № " + rem.number;
                 if (ins != null) insStr = ins.EquipmentType.name + " № " + ins.number;
 

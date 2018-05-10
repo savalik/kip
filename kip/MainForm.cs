@@ -31,13 +31,13 @@ namespace kip
             PositionLabel.Text = worker.Position.name;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             DBform dBform = new DBform();
             dBform.ShowDialog();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             EquipmentInstallForm dBform = new EquipmentInstallForm();
             dBform.ShowDialog();

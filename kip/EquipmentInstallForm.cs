@@ -157,7 +157,7 @@ namespace kip
                             cell2 = rule.SystemType.name;
                             if (block != null)
                             {
-                                 cell0 = block.id;
+                                 cell0 = block.Id;
                                  cell3 = block.number;
                                  cell4 = block.serviceDate.ToString("dd.MM.yy");
                             }
@@ -212,19 +212,19 @@ namespace kip
                             }
         }
 
-        private void mvpsGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void MvpsGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void mvpsGrid_CellDoubleClick(Object sender, DataGridViewCellEventArgs e)
+        private void MvpsGrid_CellDoubleClick(Object sender, DataGridViewCellEventArgs e)
         {
             if (CheckAllSelected() && !CheckEmpty())
             {
                 using (kipEntities context = new kipEntities())
                 {
                     Guid id = Guid.Parse(mvpsGrid[0, e.RowIndex].Value.ToString());
-                    Equipment equipment = context.EquipmentSet.Where(b => b.id == id).SingleOrDefault();
+                    Equipment equipment = context.EquipmentSet.Where(b => b.Id == id).SingleOrDefault();
 
                     DialogResult result = MessageBox.Show("Нажмите \"Да\", если блок снимается по неисправности. Если блок снимается по другой причине - нажмите \"Нет\"", "Снимаем " + equipment.EquipmentType.name + " № " + equipment.number, MessageBoxButtons.YesNoCancel);
 
@@ -255,7 +255,7 @@ namespace kip
             }
         }
 
-        private void mvpsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void MvpsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
             FillEquipmentGrid(mvpsGrid[1,e.RowIndex].Value.ToString());
@@ -269,7 +269,7 @@ namespace kip
                     var equipments = context.EquipmentSet.Where(b => (b.EquipmentType.name == v) && (b.isFree) && (b.isWorking)).ToList();
                     equipmentGrid.Rows.Clear();
                     foreach (var eq in equipments)
-                        equipmentGrid.Rows.Add(eq.id, eq.EquipmentType.name ,eq.number.ToString(), eq.serviceDate.ToString("dd.MM.yy"));
+                        equipmentGrid.Rows.Add(eq.Id, eq.EquipmentType.name ,eq.number.ToString(), eq.serviceDate.ToString("dd.MM.yy"));
                 }
                 catch (Exception ex)
                 {
@@ -277,7 +277,7 @@ namespace kip
                 }
         }
 
-        private void equipmentGrid_CellDoubleClick(Object sender, DataGridViewCellEventArgs e)
+        private void EquipmentGrid_CellDoubleClick(Object sender, DataGridViewCellEventArgs e)
         {
             if (CheckAllSelected() && CheckEmpty())
             {
@@ -286,7 +286,7 @@ namespace kip
                     using(kipEntities context = new kipEntities())
                     {
                         Guid id = Guid.Parse(equipmentGrid[0, e.RowIndex].Value.ToString());
-                        Equipment equipment = context.EquipmentSet.Where(b => b.id == id).SingleOrDefault();
+                        Equipment equipment = context.EquipmentSet.Where(b => b.Id == id).SingleOrDefault();
 
                         MVPS mvps = context.MVPSSet.Where(b => b.Id == mvpsGuid).SingleOrDefault();
 
@@ -320,7 +320,7 @@ namespace kip
             }
         }
 
-        private void mvpsGrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        private void MvpsGrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }

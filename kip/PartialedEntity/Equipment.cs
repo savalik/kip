@@ -17,7 +17,7 @@ namespace kip
             if (termDate.HasValue) shortStringTerm = termDate.Value.ToShortDateString();
             if (nextVerificationDate.HasValue) shortStringVerf = nextVerificationDate.Value.ToShortDateString();
 
-            row.Cells.Add(new DataGridViewTextBoxCell { Value = id });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = Id });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = EquipmentType.name });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = number });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = repairDate.ToShortDateString() });

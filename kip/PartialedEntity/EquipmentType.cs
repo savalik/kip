@@ -16,7 +16,7 @@ namespace kip
         {
             var row = new DataGridViewRow();
 
-            row.Cells.Add(new DataGridViewTextBoxCell { Value = id   });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = Id   });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = name });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = description });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = Manufacturer.name });

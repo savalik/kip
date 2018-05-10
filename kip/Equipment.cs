@@ -14,7 +14,15 @@ namespace kip
     
     public partial class Equipment
     {
-        public System.Guid id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Equipment()
+        {
+            this.InstallingLog = new HashSet<ReplacingLog>();
+            this.RemovingLog = new HashSet<ReplacingLog>();
+            this.EquipmentEvent = new HashSet<EquipmentEvent>();
+        }
+    
+        public System.Guid Id { get; set; }
         public string number { get; set; }
         public System.DateTime repairDate { get; set; }
         public System.DateTime serviceDate { get; set; }
@@ -25,5 +33,11 @@ namespace kip
     
         public virtual EquipmentType EquipmentType { get; set; }
         public virtual MVPS MVPS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ReplacingLog> InstallingLog { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ReplacingLog> RemovingLog { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EquipmentEvent> EquipmentEvent { get; set; }
     }
 }
