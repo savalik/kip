@@ -49,6 +49,7 @@ namespace kip
         {
             SystemTypeNameBox.Text = "Введите название системы";
             SystemTypeDescriptionBox.Text = "Введите описание системы";
+            type = null;
         }
         
         private void CloseButton_Click(object sender, EventArgs e)
