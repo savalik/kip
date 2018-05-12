@@ -196,9 +196,22 @@ namespace kip
         {
             if (eq != null)
             {
+                ZXing.QrCode.QrCodeEncodingOptions opt = new ZXing.QrCode.QrCodeEncodingOptions
+                {
+                    CharacterSet = "utf-8",
+                    Height = 200,
+                    Width = 200
+                };
+
                 var writer = new BarcodeWriter
-                { Format = BarcodeFormat.QR_CODE };
-                string str = eq.Id.ToString() + "," + eq.EquipmentType.name + " № " + eq.number;
+                { Format = BarcodeFormat.QR_CODE,
+                  Options = opt 
+                };
+
+                string str = eq.Id.ToString() + "," + eq.EquipmentType.name + "," + eq.number;
+
+                Dictionary<EncodeHintType, object> hints = new Dictionary<EncodeHintType, object>();
+                hints.Add(EncodeHintType.CHARACTER_SET, "utf-8");
 
                 SaveFileDialog savefile = new SaveFileDialog();
                 // set a default file name
