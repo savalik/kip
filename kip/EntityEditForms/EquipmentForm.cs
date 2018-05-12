@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZXing;
 
 namespace kip
 {
@@ -187,6 +190,27 @@ namespace kip
         private void CancesButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void GetQRCode_Click(object sender, EventArgs e)
+        {
+            if (eq != null)
+            {
+                var writer = new BarcodeWriter
+                { Format = BarcodeFormat.QR_CODE };
+                string str = eq.Id.ToString() + "," + eq.EquipmentType.name + " № " + eq.number;
+
+                SaveFileDialog savefile = new SaveFileDialog();
+                // set a default file name
+                savefile.FileName = eq.EquipmentType.name + "_" + eq.number + ".png";
+                // set filters - this can be done in properties as well
+                savefile.Filter = "PNG files (*.png)|*.png";
+
+                if (savefile.ShowDialog() == DialogResult.OK)
+                {
+                    writer.Write(str).Save(savefile.FileName,ImageFormat.Png);
+                }
+            }
         }
     }
 }

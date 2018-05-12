@@ -46,6 +46,7 @@
             this.ServiceDate = new System.Windows.Forms.MaskedTextBox();
             this.VerificationDate = new System.Windows.Forms.MaskedTextBox();
             this.TerminationDate = new System.Windows.Forms.MaskedTextBox();
+            this.GetQRCode = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // IsFree
@@ -209,11 +210,22 @@
             this.TerminationDate.Size = new System.Drawing.Size(100, 22);
             this.TerminationDate.TabIndex = 9;
             // 
+            // GetQRCode
+            // 
+            this.GetQRCode.Location = new System.Drawing.Point(119, 335);
+            this.GetQRCode.Name = "GetQRCode";
+            this.GetQRCode.Size = new System.Drawing.Size(167, 48);
+            this.GetQRCode.TabIndex = 20;
+            this.GetQRCode.Text = "Сохранить QR-код";
+            this.GetQRCode.UseVisualStyleBackColor = true;
+            this.GetQRCode.Click += new System.EventHandler(this.GetQRCode_Click);
+            // 
             // EquipmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(298, 472);
+            this.Controls.Add(this.GetQRCode);
             this.Controls.Add(this.TerminationDate);
             this.Controls.Add(this.VerificationDate);
             this.Controls.Add(this.ServiceDate);
@@ -260,5 +272,6 @@
         private System.Windows.Forms.MaskedTextBox ServiceDate;
         private System.Windows.Forms.MaskedTextBox VerificationDate;
         private System.Windows.Forms.MaskedTextBox TerminationDate;
+        private System.Windows.Forms.Button GetQRCode;
     }
 }
