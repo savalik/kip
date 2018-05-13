@@ -50,7 +50,7 @@ namespace kip
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+            Receiver receiver = new Receiver();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

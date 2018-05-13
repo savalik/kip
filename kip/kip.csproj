@@ -41,6 +41,9 @@
     <Reference Include="HibernatingRhinos.Profiler.Appender">
       <HintPath>..\..\..\..\Downloads\EntityFramework.Profiler-v5.0-Build-5023\Appender\net46\HibernatingRhinos.Profiler.Appender.dll</HintPath>
     </Reference>
+    <Reference Include="KipItems">
+      <HintPath>..\..\KipItems.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -193,6 +196,8 @@
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="NetComponent\IPAnoncer.cs" />
+    <Compile Include="NetComponent\Items.cs" />
+    <Compile Include="NetComponent\Receiver.cs" />
     <Compile Include="OtherForms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -311,6 +316,7 @@
       <DependentUpon>kip.edmx</DependentUpon>
     </Content>
     <Content Include="Resourses\ET2M460x460.png" />
+    <Content Include="Resourses\KipItems.dll" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

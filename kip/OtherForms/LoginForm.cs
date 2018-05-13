@@ -69,8 +69,9 @@ namespace kip
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            //Расслыем IP для входящих TCP подключений широковещательной рассылкой.
+            //Рассылаем IP для входящих TCP подключений широковещательной рассылкой.
             IPAnoncer anoncer = new IPAnoncer();
+            
         }
 
         private void LoginForm_Activated(object sender, EventArgs e)

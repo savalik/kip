@@ -13,6 +13,8 @@ namespace kip
     {
         static int port = 8005; // порт для рассылки своего адреса
         private static IPAddress remoteAddress;
+        protected static IPAddress localIp;
+        public static IPAddress LocalIp { get => localIp; }
 
         public IPAnoncer()
         {
@@ -24,7 +26,7 @@ namespace kip
         {
             remoteAddress = IPAddress.Parse("235.5.5.11");
             var localIPs = Dns.GetHostAddresses(Dns.GetHostName());
-            IPAddress localIp;
+            
             foreach (IPAddress ip in localIPs)
             {
                 try
@@ -41,11 +43,13 @@ namespace kip
                         {
                             while (true)
                             {
-                                string message = localIp.ToString(); ; // сообщение для отправки
+                                string message = LocalIp.ToString(); ; // сообщение для отправки
                                 message = String.Format("{0}:{1}", "IP-address", message);
+                                // для отладки
+                                //Console.WriteLine(message);
                                 byte[] data = Encoding.Unicode.GetBytes(message);
                                 sender.Send(data, data.Length, endPoint); // отправка
-                                System.Threading.Thread.Sleep(10000);
+                                Thread.Sleep(10000);
                             }
                         }
                         catch (Exception ex)
