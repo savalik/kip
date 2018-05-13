@@ -192,6 +192,7 @@
     <Compile Include="MVPSType.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="NetComponent\IPAnoncer.cs" />
     <Compile Include="OtherForms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
