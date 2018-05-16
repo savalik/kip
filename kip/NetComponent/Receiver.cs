@@ -7,6 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using KipLib;
 
 namespace kip
@@ -40,6 +41,10 @@ namespace kip
                             {
                                 int numBytesRead;
                                 byte[] messsize = new byte[8];
+                                byte[] receivedEvent = new byte[1];
+
+                                numBytesRead = stream.Read(receivedEvent, 0, 1);
+                                Console.WriteLine("ReceivedEvent" + Convert.ToBase64String(receivedEvent));
 
                                 numBytesRead = stream.Read(messsize, 0, 8);
                                 Console.WriteLine(BitConverter.ToInt64(messsize, 0).ToString() + " длина высылаемого сообщения");
@@ -51,6 +56,7 @@ namespace kip
                                 }
                                 Console.WriteLine(ms.Length + " длинна полученного сообщения");
                                 GetBack(ms);
+                                DoEvent(receivedEvent[0]);
                             }
                         }
                     }
@@ -74,6 +80,24 @@ namespace kip
                 if (listener != null)
                     listener.Stop();
             }
+        }
+
+        private static void DoEvent(byte receivedEvent)
+        {
+            switch (receivedEvent)
+            {
+                case 0:
+                    //MessageBox.Show("Принимаем список блоков для печати ведомостей и контрольных карт");
+                    Docs.OpenDocs(Items.GetItems);
+                    break;
+                case 1:
+                    MessageBox.Show("Принимаем список проверенных блоков");
+                    break;
+                case 2:
+                    MessageBox.Show("Принимаем список замен");
+                    break;
+            }
+            
         }
 
         public static void GetBack(MemoryStream stream)

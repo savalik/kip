@@ -73,6 +73,7 @@
     <Compile Include="DBform.Designer.cs">
       <DependentUpon>DBform.cs</DependentUpon>
     </Compile>
+    <Compile Include="DocsComponent\Docs.cs" />
     <Compile Include="EntityEditForms\EquipmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,7 +198,6 @@
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="NetComponent\IPAnoncer.cs" />
-    <Compile Include="NetComponent\Items.cs" />
     <Compile Include="NetComponent\Receiver.cs" />
     <Compile Include="OtherForms\LoginForm.cs">
       <SubType>Form</SubType>
