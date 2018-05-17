@@ -13,7 +13,7 @@ namespace kip
 {
     public partial class MainForm : Form
     {
-        static Worker worker;
+        public static Worker worker;
         static LoginForm LoginForm;
 
         public MainForm(Worker loggedWorker, LoginForm Form)
