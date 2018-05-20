@@ -227,6 +227,12 @@
     <Compile Include="ReplacingLog.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="ServiceLog.cs">
+      <DependentUpon>kipEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Shedule.cs">
+      <DependentUpon>kipEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="SystemType.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>

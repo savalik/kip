@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/10/2018 15:07:46
+-- Date Created: 05/20/2018 14:19:11
 -- Generated from EDMX file: C:\Users\User\source\repos\kip\kip\kip.edmx
 -- --------------------------------------------------
 
@@ -59,6 +59,15 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_WorkerReplacingLog]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ReplacingLogSet] DROP CONSTRAINT [FK_WorkerReplacingLog];
 GO
+IF OBJECT_ID(N'[dbo].[FK_EquipmentReplacingLog]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ReplacingLogSet] DROP CONSTRAINT [FK_EquipmentReplacingLog];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EquipmentReplacingLog1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ReplacingLogSet] DROP CONSTRAINT [FK_EquipmentReplacingLog1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EquipmentEquipmentEvent]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentEventSet] DROP CONSTRAINT [FK_EquipmentEquipmentEvent];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -96,6 +105,9 @@ IF OBJECT_ID(N'[dbo].[WorkerSet]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[PositionSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PositionSet];
+GO
+IF OBJECT_ID(N'[dbo].[EquipmentEventSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EquipmentEventSet];
 GO
 IF OBJECT_ID(N'[dbo].[EquipmentRuleEquipmentType]', 'U') IS NOT NULL
     DROP TABLE [dbo].[EquipmentRuleEquipmentType];
@@ -223,10 +235,42 @@ CREATE TABLE [dbo].[EquipmentEventSet] (
 );
 GO
 
+-- Creating table 'ServiceLogSet'
+CREATE TABLE [dbo].[ServiceLogSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [date] datetime  NOT NULL,
+    [description] nvarchar(max)  NOT NULL,
+    [isRepair] bit  NOT NULL,
+    [Performer_Id] int  NOT NULL,
+    [Equipment_Id] uniqueidentifier  NOT NULL
+);
+GO
+
+-- Creating table 'SheduleSet'
+CREATE TABLE [dbo].[SheduleSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [date] datetime  NOT NULL
+);
+GO
+
 -- Creating table 'EquipmentRuleEquipmentType'
 CREATE TABLE [dbo].[EquipmentRuleEquipmentType] (
     [EquipmentRule_Id] int  NOT NULL,
     [EquipmentType_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'MVPSShedule'
+CREATE TABLE [dbo].[MVPSShedule] (
+    [MVPS_Maintenance_Id] uniqueidentifier  NOT NULL,
+    [Shedule_Maintenance_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'MVPSShedule1'
+CREATE TABLE [dbo].[MVPSShedule1] (
+    [MVPS_Repair_Id] uniqueidentifier  NOT NULL,
+    [Shedule_Repair_Id] int  NOT NULL
 );
 GO
 
@@ -306,10 +350,34 @@ ADD CONSTRAINT [PK_EquipmentEventSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'ServiceLogSet'
+ALTER TABLE [dbo].[ServiceLogSet]
+ADD CONSTRAINT [PK_ServiceLogSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'SheduleSet'
+ALTER TABLE [dbo].[SheduleSet]
+ADD CONSTRAINT [PK_SheduleSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- Creating primary key on [EquipmentRule_Id], [EquipmentType_Id] in table 'EquipmentRuleEquipmentType'
 ALTER TABLE [dbo].[EquipmentRuleEquipmentType]
 ADD CONSTRAINT [PK_EquipmentRuleEquipmentType]
     PRIMARY KEY CLUSTERED ([EquipmentRule_Id], [EquipmentType_Id] ASC);
+GO
+
+-- Creating primary key on [MVPS_Maintenance_Id], [Shedule_Maintenance_Id] in table 'MVPSShedule'
+ALTER TABLE [dbo].[MVPSShedule]
+ADD CONSTRAINT [PK_MVPSShedule]
+    PRIMARY KEY CLUSTERED ([MVPS_Maintenance_Id], [Shedule_Maintenance_Id] ASC);
+GO
+
+-- Creating primary key on [MVPS_Repair_Id], [Shedule_Repair_Id] in table 'MVPSShedule1'
+ALTER TABLE [dbo].[MVPSShedule1]
+ADD CONSTRAINT [PK_MVPSShedule1]
+    PRIMARY KEY CLUSTERED ([MVPS_Repair_Id], [Shedule_Repair_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -563,6 +631,84 @@ GO
 CREATE INDEX [IX_FK_EquipmentEquipmentEvent]
 ON [dbo].[EquipmentEventSet]
     ([Equipment_Id]);
+GO
+
+-- Creating foreign key on [Performer_Id] in table 'ServiceLogSet'
+ALTER TABLE [dbo].[ServiceLogSet]
+ADD CONSTRAINT [FK_WorkerServiceLog]
+    FOREIGN KEY ([Performer_Id])
+    REFERENCES [dbo].[WorkerSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_WorkerServiceLog'
+CREATE INDEX [IX_FK_WorkerServiceLog]
+ON [dbo].[ServiceLogSet]
+    ([Performer_Id]);
+GO
+
+-- Creating foreign key on [Equipment_Id] in table 'ServiceLogSet'
+ALTER TABLE [dbo].[ServiceLogSet]
+ADD CONSTRAINT [FK_EquipmentServiceLog]
+    FOREIGN KEY ([Equipment_Id])
+    REFERENCES [dbo].[EquipmentSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_EquipmentServiceLog'
+CREATE INDEX [IX_FK_EquipmentServiceLog]
+ON [dbo].[ServiceLogSet]
+    ([Equipment_Id]);
+GO
+
+-- Creating foreign key on [MVPS_Maintenance_Id] in table 'MVPSShedule'
+ALTER TABLE [dbo].[MVPSShedule]
+ADD CONSTRAINT [FK_MVPSShedule_MVPS]
+    FOREIGN KEY ([MVPS_Maintenance_Id])
+    REFERENCES [dbo].[MVPSSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Shedule_Maintenance_Id] in table 'MVPSShedule'
+ALTER TABLE [dbo].[MVPSShedule]
+ADD CONSTRAINT [FK_MVPSShedule_Shedule]
+    FOREIGN KEY ([Shedule_Maintenance_Id])
+    REFERENCES [dbo].[SheduleSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MVPSShedule_Shedule'
+CREATE INDEX [IX_FK_MVPSShedule_Shedule]
+ON [dbo].[MVPSShedule]
+    ([Shedule_Maintenance_Id]);
+GO
+
+-- Creating foreign key on [MVPS_Repair_Id] in table 'MVPSShedule1'
+ALTER TABLE [dbo].[MVPSShedule1]
+ADD CONSTRAINT [FK_MVPSShedule1_MVPS]
+    FOREIGN KEY ([MVPS_Repair_Id])
+    REFERENCES [dbo].[MVPSSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Shedule_Repair_Id] in table 'MVPSShedule1'
+ALTER TABLE [dbo].[MVPSShedule1]
+ADD CONSTRAINT [FK_MVPSShedule1_Shedule]
+    FOREIGN KEY ([Shedule_Repair_Id])
+    REFERENCES [dbo].[SheduleSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MVPSShedule1_Shedule'
+CREATE INDEX [IX_FK_MVPSShedule1_Shedule]
+ON [dbo].[MVPSShedule1]
+    ([Shedule_Repair_Id]);
 GO
 
 -- --------------------------------------------------

@@ -18,7 +18,11 @@
     <EntitySet Name="WorkerSet" EntityType="kipModel.Store.WorkerSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PositionSet" EntityType="kipModel.Store.PositionSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="EquipmentEventSet" EntityType="kipModel.Store.EquipmentEventSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ServiceLogSet" EntityType="kipModel.Store.ServiceLogSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SheduleSet" EntityType="kipModel.Store.SheduleSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="EquipmentRuleEquipmentType" EntityType="kipModel.Store.EquipmentRuleEquipmentType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MVPSShedule" EntityType="kipModel.Store.MVPSShedule" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MVPSShedule1" EntityType="kipModel.Store.MVPSShedule1" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="SystemTypeEquipmentType" Association="kipModel.Store.SystemTypeEquipmentType">
       <End Role="SystemType" EntitySet="SystemTypeSet" />
       <End Role="EquipmentType" EntitySet="EquipmentTypeSet" />
@@ -86,6 +90,30 @@
     <AssociationSet Name="EquipmentEquipmentEvent" Association="kipModel.Store.EquipmentEquipmentEvent">
       <End Role="Equipment" EntitySet="EquipmentSet" />
       <End Role="EquipmentEvent" EntitySet="EquipmentEventSet" />
+    </AssociationSet>
+    <AssociationSet Name="WorkerServiceLog" Association="kipModel.Store.WorkerServiceLog">
+      <End Role="Worker" EntitySet="WorkerSet" />
+      <End Role="ServiceLog" EntitySet="ServiceLogSet" />
+    </AssociationSet>
+    <AssociationSet Name="EquipmentServiceLog" Association="kipModel.Store.EquipmentServiceLog">
+      <End Role="Equipment" EntitySet="EquipmentSet" />
+      <End Role="ServiceLog" EntitySet="ServiceLogSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MVPSShedule_MVPS" Association="kipModel.Store.FK_MVPSShedule_MVPS">
+      <End Role="MVPS" EntitySet="MVPSSet" />
+      <End Role="MVPSShedule" EntitySet="MVPSShedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MVPSShedule_Shedule" Association="kipModel.Store.FK_MVPSShedule_Shedule">
+      <End Role="Shedule" EntitySet="SheduleSet" />
+      <End Role="MVPSShedule" EntitySet="MVPSShedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MVPSShedule1_MVPS" Association="kipModel.Store.FK_MVPSShedule1_MVPS">
+      <End Role="MVPS" EntitySet="MVPSSet" />
+      <End Role="MVPSShedule1" EntitySet="MVPSShedule1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MVPSShedule1_Shedule" Association="kipModel.Store.FK_MVPSShedule1_Shedule">
+      <End Role="Shedule" EntitySet="SheduleSet" />
+      <End Role="MVPSShedule1" EntitySet="MVPSShedule1" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="EquipmentSet">
@@ -206,6 +234,24 @@
     <Property Name="event" Type="smallint" Nullable="false" />
     <Property Name="Equipment_Id" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
+  <EntityType Name="ServiceLogSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="isRepair" Type="bit" Nullable="false" />
+    <Property Name="Performer_Id" Type="int" Nullable="false" />
+    <Property Name="Equipment_Id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SheduleSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="EquipmentRuleEquipmentType">
     <Key>
       <PropertyRef Name="EquipmentRule_Id" />
@@ -213,6 +259,22 @@
     </Key>
     <Property Name="EquipmentRule_Id" Type="int" Nullable="false" />
     <Property Name="EquipmentType_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MVPSShedule">
+    <Key>
+      <PropertyRef Name="MVPS_Maintenance_Id" />
+      <PropertyRef Name="Shedule_Maintenance_Id" />
+    </Key>
+    <Property Name="MVPS_Maintenance_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Shedule_Maintenance_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MVPSShedule1">
+    <Key>
+      <PropertyRef Name="MVPS_Repair_Id" />
+      <PropertyRef Name="Shedule_Repair_Id" />
+    </Key>
+    <Property Name="MVPS_Repair_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Shedule_Repair_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="SystemTypeEquipmentType">
     <End Role="SystemType" Type="kipModel.Store.SystemTypeSet" Multiplicity="1" />
@@ -394,6 +456,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="WorkerServiceLog">
+    <End Role="Worker" Type="kipModel.Store.WorkerSet" Multiplicity="1" />
+    <End Role="ServiceLog" Type="kipModel.Store.ServiceLogSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ServiceLog">
+        <PropertyRef Name="Performer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EquipmentServiceLog">
+    <End Role="Equipment" Type="kipModel.Store.EquipmentSet" Multiplicity="1" />
+    <End Role="ServiceLog" Type="kipModel.Store.ServiceLogSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ServiceLog">
+        <PropertyRef Name="Equipment_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_EquipmentRuleEquipmentType_EquipmentRule">
     <End Role="EquipmentRule" Type="kipModel.Store.EquipmentRuleSet" Multiplicity="1" />
     <End Role="EquipmentRuleEquipmentType" Type="kipModel.Store.EquipmentRuleEquipmentType" Multiplicity="*" />
@@ -418,6 +504,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_MVPSShedule_MVPS">
+    <End Role="MVPS" Type="kipModel.Store.MVPSSet" Multiplicity="1" />
+    <End Role="MVPSShedule" Type="kipModel.Store.MVPSShedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MVPS">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MVPSShedule">
+        <PropertyRef Name="MVPS_Maintenance_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MVPSShedule_Shedule">
+    <End Role="MVPSShedule" Type="kipModel.Store.MVPSShedule" Multiplicity="*" />
+    <End Role="Shedule" Type="kipModel.Store.SheduleSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Shedule">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MVPSShedule">
+        <PropertyRef Name="Shedule_Maintenance_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MVPSShedule1_MVPS">
+    <End Role="MVPS" Type="kipModel.Store.MVPSSet" Multiplicity="1" />
+    <End Role="MVPSShedule1" Type="kipModel.Store.MVPSShedule1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MVPS">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MVPSShedule1">
+        <PropertyRef Name="MVPS_Repair_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MVPSShedule1_Shedule">
+    <End Role="MVPSShedule1" Type="kipModel.Store.MVPSShedule1" Multiplicity="*" />
+    <End Role="Shedule" Type="kipModel.Store.SheduleSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Shedule">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MVPSShedule1">
+        <PropertyRef Name="Shedule_Repair_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -439,6 +573,7 @@
           <NavigationProperty Name="InstallingLog" Relationship="kipModel.EquipmentReplacingLog" FromRole="Equipment" ToRole="ReplacingLog" />
           <NavigationProperty Name="RemovingLog" Relationship="kipModel.EquipmentReplacingLog1" FromRole="Equipment" ToRole="ReplacingLog" />
           <NavigationProperty Name="EquipmentEvent" Relationship="kipModel.EquipmentEquipmentEvent" FromRole="Equipment" ToRole="EquipmentEvent" />
+          <NavigationProperty Name="ServiceLog" Relationship="kipModel.EquipmentServiceLog" FromRole="Equipment" ToRole="ServiceLog" />
         </EntityType>
         <EntityType Name="EquipmentType">
           <Key>
@@ -540,6 +675,24 @@
             <End Role="Equipment" EntitySet="EquipmentSet" />
             <End Role="EquipmentEvent" EntitySet="EquipmentEventSet" />
           </AssociationSet>
+          <EntitySet Name="ServiceLogSet" EntityType="kipModel.ServiceLog" />
+          <AssociationSet Name="WorkerServiceLog" Association="kipModel.WorkerServiceLog">
+            <End Role="Worker" EntitySet="WorkerSet" />
+            <End Role="ServiceLog" EntitySet="ServiceLogSet" />
+          </AssociationSet>
+          <AssociationSet Name="EquipmentServiceLog" Association="kipModel.EquipmentServiceLog">
+            <End Role="Equipment" EntitySet="EquipmentSet" />
+            <End Role="ServiceLog" EntitySet="ServiceLogSet" />
+          </AssociationSet>
+          <EntitySet Name="SheduleSet" EntityType="kipModel.Shedule" />
+          <AssociationSet Name="MVPSShedule" Association="kipModel.MVPSShedule">
+            <End Role="MVPS" EntitySet="MVPSSet" />
+            <End Role="Shedule" EntitySet="SheduleSet" />
+          </AssociationSet>
+          <AssociationSet Name="MVPSShedule1" Association="kipModel.MVPSShedule1">
+            <End Role="MVPS" EntitySet="MVPSSet" />
+            <End Role="Shedule" EntitySet="SheduleSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="SystemType">
           <Key>
@@ -588,6 +741,8 @@
           <NavigationProperty Name="EquipmentRule" Relationship="kipModel.EquipmentRuleMVPS" FromRole="MVPS" ToRole="EquipmentRule" />
           <NavigationProperty Name="Equipment" Relationship="kipModel.MVPSEquipment" FromRole="MVPS" ToRole="Equipment" />
           <NavigationProperty Name="ReplacingLog" Relationship="kipModel.MVPSReplacingLog" FromRole="MVPS" ToRole="ReplacingLog" />
+          <NavigationProperty Name="Shedule_Maintenance" Relationship="kipModel.MVPSShedule" FromRole="MVPS" ToRole="Shedule" />
+          <NavigationProperty Name="Shedule_Repair" Relationship="kipModel.MVPSShedule1" FromRole="MVPS" ToRole="Shedule" />
           </EntityType>
         <Association Name="MVPSMVPSRole">
           <End Type="kipModel.MVPS" Role="MVPS" Multiplicity="*" />
@@ -660,6 +815,7 @@
           <Property Name="PinCodeHash" Type="String" Nullable="false" />
           <NavigationProperty Name="Position" Relationship="kipModel.PositionWorker" FromRole="Worker" ToRole="Position" />
           <NavigationProperty Name="ReplacingLog" Relationship="kipModel.WorkerReplacingLog" FromRole="Worker" ToRole="ReplacingLog" />
+          <NavigationProperty Name="ServiceLog" Relationship="kipModel.WorkerServiceLog" FromRole="Worker" ToRole="ServiceLog" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -698,6 +854,42 @@
         <Association Name="EquipmentEquipmentEvent">
           <End Type="kipModel.Equipment" Role="Equipment" Multiplicity="1" />
           <End Type="kipModel.EquipmentEvent" Role="EquipmentEvent" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ServiceLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" />
+          <Property Name="isRepair" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Performer" Relationship="kipModel.WorkerServiceLog" FromRole="ServiceLog" ToRole="Worker" />
+          <NavigationProperty Name="Equipment" Relationship="kipModel.EquipmentServiceLog" FromRole="ServiceLog" ToRole="Equipment" />
+        </EntityType>
+        <Association Name="WorkerServiceLog">
+          <End Type="kipModel.Worker" Role="Worker" Multiplicity="1" />
+          <End Type="kipModel.ServiceLog" Role="ServiceLog" Multiplicity="*" />
+        </Association>
+        <Association Name="EquipmentServiceLog">
+          <End Type="kipModel.Equipment" Role="Equipment" Multiplicity="1" />
+          <End Type="kipModel.ServiceLog" Role="ServiceLog" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Shedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="MVPS_Maintenance" Relationship="kipModel.MVPSShedule" FromRole="Shedule" ToRole="MVPS" />
+          <NavigationProperty Name="MVPS_Repair" Relationship="kipModel.MVPSShedule1" FromRole="Shedule" ToRole="MVPS" />
+        </EntityType>
+        <Association Name="MVPSShedule">
+          <End Type="kipModel.MVPS" Role="MVPS" Multiplicity="*" />
+          <End Type="kipModel.Shedule" Role="Shedule" Multiplicity="*" />
+        </Association>
+        <Association Name="MVPSShedule1">
+          <End Type="kipModel.MVPS" Role="MVPS" Multiplicity="*" />
+          <End Type="kipModel.Shedule" Role="Shedule" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -817,6 +1009,24 @@
           <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="event" ColumnName="event" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceLogSet">
+      <EntityTypeMapping TypeName="IsTypeOf(kipModel.ServiceLog)">
+        <MappingFragment StoreEntitySet="ServiceLogSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="isRepair" ColumnName="isRepair" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SheduleSet">
+      <EntityTypeMapping TypeName="IsTypeOf(kipModel.Shedule)">
+        <MappingFragment StoreEntitySet="SheduleSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="date" ColumnName="date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -947,6 +1157,38 @@
       </EndProperty>
       <EndProperty Name="EquipmentEvent">
         <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="WorkerServiceLog" TypeName="kipModel.WorkerServiceLog" StoreEntitySet="ServiceLogSet">
+      <EndProperty Name="Worker">
+        <ScalarProperty Name="Id" ColumnName="Performer_Id" />
+      </EndProperty>
+      <EndProperty Name="ServiceLog">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EquipmentServiceLog" TypeName="kipModel.EquipmentServiceLog" StoreEntitySet="ServiceLogSet">
+      <EndProperty Name="Equipment">
+        <ScalarProperty Name="Id" ColumnName="Equipment_Id" />
+      </EndProperty>
+      <EndProperty Name="ServiceLog">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MVPSShedule" TypeName="kipModel.MVPSShedule" StoreEntitySet="MVPSShedule">
+      <EndProperty Name="MVPS">
+        <ScalarProperty Name="Id" ColumnName="MVPS_Maintenance_Id" />
+      </EndProperty>
+      <EndProperty Name="Shedule">
+        <ScalarProperty Name="Id" ColumnName="Shedule_Maintenance_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MVPSShedule1" TypeName="kipModel.MVPSShedule1" StoreEntitySet="MVPSShedule1">
+      <EndProperty Name="MVPS">
+        <ScalarProperty Name="Id" ColumnName="MVPS_Repair_Id" />
+      </EndProperty>
+      <EndProperty Name="Shedule">
+        <ScalarProperty Name="Id" ColumnName="Shedule_Repair_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
