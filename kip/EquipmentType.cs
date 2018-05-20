@@ -24,6 +24,8 @@ namespace kip
         public int Id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
+        public int servicePeriod { get; set; }
+        public Nullable<int> verfPeriod { get; set; }
     
         public virtual SystemType SystemType { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }

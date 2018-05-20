@@ -15,14 +15,63 @@ namespace kip
         public DataGridViewRow GetRow()
         {
             var row = new DataGridViewRow();
-
+           
             row.Cells.Add(new DataGridViewTextBoxCell { Value = Id   });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = name });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = description });
-            row.Cells.Add(new DataGridViewTextBoxCell { Value = Manufacturer.name });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = SystemType.name });
-
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = GetMonthOrYear(servicePeriod) });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = GetMonthOrYear(verfPeriod) });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = Manufacturer.name });
             return row;
+        }
+
+        public string GetMonthOrYear(int? Period)
+        {
+            string str= null;
+            int y;
+            if (Period.HasValue)
+            {
+                int x = Period.GetValueOrDefault();
+                if (x % 365 == 0)
+                {
+                    y = x / 365;
+                    switch (y % 10)
+                    {
+                        case 1:
+                            str = y.ToString() + " год";
+                            break;
+                        case 2:
+                        case 3:
+                        case 4:
+                            str = y.ToString() + " года";
+                            break;
+                        default:
+                            str = y.ToString() + " лет";
+                            break;
+                    }
+                }
+                else
+                    if(x % 30 == 0)
+                    {
+                        y = x / 30;
+                        switch (y % 10)
+                        {
+                            case 1:
+                                str = y.ToString() + " месяц";
+                                break;
+                            case 2:
+                            case 3:
+                            case 4:
+                                str = y.ToString() + " месяца";
+                                break;
+                            default:
+                                str = y.ToString() + " месяцев";
+                                break;
+                        }
+                    }
+            }
+            return str;
         }
 
         public static void GetColumns(DataGridView view)
@@ -34,6 +83,8 @@ namespace kip
                 view.Columns.Add("name", "Наименование");
                 view.Columns.Add("description", "Описание");
                 view.Columns.Add("systemType", "Тип системы");
+                view.Columns.Add("servicePeriod", "Период проверки");
+                view.Columns.Add("verificationPeriod", "Период поверки");
                 view.Columns.Add("manufacturer", "Производитель");
             }
             catch (Exception ex)

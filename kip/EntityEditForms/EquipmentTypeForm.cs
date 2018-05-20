@@ -46,6 +46,8 @@ namespace kip
                 
                 DescriptionBox.Text = type.description;
                 NameBox.Text = type.name;
+                VerificationPeriodBox.Text = type.verfPeriod.ToString();
+                ServicePeriodBox.Text = type.servicePeriod.ToString();
 
                 AddButton.Text = "Сохранить";
             }
@@ -99,7 +101,11 @@ namespace kip
                     int _manufactId = manufactId[ManufactBox.SelectedIndex];
                     var sysType = context.SystemTypeSet.Where(b => b.Id == _sysTypeId).SingleOrDefault();
                     var manf = context.ManufacturerSet.Where(b => b.Id == _manufactId).SingleOrDefault();
-                    
+
+                    bool hasVerf = int.TryParse(VerificationPeriodBox.Text, out int verf);
+                    bool hasServ = int.TryParse(ServicePeriodBox.Text, out int serv);
+                    if (!hasServ) throw new Exception("Введите срок проверки");
+
                     if (type == null)
                     {
                         context.EquipmentTypeSet.Add(new EquipmentType
@@ -107,7 +113,9 @@ namespace kip
                             name = NameBox.Text,
                             description = DescriptionBox.Text,
                             SystemType = sysType,
-                            Manufacturer = manf
+                            Manufacturer = manf,
+                            verfPeriod = verf,
+                            servicePeriod = serv
                         });
                     }
                     else
@@ -117,7 +125,9 @@ namespace kip
                         if (freshEqType.name != NameBox.Text) freshEqType.name = NameBox.Text;
                         if (freshEqType.description != DescriptionBox.Text) freshEqType.description = DescriptionBox.Text;
                         if (freshEqType.SystemType != sysType) freshEqType.SystemType = sysType;
-                        if (freshEqType.Manufacturer != manf) freshEqType.Manufacturer = manf; 
+                        if (freshEqType.Manufacturer != manf) freshEqType.Manufacturer = manf;
+                        if (freshEqType.servicePeriod != serv) freshEqType.servicePeriod = serv;
+                        if (freshEqType.verfPeriod != verf) freshEqType.verfPeriod = verf;
                     }
 
                     context.SaveChanges();
@@ -146,9 +156,38 @@ namespace kip
                 throw new Exception("Выберите производителя и тип системы");
         }
 
-        private void CloseButton_Click(object sender, EventArgs e)
+        private void CloseButton_Click(object sender, EventArgs e) => Close();
+
+        private void MinusMonthVerf_Click(object sender, EventArgs e) => ChangeVerfPeriod(-30);
+
+        private void MinusYearVerf_Click(object sender, EventArgs e) => ChangeVerfPeriod(-365);
+
+        private void PlusMonthVerf_Click(object sender, EventArgs e) => ChangeVerfPeriod(30);
+
+        private void PlusYearVerf_Click(object sender, EventArgs e) => ChangeVerfPeriod(365);
+
+        private void PlusMonthServ_Click(object sender, EventArgs e) => ChangeServPeriod(30);
+
+        private void MinusMonthServ_Click(object sender, EventArgs e) => ChangeServPeriod(-30);
+
+        private void MinusYearServ_Click(object sender, EventArgs e) => ChangeServPeriod(-365);
+
+        private void PlusYearServ_Click(object sender, EventArgs e) => ChangeServPeriod(365);
+
+        private void ChangeServPeriod(int x)
         {
-            Close();
+            bool hasValue = int.TryParse(ServicePeriodBox.Text, out int serv);
+            serv += x;
+            ServicePeriodBox.Text = serv.ToString();
         }
+
+        private void ChangeVerfPeriod(int x)
+        {
+            bool hasValue = int.TryParse(VerificationPeriodBox.Text, out int verf);
+            verf += x;
+            VerificationPeriodBox.Text = verf.ToString();
+        }
+
+        
     }
 }
