@@ -37,5 +37,7 @@ namespace kip
         public virtual DbSet<Worker> WorkerSet { get; set; }
         public virtual DbSet<Position> PositionSet { get; set; }
         public virtual DbSet<EquipmentEvent> EquipmentEventSet { get; set; }
+        public virtual DbSet<ServiceLog> ServiceLogSet { get; set; }
+        public virtual DbSet<Shedule> SheduleSet { get; set; }
     }
 }

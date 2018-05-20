@@ -61,5 +61,10 @@ namespace kip
                 }
             }
         }
+
+        public string GetSpec()
+        {
+            return MVPSType.name + " " + series + "-" + number;
+        }
     }
 }

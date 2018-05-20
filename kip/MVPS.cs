@@ -19,6 +19,8 @@ namespace kip
         {
             this.Equipment = new HashSet<Equipment>();
             this.ReplacingLog = new HashSet<ReplacingLog>();
+            this.Shedule_Maintenance = new HashSet<Shedule>();
+            this.Shedule_Repair = new HashSet<Shedule>();
         }
     
         public System.Guid Id { get; set; }
@@ -32,5 +34,9 @@ namespace kip
         public virtual ICollection<Equipment> Equipment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReplacingLog> ReplacingLog { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Shedule> Shedule_Maintenance { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Shedule> Shedule_Repair { get; set; }
     }
 }

@@ -217,6 +217,8 @@
     <Compile Include="PartialedEntity\MVPSType.cs" />
     <Compile Include="PartialedEntity\Position.cs" />
     <Compile Include="PartialedEntity\ReplacingLog.cs" />
+    <Compile Include="PartialedEntity\ServiceLog.cs" />
+    <Compile Include="PartialedEntity\Shedule.cs" />
     <Compile Include="PartialedEntity\SystemType.cs" />
     <Compile Include="PartialedEntity\Worker.cs" />
     <Compile Include="Position.cs">

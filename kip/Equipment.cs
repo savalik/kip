@@ -20,6 +20,7 @@ namespace kip
             this.InstallingLog = new HashSet<ReplacingLog>();
             this.RemovingLog = new HashSet<ReplacingLog>();
             this.EquipmentEvent = new HashSet<EquipmentEvent>();
+            this.ServiceLog = new HashSet<ServiceLog>();
         }
     
         public System.Guid Id { get; set; }
@@ -39,5 +40,7 @@ namespace kip
         public virtual ICollection<ReplacingLog> RemovingLog { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EquipmentEvent> EquipmentEvent { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ServiceLog> ServiceLog { get; set; }
     }
 }

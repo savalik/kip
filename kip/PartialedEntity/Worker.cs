@@ -56,5 +56,10 @@ namespace kip
                 }
             }
         }
+
+        public string GetFIO()
+        {
+            return Family + " " + Name.Substring(0, 1) + " " + Patronymic.Substring(0, 1);
+        }
     }
 }

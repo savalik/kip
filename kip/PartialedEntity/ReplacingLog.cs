@@ -25,7 +25,7 @@ namespace kip
                 if (ins != null) insStr = ins.EquipmentType.name + " № " + ins.number;
 
                 mvpsStr = MVPS.MVPSType.name + " " + MVPS.series + " " + MVPS.number;
-                workerStr = Worker.Family + " " + Worker.Name.Substring(0, 1) + " " + Worker.Patronymic.Substring(0, 1);
+                workerStr = Worker.GetFIO();
 
                 row.Cells.Add(new DataGridViewTextBoxCell { Value = Id });
                 row.Cells.Add(new DataGridViewTextBoxCell { Value = remStr });
