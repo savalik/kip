@@ -53,7 +53,9 @@ namespace kip
                     var mvpsRole = context.MVPSRoleSet.ToList();
                     var mvpsType = context.MVPSTypeSet.ToList();
                     var systemType = context.SystemTypeSet.ToList();
-
+                    roleId.Clear();
+                    typeId.Clear();
+                    sysTypeId.Clear();
                     foreach (MVPSRole role in mvpsRole)
                     {
                         MVPSRoleBox_.Items.Add(role.name);

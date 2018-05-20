@@ -37,8 +37,14 @@ namespace kip
                     return "Работники";
                 case "Position":
                     return "Должности";
+                case "ServiceLog":
+                    return "Журнал проверки/ремонта";
+                case "Shedule":
+                    return "График ТО и ТР";
+                case "EquipmentEvent":
+                    return null;
                 default:
-                    return "";
+                    return "Неучтенный элемент БД";
             }
         }
 
@@ -134,6 +140,18 @@ namespace kip
                         form = new WorkerForm(view);
                         form.ShowDialog();
                         break;
+                    case "График ТО и ТР":
+                        //form = new SheduleForm(view);
+                        //form.ShowDialog();
+                        break;
+                    case "Замены оборудования":
+                        //form = new ReplacingLogForm(view);
+                        //form.ShowDialog();
+                        break;
+                    case "Журнал проверки/ремонта":
+                        //form = new ReplacingLogForm(view);
+                        //form.ShowDialog();
+                        break;
                     default:
                         break;
                 }
@@ -159,7 +177,9 @@ namespace kip
                     var items = mdw.GetItems<EntityType>(DataSpace.CSpace);
                     foreach (var i in items)
                     {
-                        list.Items.Add(TableName(i.Name));
+                        var str = TableName(i.Name);
+                        if (str != null)
+                        list.Items.Add(str);
                     }
                 }
             }
@@ -206,7 +226,12 @@ namespace kip
                 case "Должности":
                     Position.FillGrid(view);
                     break;
-
+                case "График ТО и ТР":
+                    Shedule.FillGrid(view);
+                    break;
+                case "Журнал проверки/ремонта":
+                    ServiceLog.FillGrid(view);
+                    break;
                 default:
                     break;
             }

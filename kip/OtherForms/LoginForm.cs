@@ -59,7 +59,7 @@ namespace kip
         {
             switch (position)
             {
-                case 6:
+                case 1:
                     MainForm main = new MainForm(worker, this);
                     this.Hide();
                     main.Show();
@@ -71,7 +71,6 @@ namespace kip
         {
             //Рассылаем IP для входящих TCP подключений широковещательной рассылкой.
             IPAnoncer anoncer = new IPAnoncer();
-            
         }
 
         private void LoginForm_Activated(object sender, EventArgs e)
