@@ -95,6 +95,7 @@
             this.TypeBox.Name = "TypeBox";
             this.TypeBox.Size = new System.Drawing.Size(265, 24);
             this.TypeBox.TabIndex = 1;
+            this.TypeBox.SelectedIndexChanged += new System.EventHandler(this.TypeBox_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -144,9 +145,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(12, 242);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(179, 17);
+            this.label6.Size = new System.Drawing.Size(219, 17);
             this.label6.TabIndex = 17;
-            this.label6.Text = "Дата следующей поверки";
+            this.label6.Text = "Дата метрологической поверки";
             // 
             // label7
             // 

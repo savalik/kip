@@ -70,7 +70,7 @@ namespace kip
                         ServiceDate.Text = eq.serviceDate.ToString("dd.MM.yy");
 
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
@@ -136,10 +136,13 @@ namespace kip
                     bool hasDate = DateTime.TryParse(this.VerificationDate.Text, out DateTime term);
                     if (hasDate) VerificationDate = term;
                     else VerificationDate = null;
-                    
+
                     hasDate = DateTime.TryParse(this.TerminationDate.Text, out term);
                     if (hasDate) TerminationDate = term;
                     else TerminationDate = null;
+
+                    if (this.VerificationDate.Enabled)
+                        if (!DateTime.TryParse(this.VerificationDate.Text, out DateTime time)) throw new Exception("Введена некорректная дата в поле даты поверки. Введите дату вида - дд.мм.гг");
 
                     if (eq != null)
                     {
@@ -174,14 +177,11 @@ namespace kip
                         context.EquipmentSet.Add(eq);
                         context.SaveChanges();
                     }
+                    Close();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    Close();
                 }
             }
         }
@@ -193,7 +193,7 @@ namespace kip
             if (NumberBox.Text == "") throw new Exception("Введите номер блока");
             if (!DateTime.TryParse(RepairDate.Text, out DateTime time)) throw new Exception("Введена некорректная дата в поле даты ремонта. Введите дату вида - дд.мм.гг");
             if (!DateTime.TryParse(ServiceDate.Text, out time)) throw new Exception("Введена некорректная дата в поле даты обслуживания. Введите дату вида - дд.мм.гг");
-            if ((VerificationDate.Text != "" ) && (!DateTime.TryParse(VerificationDate.Text, out time))) throw new Exception("Введена некорректная дата в поле даты поверки. Введите дату вида - дд.мм.гг");
+
         }
 
         private void EquipmentForm_Load(object sender, EventArgs e)
@@ -218,8 +218,9 @@ namespace kip
                 };
 
                 var writer = new BarcodeWriter
-                { Format = BarcodeFormat.QR_CODE,
-                  Options = opt 
+                {
+                    Format = BarcodeFormat.QR_CODE,
+                    Options = opt
                 };
 
                 string str = eq.Id.ToString() + "," + eq.EquipmentType.name + "," + eq.number;
@@ -235,8 +236,19 @@ namespace kip
 
                 if (savefile.ShowDialog() == DialogResult.OK)
                 {
-                    writer.Write(str).Save(savefile.FileName,ImageFormat.Png);
+                    writer.Write(str).Save(savefile.FileName, ImageFormat.Png);
                 }
+            }
+        }
+
+        private void TypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (kipEntities context = new kipEntities())
+            {
+                int typeId = typeIds[TypeBox.SelectedIndex];
+                var type = context.EquipmentTypeSet.Where(b => b.Id == typeId).SingleOrDefault();
+                if ((!type.verfPeriod.HasValue) || (type.verfPeriod.Value == 0)) VerificationDate.Enabled = false;
+                else VerificationDate.Enabled = true;
             }
         }
     }
