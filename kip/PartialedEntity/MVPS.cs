@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,8 @@ namespace kip
 
                 view.Columns[0].Visible = false;
                 view.Columns[5].Visible = false;
+
+                view.Sort(view.Columns["series"], ListSortDirection.Ascending);
             }
             catch (Exception ex)
             {

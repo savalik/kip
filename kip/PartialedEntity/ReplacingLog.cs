@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace kip
                 workerStr = Worker.GetFIO();
 
                 row.Cells.Add(new DataGridViewTextBoxCell { Value = Id });
+                row.Cells.Add(new DataGridViewTextBoxCell { Value = date.ToString("dd.MM.yy") });
                 row.Cells.Add(new DataGridViewTextBoxCell { Value = remStr });
                 row.Cells.Add(new DataGridViewTextBoxCell { Value = insStr });
                 row.Cells.Add(new DataGridViewTextBoxCell { Value = description });
@@ -44,11 +46,16 @@ namespace kip
             {
                 view.Columns.Clear();
                 view.Columns.Add("id", "ID");
+                view.Columns.Add("date", "Дата");
                 view.Columns.Add("removed", "Снятый блок");
                 view.Columns.Add("installed", "Установленный блок");
                 view.Columns.Add("description", "Причина");
                 view.Columns.Add("mvps", "Вагон");
                 view.Columns.Add("worker", "Работник");
+
+                view.Columns[0].Visible = false;
+
+                view.Sort(view.Columns["date"], ListSortDirection.Descending);
             }
             catch (Exception ex)
             {

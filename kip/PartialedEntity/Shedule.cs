@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,8 @@ namespace kip
                 view.Columns.Add("date", "Дата");
                 view.Columns.Add("repairs", "МПВС на ТР1");
                 view.Columns.Add("maintenance", "МВПС на ТО3");
+
+                view.Sort(view.Columns["date"], ListSortDirection.Descending);
 
                 view.Columns[0].Visible = false;
             }

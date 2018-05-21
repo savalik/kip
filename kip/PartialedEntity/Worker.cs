@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,10 @@ namespace kip
                 view.Columns.Add("Patronymic", "Отчество");
                 view.Columns.Add("PersonnelNumber", "Табельный номер");
                 view.Columns.Add("Position", "Должность");
+
+                view.Columns[0].Visible = false;
+
+                view.Sort(view.Columns["Family"], ListSortDirection.Descending);
             }
             catch (Exception ex)
             {

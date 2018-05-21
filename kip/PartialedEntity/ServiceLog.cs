@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +42,8 @@ namespace kip
                 view.Columns.Add("performer", "Исполнитель");
 
                 view.Columns[0].Visible = false;
+
+                view.Sort(view.Columns["date"], ListSortDirection.Descending);
             }
             catch (Exception ex)
             {

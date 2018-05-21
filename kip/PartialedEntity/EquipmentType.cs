@@ -8,6 +8,7 @@ namespace kip
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Windows.Forms;
 
     public partial class EquipmentType
@@ -86,6 +87,10 @@ namespace kip
                 view.Columns.Add("servicePeriod", "Период проверки");
                 view.Columns.Add("verificationPeriod", "Период поверки");
                 view.Columns.Add("manufacturer", "Производитель");
+
+                view.Columns[0].Visible = false;
+
+                view.Sort(view.Columns["systemType"], ListSortDirection.Ascending);
             }
             catch (Exception ex)
             {

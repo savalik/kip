@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,10 @@ namespace kip
                 view.Columns.Clear();
                 view.Columns.Add("id", "ID");
                 view.Columns.Add("name", "Должность");
+
+                view.Columns[0].Visible = false;
+
+                view.Sort(view.Columns["name"], ListSortDirection.Ascending);
             }
             catch (Exception ex)
             {
