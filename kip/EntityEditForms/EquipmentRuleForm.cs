@@ -121,6 +121,8 @@ namespace kip
             using (kipEntities context = new kipEntities())
             {
                 EquipmentTypeBox_.Items.Clear();
+                eqTypeId.Clear();
+
                 int key = sysTypeId[selectedIndex];
                 var eqType = context.EquipmentTypeSet.Where(b => b.SystemType.Id == key).ToList();
 
