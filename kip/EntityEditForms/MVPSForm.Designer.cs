@@ -69,7 +69,7 @@
             this.NumberBox.Location = new System.Drawing.Point(30, 95);
             this.NumberBox.Name = "NumberBox";
             this.NumberBox.Size = new System.Drawing.Size(98, 22);
-            this.NumberBox.TabIndex = 2;
+            this.NumberBox.TabIndex = 1;
             this.NumberBox.LostFocus += new System.EventHandler(this.NumberBox_LostFocus);
             // 
             // label2
@@ -95,7 +95,7 @@
             this.SeriesBox.Location = new System.Drawing.Point(30, 140);
             this.SeriesBox.Name = "SeriesBox";
             this.SeriesBox.Size = new System.Drawing.Size(98, 22);
-            this.SeriesBox.TabIndex = 5;
+            this.SeriesBox.TabIndex = 2;
             // 
             // label4
             // 
@@ -113,7 +113,7 @@
             this.TypeBox.Location = new System.Drawing.Point(30, 185);
             this.TypeBox.Name = "TypeBox";
             this.TypeBox.Size = new System.Drawing.Size(121, 24);
-            this.TypeBox.TabIndex = 7;
+            this.TypeBox.TabIndex = 3;
             this.TypeBox.SelectedIndexChanged += new System.EventHandler(this.TypeBox_SelectedIndexChanged);
             // 
             // label5
@@ -130,7 +130,7 @@
             this.CancesButton.Location = new System.Drawing.Point(30, 334);
             this.CancesButton.Name = "CancesButton";
             this.CancesButton.Size = new System.Drawing.Size(96, 33);
-            this.CancesButton.TabIndex = 9;
+            this.CancesButton.TabIndex = 7;
             this.CancesButton.Text = "Отмена";
             this.CancesButton.UseVisualStyleBackColor = true;
             // 
@@ -139,7 +139,7 @@
             this.AddButton.Location = new System.Drawing.Point(471, 334);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(96, 33);
-            this.AddButton.TabIndex = 10;
+            this.AddButton.TabIndex = 6;
             this.AddButton.Text = "Добавить";
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
@@ -151,7 +151,7 @@
             this.RoleBox.Location = new System.Drawing.Point(30, 232);
             this.RoleBox.Name = "RoleBox";
             this.RoleBox.Size = new System.Drawing.Size(121, 24);
-            this.RoleBox.TabIndex = 11;
+            this.RoleBox.TabIndex = 4;
             this.RoleBox.SelectedIndexChanged += new System.EventHandler(this.RoleBox_SelectedIndexChanged);
             // 
             // RuleList
@@ -179,7 +179,7 @@
             this.RuleBox.Location = new System.Drawing.Point(30, 279);
             this.RuleBox.Name = "RuleBox";
             this.RuleBox.Size = new System.Drawing.Size(121, 24);
-            this.RuleBox.TabIndex = 14;
+            this.RuleBox.TabIndex = 5;
             this.RuleBox.SelectedIndexChanged += new System.EventHandler(this.RuleBox_SelectedIndexChanged);
             // 
             // label7

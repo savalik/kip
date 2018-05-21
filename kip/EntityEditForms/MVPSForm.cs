@@ -75,8 +75,18 @@ namespace kip
                         typeIds.Add(type.Id);
                     }
 
-                    RuleBox.Items.Add("Выберите Тип и роль МВПС");
+                    if (mVPS != null)
+                    {
+                        for (int i = 0; i < RoleBox.Items.Count; i++)
+                            if (RoleBox.Items[i].ToString() == mVPS.MVPSRole.name) RoleBox.SelectedIndex = i;
 
+                        for (int i = 0; i < TypeBox.Items.Count; i++)
+                            if (TypeBox.Items[i].ToString() == mVPS.MVPSType.name) TypeBox.SelectedIndex = i;
+
+                        GetRuleList();
+                        SeriesBox.Text = mVPS.series;
+                    }
+                    mVPS = null;
                 }
                 catch(Exception ex)
                 {
@@ -211,7 +221,6 @@ namespace kip
                 }
                 finally
                 {
-                    mVPS = null;
                     roleIds.Clear();
                     typeIds.Clear();
                     currentRules.Clear();

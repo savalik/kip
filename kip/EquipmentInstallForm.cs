@@ -31,7 +31,11 @@ namespace kip
                     var types = context.MVPSTypeSet.ToList();
                     var seriesSet = context.MVPSSet.Select(b => b.series).ToList();
                     List<string> unicalSeries = new List<string>();
-
+                    /*
+                     * ToDo: реализовать пустые фильтры вагонов
+                    MVPSRoleBox.Items.Add("");
+                    MVPSTypeBox.Items.Add("");
+                    */
                     foreach (MVPSRole role in roles)
                     {
                         MVPSRoleBox.Items.Add(role.name);
