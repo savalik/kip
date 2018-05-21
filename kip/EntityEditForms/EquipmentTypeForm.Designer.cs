@@ -67,7 +67,7 @@
             this.NameBox.Location = new System.Drawing.Point(39, 33);
             this.NameBox.Name = "NameBox";
             this.NameBox.Size = new System.Drawing.Size(230, 22);
-            this.NameBox.TabIndex = 15;
+            this.NameBox.TabIndex = 1;
             // 
             // SysTypeBox
             // 
@@ -76,7 +76,7 @@
             this.SysTypeBox.Location = new System.Drawing.Point(39, 123);
             this.SysTypeBox.Name = "SysTypeBox";
             this.SysTypeBox.Size = new System.Drawing.Size(230, 24);
-            this.SysTypeBox.TabIndex = 12;
+            this.SysTypeBox.TabIndex = 3;
             // 
             // ManufactBox
             // 
@@ -86,7 +86,7 @@
             this.ManufactBox.Location = new System.Drawing.Point(39, 76);
             this.ManufactBox.Name = "ManufactBox";
             this.ManufactBox.Size = new System.Drawing.Size(230, 24);
-            this.ManufactBox.TabIndex = 11;
+            this.ManufactBox.TabIndex = 2;
             // 
             // AddButton
             // 
@@ -104,7 +104,7 @@
             this.DescriptionBox.Multiline = true;
             this.DescriptionBox.Name = "DescriptionBox";
             this.DescriptionBox.Size = new System.Drawing.Size(230, 132);
-            this.DescriptionBox.TabIndex = 19;
+            this.DescriptionBox.TabIndex = 6;
             // 
             // label1
             // 
@@ -167,14 +167,14 @@
             this.ServicePeriodBox.Location = new System.Drawing.Point(96, 214);
             this.ServicePeriodBox.Name = "ServicePeriodBox";
             this.ServicePeriodBox.Size = new System.Drawing.Size(121, 22);
-            this.ServicePeriodBox.TabIndex = 26;
+            this.ServicePeriodBox.TabIndex = 4;
             // 
             // VerificationPeriodBox
             // 
             this.VerificationPeriodBox.Location = new System.Drawing.Point(96, 308);
             this.VerificationPeriodBox.Name = "VerificationPeriodBox";
             this.VerificationPeriodBox.Size = new System.Drawing.Size(121, 22);
-            this.VerificationPeriodBox.TabIndex = 27;
+            this.VerificationPeriodBox.TabIndex = 5;
             // 
             // MinusMonthServ
             // 

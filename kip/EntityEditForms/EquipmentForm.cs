@@ -55,6 +55,20 @@ namespace kip
 
                         for (int i = 0; i < TypeBox.Items.Count; i++)
                             if (TypeBox.Items[i].ToString() == eq.EquipmentType.name) TypeBox.SelectedIndex = i;
+                        DateTime date;
+                        if (eq.nextVerificationDate.HasValue)
+                        {
+                            date = eq.nextVerificationDate.Value;
+                            VerificationDate.Text = date.ToString("dd.MM.yy");
+                        }
+                        if (eq.termDate.HasValue)
+                        {
+                            date = eq.termDate.Value;
+                            TerminationDate.Text = date.ToString("dd.MM.yy");
+                        }
+                        RepairDate.Text = eq.repairDate.ToString("dd.MM.yy");
+                        ServiceDate.Text = eq.serviceDate.ToString("dd.MM.yy");
+
                     }
                     catch(Exception ex)
                     {
@@ -179,7 +193,7 @@ namespace kip
             if (NumberBox.Text == "") throw new Exception("Введите номер блока");
             if (!DateTime.TryParse(RepairDate.Text, out DateTime time)) throw new Exception("Введена некорректная дата в поле даты ремонта. Введите дату вида - дд.мм.гг");
             if (!DateTime.TryParse(ServiceDate.Text, out time)) throw new Exception("Введена некорректная дата в поле даты обслуживания. Введите дату вида - дд.мм.гг");
-            //if (!DateTime.TryParse(VerificationDate.Text, out time)) throw new Exception("Введена некорректная дата в поле даты поверки. Введите дату вида - дд.мм.гг");
+            if ((VerificationDate.Text != "" ) && (!DateTime.TryParse(VerificationDate.Text, out time))) throw new Exception("Введена некорректная дата в поле даты поверки. Введите дату вида - дд.мм.гг");
         }
 
         private void EquipmentForm_Load(object sender, EventArgs e)
