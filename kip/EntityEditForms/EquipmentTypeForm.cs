@@ -75,11 +75,27 @@ namespace kip
                         ManufactBox.Items.Add(manufact.name);
                         manufactId.Add(manufact.Id);
                     }
-                    
+
+                    if (type != null)
+                    {
+                        if (type.servicePeriod != 0) ServicePeriodBox.Text = type.servicePeriod.ToString();
+                        if (type.verfPeriod.HasValue) VerificationPeriodBox.Text = type.verfPeriod.ToString();
+
+                        for (int i = 0; i < SysTypeBox.Items.Count; i++)
+                            if (SysTypeBox.Items[i].ToString() == type.SystemType.name) SysTypeBox.SelectedIndex = i;
+
+                        for (int i = 0; i < ManufactBox.Items.Count; i++)
+                            if (ManufactBox.Items[i].ToString() == type.Manufacturer.name) ManufactBox.SelectedIndex = i;
+
+                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    type = null;
                 }
             }
         }
@@ -108,7 +124,7 @@ namespace kip
 
                     if (type == null)
                     {
-                        context.EquipmentTypeSet.Add(new EquipmentType
+                        type = new EquipmentType
                         {
                             name = NameBox.Text,
                             description = DescriptionBox.Text,
@@ -116,7 +132,8 @@ namespace kip
                             Manufacturer = manf,
                             verfPeriod = verf,
                             servicePeriod = serv
-                        });
+                        };
+                        context.EquipmentTypeSet.Add(type);
                     }
                     else
                     {
@@ -139,7 +156,7 @@ namespace kip
                 }
             }
 
-            type = null;
+            //type = null;
             sysTypeId.Clear();
             manufactId.Clear();
 
