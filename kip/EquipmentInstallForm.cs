@@ -31,11 +31,10 @@ namespace kip
                     var types = context.MVPSTypeSet.ToList();
                     var seriesSet = context.MVPSSet.Select(b => b.series).ToList();
                     List<string> unicalSeries = new List<string>();
-                    /*
-                     * ToDo: реализовать пустые фильтры вагонов
-                    MVPSRoleBox.Items.Add("");
-                    MVPSTypeBox.Items.Add("");
-                    */
+
+                    MVPSRoleBox.Items.Add("Любой");
+                    MVPSTypeBox.Items.Add("Любой");
+
                     foreach (MVPSRole role in roles)
                     {
                         MVPSRoleBox.Items.Add(role.name);
@@ -87,16 +86,32 @@ namespace kip
                     try
                     {
                         if (MVPSTypeBox.SelectedIndex == -1) MVPSTypeBox.SelectedIndex = 0;
+                        if (MVPSRoleBox.SelectedIndex == -1) MVPSRoleBox.SelectedIndex = 0;
 
                         string series = MVPSSeriesBox.SelectedItem.ToString();
                         string type = MVPSTypeBox.SelectedItem.ToString();
-                        string role;
+                        string role = MVPSRoleBox.SelectedItem.ToString();
                         IEnumerable<MVPS> numbers;
 
                         if (MVPSRoleBox.SelectedIndex != -1)
                         {
-                            role = MVPSRoleBox.SelectedItem.ToString();
-                            numbers = context.MVPSSet.Where(b => (b.series == series) && (b.MVPSType.name == type) && (b.MVPSRole.name == role)).ToList();
+                            if (MVPSRoleBox.SelectedIndex == 0)
+                            {
+                                numbers = context.MVPSSet.Where(b => (b.series == series) && (b.MVPSType.name == type)).ToList();
+                            }
+                            else if (MVPSTypeBox.SelectedIndex == 0)
+                            {
+                                role = MVPSRoleBox.SelectedItem.ToString();
+                                numbers = context.MVPSSet.Where(b => (b.series == series) && (b.MVPSRole.name == role)).ToList();
+                            }
+                            else if ((MVPSTypeBox.SelectedIndex == 0) && (MVPSRoleBox.SelectedIndex == 0))
+                            {
+                                numbers = context.MVPSSet.Where(b => (b.series == series)).ToList();
+                            }
+                            else
+                            {
+                                numbers = context.MVPSSet.Where(b => (b.series == series) && (b.MVPSType.name == type) && (b.MVPSRole.name == role)).ToList();
+                            }
                         }
                         else
                         {
