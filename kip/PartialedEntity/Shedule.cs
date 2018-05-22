@@ -41,8 +41,6 @@ namespace kip
                 view.Columns.Add("repairs", "МПВС на ТР1");
                 view.Columns.Add("maintenance", "МВПС на ТО3");
 
-                view.Sort(view.Columns["date"], ListSortDirection.Descending);
-
                 view.Columns[0].Visible = false;
             }
             catch (Exception ex)
@@ -64,6 +62,8 @@ namespace kip
                 {
                     view.Rows.Add(z.GetRow());
                 }
+
+                view.Sort(view.Columns["date"], ListSortDirection.Descending);
             }
         }
     }

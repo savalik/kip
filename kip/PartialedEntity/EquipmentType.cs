@@ -89,8 +89,6 @@ namespace kip
                 view.Columns.Add("manufacturer", "Производитель");
 
                 view.Columns[0].Visible = false;
-
-                view.Sort(view.Columns["systemType"], ListSortDirection.Ascending);
             }
             catch (Exception ex)
             {
@@ -113,6 +111,8 @@ namespace kip
                 {
                     view.Rows.Add(z.GetRow());
                 }
+
+                view.Sort(view.Columns["systemType"], ListSortDirection.Ascending);
             }
         }
     }

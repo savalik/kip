@@ -31,8 +31,6 @@ namespace kip
                 view.Columns.Add("name", "Название");
 
                 view.Columns[0].Visible = false;
-
-                view.Sort(view.Columns["name"], ListSortDirection.Ascending);
             }
             catch (Exception ex)
             {
@@ -55,6 +53,8 @@ namespace kip
                 {
                     view.Rows.Add(z.GetRow());
                 }
+
+                view.Sort(view.Columns["name"], ListSortDirection.Ascending);
             }
         }
     }

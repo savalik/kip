@@ -54,8 +54,6 @@ namespace kip
                 view.Columns.Add("worker", "Работник");
 
                 view.Columns[0].Visible = false;
-
-                view.Sort(view.Columns["date"], ListSortDirection.Descending);
             }
             catch (Exception ex)
             {
@@ -76,6 +74,8 @@ namespace kip
                 {
                     view.Rows.Add(z.GetRow());
                 }
+
+                view.Sort(view.Columns["date"], ListSortDirection.Descending);
             }
         }
     }

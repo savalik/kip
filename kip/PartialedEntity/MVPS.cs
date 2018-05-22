@@ -38,8 +38,6 @@ namespace kip
 
                 view.Columns[0].Visible = false;
                 view.Columns[5].Visible = false;
-
-                view.Sort(view.Columns["series"], ListSortDirection.Ascending);
             }
             catch (Exception ex)
             {
@@ -62,6 +60,8 @@ namespace kip
                 {
                     view.Rows.Add(z.GetRow());
                 }
+
+                view.Sort(view.Columns["series"], ListSortDirection.Ascending);
             }
         }
 

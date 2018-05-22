@@ -41,8 +41,6 @@ namespace kip
                 view.Columns.Add("EquipmentTypeSet", "Набор оборудования");
 
                 view.Columns[0].Visible = false;
-
-                view.Sort(view.Columns["MVPSType"], ListSortDirection.Ascending);
             }
             catch (Exception ex)
             {
@@ -65,6 +63,8 @@ namespace kip
                 {
                     view.Rows.Add(z.GetRow());
                 }
+
+                view.Sort(view.Columns["MVPSType"], ListSortDirection.Ascending);
             }
             
         }
