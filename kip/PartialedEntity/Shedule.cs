@@ -17,11 +17,11 @@ namespace kip
             row.Cells.Add(new DataGridViewTextBoxCell { Value = Id });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = date.ToString("dd.MM.yy") });
 
-            string strTO3 = null, strTR1 = null;
+            string strTO3 = "", strTR1 = "";
             foreach (MVPS mvps in MVPS_Maintenance)
-                strTO3 += mvps.GetSpec() + ",";
+                strTO3 += mvps.GetSeries() + ",";
             foreach (MVPS mvps in MVPS_Repair)
-                strTR1 += mvps.GetSpec() + ",";
+                strTR1 += mvps.GetSeries() + ",";
             strTO3 = strTO3.TrimEnd(',');
             strTR1 = strTR1.TrimEnd(',');
 

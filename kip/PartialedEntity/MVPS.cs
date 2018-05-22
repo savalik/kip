@@ -69,5 +69,10 @@ namespace kip
         {
             return MVPSType.name + " " + series + "-" + number;
         }
+
+        public string GetSeries()
+        {
+            return MVPSType.name + " " + series;
+        }
     }
 }

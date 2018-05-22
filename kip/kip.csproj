@@ -131,6 +131,12 @@
     <Compile Include="EntityEditForms\ReplacingLog.Designer.cs">
       <DependentUpon>ReplacingLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="EntityEditForms\SheduleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\SheduleForm.Designer.cs">
+      <DependentUpon>SheduleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EntityEditForms\SystemTypeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EntityEditForms\MVPSTypeForm.resx">
       <DependentUpon>MVPSTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\SheduleForm.resx">
+      <DependentUpon>SheduleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EntityEditForms\SystemTypeForm.resx">
       <DependentUpon>SystemTypeForm.cs</DependentUpon>

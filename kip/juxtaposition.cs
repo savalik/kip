@@ -90,6 +90,18 @@ namespace kip
                     form = new WorkerForm();
                     form.ShowDialog();
                     break;
+                case "График ТО и ТР":
+                    form = new SheduleForm();
+                    form.ShowDialog();
+                    break;
+                case "Замены оборудования":
+                    //form = new ReplacingLogForm();
+                    //form.ShowDialog();
+                    break;
+                case "Журнал проверки/ремонта":
+                    //form = new ReplacingLogForm();
+                    //form.ShowDialog();
+                    break;
                 default:
                     break;
             }
@@ -141,8 +153,8 @@ namespace kip
                         form.ShowDialog();
                         break;
                     case "График ТО и ТР":
-                        //form = new SheduleForm(view);
-                        //form.ShowDialog();
+                        form = new SheduleForm(view);
+                        form.ShowDialog();
                         break;
                     case "Замены оборудования":
                         //form = new ReplacingLogForm(view);
@@ -187,7 +199,9 @@ namespace kip
 
         public static void FillGrid(ListBox list, DataGridView view)
         {
-            var str = list.SelectedItem.ToString();
+            var str = "";
+            if (list.SelectedItem.ToString() != null)
+                str = list.SelectedItem.ToString();
             gridView = view;
             listBox = list;
 
