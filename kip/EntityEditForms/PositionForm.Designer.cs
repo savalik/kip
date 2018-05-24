@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // PositionForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "PositionForm";
+            this.ClientSize = new System.Drawing.Size(282, 255);
+            this.Name = "PositionForm";
+            this.Text = "Должность";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

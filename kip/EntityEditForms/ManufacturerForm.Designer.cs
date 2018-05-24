@@ -141,7 +141,7 @@
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.CloseButton);
             this.Name = "ManufacturerForm";
-            this.Text = "ManufacturerForm";
+            this.Text = "Производитель";
             this.Load += new System.EventHandler(this.ManufacturerForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

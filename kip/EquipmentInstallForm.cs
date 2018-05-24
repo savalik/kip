@@ -255,7 +255,7 @@ namespace kip
 
                     switch (result)
                     {
-                        case DialogResult.Yes:
+                        case DialogResult.Yes:  
                             equipment.isWorking = false;
                             equipment.isFree = true;
                             mvps.Equipment.Remove(equipment);

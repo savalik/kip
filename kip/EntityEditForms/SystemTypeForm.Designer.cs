@@ -49,12 +49,12 @@
             // 
             this.SystemTypeNameBox.Location = new System.Drawing.Point(28, 48);
             this.SystemTypeNameBox.Name = "SystemTypeNameBox";
-            this.SystemTypeNameBox.Size = new System.Drawing.Size(231, 22);
+            this.SystemTypeNameBox.Size = new System.Drawing.Size(307, 22);
             this.SystemTypeNameBox.TabIndex = 20;
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(183, 215);
+            this.AddButton.Location = new System.Drawing.Point(267, 219);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(87, 28);
             this.AddButton.TabIndex = 19;
@@ -64,7 +64,7 @@
             // 
             // CloseButton
             // 
-            this.CloseButton.Location = new System.Drawing.Point(12, 215);
+            this.CloseButton.Location = new System.Drawing.Point(12, 219);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(87, 28);
             this.CloseButton.TabIndex = 18;
@@ -76,7 +76,7 @@
             this.SystemTypeDescriptionBox.Location = new System.Drawing.Point(28, 101);
             this.SystemTypeDescriptionBox.Multiline = true;
             this.SystemTypeDescriptionBox.Name = "SystemTypeDescriptionBox";
-            this.SystemTypeDescriptionBox.Size = new System.Drawing.Size(231, 108);
+            this.SystemTypeDescriptionBox.Size = new System.Drawing.Size(307, 108);
             this.SystemTypeDescriptionBox.TabIndex = 22;
             // 
             // label2
@@ -92,7 +92,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 255);
+            this.ClientSize = new System.Drawing.Size(366, 259);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.SystemTypeDescriptionBox);
             this.Controls.Add(this.label1);
@@ -100,7 +100,7 @@
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.CloseButton);
             this.Name = "SystemTypeForm";
-            this.Text = "SystemTypeForm";
+            this.Text = "Система оборудования";
             this.Load += new System.EventHandler(this.SystemTypeForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

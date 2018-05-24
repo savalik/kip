@@ -174,7 +174,7 @@
             this.Controls.Add(this.MVPSRoleBox_);
             this.Controls.Add(this.AddButton);
             this.Name = "EquipmentRuleForm";
-            this.Text = "EquipmentRuleForm";
+            this.Text = "Правило комплектации";
             this.Load += new System.EventHandler(this.EquipmentRuleForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -38,6 +38,7 @@ namespace kip
             using (kipEntities context = new kipEntities())
             {
                 var types = context.EquipmentTypeSet.ToList();
+                typeIds.Clear();
                 foreach (var type in types)
                 {
                     TypeBox.Items.Add(type.name);

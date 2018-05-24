@@ -37,7 +37,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 44);
+            this.label1.Location = new System.Drawing.Point(26, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(106, 17);
             this.label1.TabIndex = 17;
@@ -45,14 +45,14 @@
             // 
             // MVPSTypeBox
             // 
-            this.MVPSTypeBox.Location = new System.Drawing.Point(28, 64);
+            this.MVPSTypeBox.Location = new System.Drawing.Point(29, 57);
             this.MVPSTypeBox.Name = "MVPSTypeBox";
             this.MVPSTypeBox.Size = new System.Drawing.Size(231, 22);
             this.MVPSTypeBox.TabIndex = 16;
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(183, 215);
+            this.AddButton.Location = new System.Drawing.Point(183, 115);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(87, 28);
             this.AddButton.TabIndex = 15;
@@ -62,7 +62,7 @@
             // 
             // CloseButton
             // 
-            this.CloseButton.Location = new System.Drawing.Point(12, 215);
+            this.CloseButton.Location = new System.Drawing.Point(12, 115);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(87, 28);
             this.CloseButton.TabIndex = 14;
@@ -73,13 +73,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 255);
+            this.ClientSize = new System.Drawing.Size(282, 155);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.MVPSTypeBox);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.CloseButton);
             this.Name = "MVPSTypeForm";
-            this.Text = "MVPSType";
+            this.Text = "Тип вагона";
             this.ResumeLayout(false);
             this.PerformLayout();
 

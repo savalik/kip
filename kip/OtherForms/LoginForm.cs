@@ -41,7 +41,7 @@ namespace kip
 
                 Worker worker = context.WorkerSet.Include("Position").Where(b => b.PersonnelNumber == PersonnelNumber).SingleOrDefault();
 
-                string inSystemHash = worker.PinCodeHash;
+                string inSystemHash = worker.PinCodeHash.TrimEnd('\r','\n');
                 string hash = Convert.ToBase64String(result);
 
                 if (inSystemHash != hash) throw new Exception("Не удалось войти в систему. Проверьте правильность ввода логина и пароля, или свяжитесь с разработчиком");
@@ -57,10 +57,26 @@ namespace kip
 
         private void GetNextForm(int position, Worker worker)
         {
+            Form main = null;
             switch (position)
             {
                 case 1:
-                    MainForm main = new MainForm(worker, this);
+                    main = new MainForm(worker, this);
+                    this.Hide();
+                    main.Show();
+                    break;
+                case 2:
+                    main = new EqRepairForm(worker, this);
+                    this.Hide();
+                    main.Show();
+                    break;
+                case 3:
+                    main = new ReplacingForm(worker, this);
+                    this.Hide();
+                    main.Show();
+                    break;
+                case 4:
+                    main = new MastersForm(worker, this);
                     this.Hide();
                     main.Show();
                     break;
@@ -92,7 +108,6 @@ namespace kip
                 Worker worker = context.WorkerSet.Include("Position").Where(b => b.PersonnelNumber == 11179474).SingleOrDefault();
                 var position = worker.Position.Id;
                 GetNextForm(position, worker);
-
             }
         }
     }

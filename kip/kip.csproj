@@ -77,6 +77,7 @@
       <DependentUpon>DBform.cs</DependentUpon>
     </Compile>
     <Compile Include="DocsComponent\Docs.cs" />
+    <Compile Include="DocsComponent\Shedules.cs" />
     <Compile Include="EntityEditForms\EquipmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,11 +209,29 @@
     </Compile>
     <Compile Include="NetComponent\IPAnoncer.cs" />
     <Compile Include="NetComponent\Receiver.cs" />
+    <Compile Include="OtherForms\EqRepairForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\EqRepairForm.Designer.cs">
+      <DependentUpon>EqRepairForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OtherForms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\MastersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\MastersForm.Designer.cs">
+      <DependentUpon>MastersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\ReplacingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\ReplacingForm.Designer.cs">
+      <DependentUpon>ReplacingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PartialedEntity\Equipment.cs" />
     <Compile Include="PartialedEntity\EquipmentRule.cs" />
@@ -271,6 +290,12 @@
     <EmbeddedResource Include="EntityEditForms\MVPSTypeForm.resx">
       <DependentUpon>MVPSTypeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\PositionForm.resx">
+      <DependentUpon>PositionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\ReplacingLog.resx">
+      <DependentUpon>ReplacingLog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EntityEditForms\SheduleForm.resx">
       <DependentUpon>SheduleForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -286,8 +311,17 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\EqRepairForm.resx">
+      <DependentUpon>EqRepairForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OtherForms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\MastersForm.resx">
+      <DependentUpon>MastersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\ReplacingForm.resx">
+      <DependentUpon>ReplacingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

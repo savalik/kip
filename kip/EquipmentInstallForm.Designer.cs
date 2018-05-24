@@ -35,6 +35,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.mvpsGrid = new System.Windows.Forms.DataGridView();
+            this.blockId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EquipmentType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SystemType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EquipmentNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ServiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MVPSNumberBox = new System.Windows.Forms.ComboBox();
             this.MVPSSeriesBox = new System.Windows.Forms.ComboBox();
             this.equipmentGrid = new System.Windows.Forms.DataGridView();
@@ -42,11 +47,6 @@
             this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.blockId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EquipmentType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SystemType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EquipmentNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ServiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.mvpsGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.equipmentGrid)).BeginInit();
             this.SuspendLayout();
@@ -128,6 +128,37 @@
             this.mvpsGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MvpsGrid_CellContentClick_1);
             this.mvpsGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MvpsGrid_CellDoubleClick);
             // 
+            // blockId
+            // 
+            this.blockId.HeaderText = "Id";
+            this.blockId.Name = "blockId";
+            this.blockId.ReadOnly = true;
+            this.blockId.Visible = false;
+            // 
+            // EquipmentType
+            // 
+            this.EquipmentType.HeaderText = "Тип оборудования";
+            this.EquipmentType.Name = "EquipmentType";
+            this.EquipmentType.ReadOnly = true;
+            // 
+            // SystemType
+            // 
+            this.SystemType.HeaderText = "Тип системы";
+            this.SystemType.Name = "SystemType";
+            this.SystemType.ReadOnly = true;
+            // 
+            // EquipmentNumber
+            // 
+            this.EquipmentNumber.HeaderText = "Номер блока";
+            this.EquipmentNumber.Name = "EquipmentNumber";
+            this.EquipmentNumber.ReadOnly = true;
+            // 
+            // ServiceDate
+            // 
+            this.ServiceDate.HeaderText = "Дата обслуживания";
+            this.ServiceDate.Name = "ServiceDate";
+            this.ServiceDate.ReadOnly = true;
+            // 
             // MVPSNumberBox
             // 
             this.MVPSNumberBox.FormattingEnabled = true;
@@ -189,37 +220,6 @@
             this.date.Name = "date";
             this.date.ReadOnly = true;
             // 
-            // blockId
-            // 
-            this.blockId.HeaderText = "Id";
-            this.blockId.Name = "blockId";
-            this.blockId.ReadOnly = true;
-            this.blockId.Visible = false;
-            // 
-            // EquipmentType
-            // 
-            this.EquipmentType.HeaderText = "Тип оборудования";
-            this.EquipmentType.Name = "EquipmentType";
-            this.EquipmentType.ReadOnly = true;
-            // 
-            // SystemType
-            // 
-            this.SystemType.HeaderText = "Тип системы";
-            this.SystemType.Name = "SystemType";
-            this.SystemType.ReadOnly = true;
-            // 
-            // EquipmentNumber
-            // 
-            this.EquipmentNumber.HeaderText = "Номер блока";
-            this.EquipmentNumber.Name = "EquipmentNumber";
-            this.EquipmentNumber.ReadOnly = true;
-            // 
-            // ServiceDate
-            // 
-            this.ServiceDate.HeaderText = "Дата обслуживания";
-            this.ServiceDate.Name = "ServiceDate";
-            this.ServiceDate.ReadOnly = true;
-            // 
             // EquipmentInstallForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -236,7 +236,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Name = "EquipmentInstallForm";
-            this.Text = "EquipmentInstallForm";
+            this.Text = "Установка оборудования";
             this.Load += new System.EventHandler(this.EquipmentInstallForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mvpsGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.equipmentGrid)).EndInit();

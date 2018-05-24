@@ -162,7 +162,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.PersonnelNumberBox);
             this.Name = "WorkerForm";
-            this.Text = "WorkerForm";
+            this.Text = "Работник";
             this.Load += new System.EventHandler(this.WorkerForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

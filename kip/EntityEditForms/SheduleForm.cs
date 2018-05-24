@@ -265,7 +265,7 @@ namespace kip
             //throw new NotImplementedException();
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             FillList();
         }
@@ -316,6 +316,11 @@ namespace kip
                 context.SaveChanges();
                 FillTable();
             }
+        }
+
+        private void DayMVPSList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

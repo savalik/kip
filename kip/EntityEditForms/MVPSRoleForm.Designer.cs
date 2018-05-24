@@ -36,35 +36,35 @@
             // 
             // CloseButton
             // 
-            this.CloseButton.Location = new System.Drawing.Point(12, 215);
+            this.CloseButton.Location = new System.Drawing.Point(12, 115);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(87, 28);
-            this.CloseButton.TabIndex = 9;
+            this.CloseButton.TabIndex = 3;
             this.CloseButton.Text = "Отмена";
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(183, 215);
+            this.AddButton.Location = new System.Drawing.Point(183, 115);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(87, 28);
-            this.AddButton.TabIndex = 10;
+            this.AddButton.TabIndex = 2;
             this.AddButton.Text = "Добавить";
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // MVPSRoleBox
             // 
-            this.MVPSRoleBox.Location = new System.Drawing.Point(28, 64);
+            this.MVPSRoleBox.Location = new System.Drawing.Point(28, 54);
             this.MVPSRoleBox.Name = "MVPSRoleBox";
             this.MVPSRoleBox.Size = new System.Drawing.Size(231, 22);
-            this.MVPSRoleBox.TabIndex = 12;
+            this.MVPSRoleBox.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 44);
+            this.label1.Location = new System.Drawing.Point(25, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(106, 17);
             this.label1.TabIndex = 13;
@@ -74,13 +74,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 255);
+            this.ClientSize = new System.Drawing.Size(282, 155);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.MVPSRoleBox);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.CloseButton);
             this.Name = "MVPSRoleForm";
-            this.Text = "MVPSRoleForm";
+            this.Text = "Роль вагона";
             this.Load += new System.EventHandler(this.MVPSRoleForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -127,7 +127,7 @@ namespace kip
             this.Controls.Add(this.dataGridView1);
             this.MinimumSize = new System.Drawing.Size(1120, 460);
             this.Name = "DBform";
-            this.Text = "DBform";
+            this.Text = "Администрирование базы данных";
             this.Load += new System.EventHandler(this.DBform_Load);
             this.Resize += new System.EventHandler(this.DBform_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

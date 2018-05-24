@@ -246,7 +246,7 @@
             this.Controls.Add(this.IsWorking);
             this.Controls.Add(this.IsFree);
             this.Name = "EquipmentForm";
-            this.Text = "EquipmentForm";
+            this.Text = "Оборудование";
             this.Load += new System.EventHandler(this.EquipmentForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

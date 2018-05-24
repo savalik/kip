@@ -213,7 +213,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.IdBox);
             this.Name = "MVPSForm";
-            this.Text = "MVPSForm";
+            this.Text = "Вагон";
             this.Load += new System.EventHandler(this.MVPSForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

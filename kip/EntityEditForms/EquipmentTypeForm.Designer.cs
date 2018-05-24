@@ -282,7 +282,7 @@
             this.Controls.Add(this.ManufactBox);
             this.Controls.Add(this.AddButton);
             this.Name = "EquipmentTypeForm";
-            this.Text = "EquipmentTypeForm";
+            this.Text = "Тип оборудования";
             this.Load += new System.EventHandler(this.EquipmentTypeForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

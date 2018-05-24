@@ -117,7 +117,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker1.TabIndex = 27;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
             // 
             // AddToRepairButton
             // 
@@ -147,7 +147,8 @@
             this.DayMVPSList.Name = "DayMVPSList";
             this.DayMVPSList.Size = new System.Drawing.Size(213, 212);
             this.DayMVPSList.TabIndex = 30;
-            this.DayMVPSList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(DayMVPSList_MouseDoubleClick);
+            this.DayMVPSList.SelectedIndexChanged += new System.EventHandler(this.DayMVPSList_SelectedIndexChanged);
+            this.DayMVPSList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.DayMVPSList_MouseDoubleClick);
             // 
             // SheduleForm
             // 
@@ -164,7 +165,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dataGridView1);
             this.Name = "SheduleForm";
-            this.Text = "SheduleForm";
+            this.Text = "Редактор графика поставновки МВПС в Депо";
             this.Load += new System.EventHandler(this.SheduleForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

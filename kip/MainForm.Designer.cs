@@ -35,11 +35,15 @@
             this.UserLabel = new System.Windows.Forms.Label();
             this.PersonnelNumberlLabel = new System.Windows.Forms.Label();
             this.PositionLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dayMVPSList = new System.Windows.Forms.ListBox();
+            this.OpenMasterForm = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 64);
+            this.button1.Location = new System.Drawing.Point(419, 99);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(128, 44);
             this.button1.TabIndex = 0;
@@ -49,7 +53,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 114);
+            this.button2.Location = new System.Drawing.Point(419, 149);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(128, 67);
             this.button2.TabIndex = 1;
@@ -59,9 +63,9 @@
             // 
             // CloseFormButton
             // 
-            this.CloseFormButton.Location = new System.Drawing.Point(482, 238);
+            this.CloseFormButton.Location = new System.Drawing.Point(285, 238);
             this.CloseFormButton.Name = "CloseFormButton";
-            this.CloseFormButton.Size = new System.Drawing.Size(160, 30);
+            this.CloseFormButton.Size = new System.Drawing.Size(262, 30);
             this.CloseFormButton.TabIndex = 2;
             this.CloseFormButton.Text = "Выйти из программы";
             this.CloseFormButton.UseVisualStyleBackColor = true;
@@ -107,11 +111,52 @@
             this.PositionLabel.TabIndex = 6;
             this.PositionLabel.Text = "должность";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(164, 17);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Сегодня в плане работ:";
+            // 
+            // dayMVPSList
+            // 
+            this.dayMVPSList.FormattingEnabled = true;
+            this.dayMVPSList.ItemHeight = 16;
+            this.dayMVPSList.Location = new System.Drawing.Point(16, 99);
+            this.dayMVPSList.Name = "dayMVPSList";
+            this.dayMVPSList.Size = new System.Drawing.Size(161, 164);
+            this.dayMVPSList.TabIndex = 8;
+            // 
+            // OpenMasterForm
+            // 
+            this.OpenMasterForm.Location = new System.Drawing.Point(285, 99);
+            this.OpenMasterForm.Name = "OpenMasterForm";
+            this.OpenMasterForm.Size = new System.Drawing.Size(128, 44);
+            this.OpenMasterForm.TabIndex = 9;
+            this.OpenMasterForm.Text = "Открыть окно мастера";
+            this.OpenMasterForm.UseVisualStyleBackColor = true;
+            this.OpenMasterForm.Click += new System.EventHandler(this.OpenMasterForm_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(285, 149);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(128, 67);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "Открыть окно слесаря по ремонту оборудования";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(654, 280);
+            this.ClientSize = new System.Drawing.Size(559, 280);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.OpenMasterForm);
+            this.Controls.Add(this.dayMVPSList);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.PositionLabel);
             this.Controls.Add(this.PersonnelNumberlLabel);
             this.Controls.Add(this.UserLabel);
@@ -121,10 +166,10 @@
             this.Controls.Add(this.button1);
             this.Name = "MainForm";
             this.Text = "Информационная система цеха";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(MainForm_FormClosed);
 
         }
 
@@ -137,6 +182,10 @@
         private System.Windows.Forms.Label UserLabel;
         private System.Windows.Forms.Label PersonnelNumberlLabel;
         private System.Windows.Forms.Label PositionLabel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox dayMVPSList;
+        private System.Windows.Forms.Button OpenMasterForm;
+        private System.Windows.Forms.Button button3;
     }
 }
 

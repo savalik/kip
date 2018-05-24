@@ -74,5 +74,26 @@ namespace kip
         {
             return MVPSType.name + " " + series;
         }
+
+        public bool IsStaffed()
+        {
+            foreach (var type in EquipmentRule.EquipmentType)
+            {
+                var staffed = Equipment.Where(b => b.EquipmentType.Id == type.Id);
+                if (staffed.Count() == 0) return false;
+            } 
+            return true;
+        }
+
+        public List<EquipmentType> UnStaffed()
+        {
+            List<EquipmentType> unStaffed = new List<EquipmentType>();
+            foreach (var type in EquipmentRule.EquipmentType)
+            {
+                var staffed = Equipment.Where(b => b.EquipmentType.Id == type.Id);
+                if (staffed.Count() == 0) unStaffed.Add(type);
+            }
+            return unStaffed;
+        }
     }
 }

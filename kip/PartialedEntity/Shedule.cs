@@ -66,5 +66,16 @@ namespace kip
                 view.Sort(view.Columns["date"], ListSortDirection.Descending);
             }
         }
+
+        public bool ContainSeries(string series)
+        {
+            foreach(MVPS m in MVPS_Maintenance)
+                if (m.series == series)
+                    return true;
+            foreach (MVPS m in MVPS_Repair)
+                if (m.series == series)
+                    return true;
+            return false;
+        }
     }
 }
