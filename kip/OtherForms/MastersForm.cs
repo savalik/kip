@@ -92,6 +92,13 @@ namespace kip
             UserLabel.Text = worker.Family + " " + worker.Name + " " + worker.Patronymic;
             PersonnelNumberlLabel.Text = worker.PersonnelNumber.ToString();
             PositionLabel.Text = worker.Position.name;
+
+            using (kipEntities context = new kipEntities())
+            {
+                ServiceableEquipmentCount.Text = context.EquipmentSet.Where(b => b.isFree && b.isWorking).Count().ToString();
+                InstalledEquipmentCount.Text = context.EquipmentSet.Where(b => !b.isFree && b.isWorking).Count().ToString();
+                FaultyEquipment.Text = context.EquipmentSet.Where(b => !b.isWorking).Count().ToString();
+            }
         }
 
         private void ShowSheduleButton_Click(object sender, EventArgs e)
@@ -173,6 +180,11 @@ namespace kip
                             listView1.Items.Add(m.MVPSType.name + " " + m.series + " " + m.number + " " + unstaffed.name);
                 }
             }
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
