@@ -92,6 +92,8 @@ namespace kip
             UserLabel.Text = worker.Family + " " + worker.Name + " " + worker.Patronymic;
             PersonnelNumberlLabel.Text = worker.PersonnelNumber.ToString();
             PositionLabel.Text = worker.Position.name;
+            PersonnelNumberlLabel.Location = new Point(UserLabel.Location.X + UserLabel.Width + 20, PersonnelNumberlLabel.Location.Y);
+            PositionLabel.Location = new Point(UserLabel.Location.X + UserLabel.Width + 20, PositionLabel.Location.Y);
 
             using (kipEntities context = new kipEntities())
             {
@@ -185,6 +187,11 @@ namespace kip
         private void groupBox3_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void CloseFormButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

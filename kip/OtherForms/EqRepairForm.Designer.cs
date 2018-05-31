@@ -40,9 +40,10 @@
             // 
             this.PositionLabel.AutoSize = true;
             this.PositionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PositionLabel.Location = new System.Drawing.Point(404, 29);
+            this.PositionLabel.Location = new System.Drawing.Point(303, 24);
+            this.PositionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.PositionLabel.Name = "PositionLabel";
-            this.PositionLabel.Size = new System.Drawing.Size(102, 20);
+            this.PositionLabel.Size = new System.Drawing.Size(78, 17);
             this.PositionLabel.TabIndex = 10;
             this.PositionLabel.Text = "должность";
             // 
@@ -50,9 +51,10 @@
             // 
             this.PersonnelNumberlLabel.AutoSize = true;
             this.PersonnelNumberlLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PersonnelNumberlLabel.Location = new System.Drawing.Point(404, 9);
+            this.PersonnelNumberlLabel.Location = new System.Drawing.Point(303, 7);
+            this.PersonnelNumberlLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.PersonnelNumberlLabel.Name = "PersonnelNumberlLabel";
-            this.PersonnelNumberlLabel.Size = new System.Drawing.Size(101, 20);
+            this.PersonnelNumberlLabel.Size = new System.Drawing.Size(80, 17);
             this.PersonnelNumberlLabel.TabIndex = 9;
             this.PersonnelNumberlLabel.Text = "табельный";
             // 
@@ -60,9 +62,10 @@
             // 
             this.UserLabel.AutoSize = true;
             this.UserLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.UserLabel.Location = new System.Drawing.Point(154, 9);
+            this.UserLabel.Location = new System.Drawing.Point(116, 7);
+            this.UserLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.UserLabel.Name = "UserLabel";
-            this.UserLabel.Size = new System.Drawing.Size(212, 20);
+            this.UserLabel.Size = new System.Drawing.Size(168, 17);
             this.UserLabel.TabIndex = 8;
             this.UserLabel.Text = "Фамилия Имя Отчество";
             // 
@@ -70,31 +73,34 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(9, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 20);
+            this.label1.Size = new System.Drawing.Size(105, 17);
             this.label1.TabIndex = 7;
             this.label1.Text = "Пользователь:";
             // 
             // CloseFormButton
             // 
-            this.CloseFormButton.Location = new System.Drawing.Point(628, 408);
+            this.CloseFormButton.Location = new System.Drawing.Point(443, 331);
+            this.CloseFormButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CloseFormButton.Name = "CloseFormButton";
-            this.CloseFormButton.Size = new System.Drawing.Size(160, 30);
+            this.CloseFormButton.Size = new System.Drawing.Size(130, 24);
             this.CloseFormButton.TabIndex = 11;
             this.CloseFormButton.Text = "Выйти из программы";
             this.CloseFormButton.UseVisualStyleBackColor = true;
             // 
             // EqRepairForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(584, 366);
             this.Controls.Add(this.CloseFormButton);
             this.Controls.Add(this.PositionLabel);
             this.Controls.Add(this.PersonnelNumberlLabel);
             this.Controls.Add(this.UserLabel);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "EqRepairForm";
             this.Text = "EqRepairForm";
             this.Load += new System.EventHandler(this.EqRepairForm_Load);
