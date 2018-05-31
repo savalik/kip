@@ -106,6 +106,29 @@ namespace kip
             using (kipEntities context = new kipEntities())
             {
                 Worker worker = context.WorkerSet.Include("Position").Where(b => b.PersonnelNumber == 11179474).SingleOrDefault();
+                if (worker == null)
+                {
+                    Position pos = context.PositionSet.Where(b => b.name == "Администратор").SingleOrDefault();
+                    if (pos == null)
+                    {
+                        pos = new Position
+                        {
+                            name = "Администратор",
+                        };
+                        context.PositionSet.Add(pos);
+                    }
+                    worker = new Worker
+                    {
+                        Position = pos,
+                        Name = "Тестовый",
+                        Family = "Профиль",
+                        Patronymic = "Администатора",
+                        PersonnelNumber = 11100000,
+                        PinCodeHash = ""
+                    };
+                    context.WorkerSet.Add(worker);
+                    context.SaveChanges();
+                }
                 var position = worker.Position.Id;
                 GetNextForm(position, worker);
             }
