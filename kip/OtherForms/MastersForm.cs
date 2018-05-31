@@ -172,7 +172,7 @@ namespace kip
 
             using (kipEntities context = new kipEntities())
             {
-                if (DayMVPSList.SelectedItems.Count > 0)
+                if (DayMVPSList.SelectedItems.Count > 0 && ms.Count() > 0)
                 {
                     var mvp = ms[DayMVPSList.SelectedItems[0].Index];
 
