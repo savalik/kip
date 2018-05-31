@@ -18,6 +18,7 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+            LoginForm.Show();
         }
 
         #region Windows Form Designer generated code
