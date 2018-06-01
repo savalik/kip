@@ -14,6 +14,7 @@ namespace kip
     {
         public static Worker worker;
         static Form LoginForm;
+        List<String> Comments = new List<string>();
 
         public EqRepairForm(Worker loggedWorker, Form Form)
         {
@@ -63,6 +64,7 @@ namespace kip
             {
                 var item = NotWorkedList.SelectedItems[0];
                 NotWorkedList.Items.Remove(item);
+                Comments.Add("Введите комментарий к проверке\\ремонту блока " + item.Text);
                 InRepair.Items.Add(item);
             }
         }
@@ -72,7 +74,9 @@ namespace kip
             if (InRepair.SelectedItems.Count == 1)
             {
                 var item = InRepair.SelectedItems[0];
+                int index = item.Index;
                 InRepair.Items.Remove(item);
+                Comments.RemoveAt(index);
                 string type = item.Text.Split(' ')[0];
                 FillNotWorkedList(type);
             }
@@ -110,6 +114,26 @@ namespace kip
                 var toRemoveFromList = NotWorkedList.FindItemWithText(str);
                 NotWorkedList.Items.Remove(toRemoveFromList);
             }
+        }
+
+        private void InRepair_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (InRepair.SelectedItems.Count == 1)
+            {
+                var item = InRepair.SelectedItems[0];
+                int index = item.Index;
+                CommentaryBox.Text = Comments[index];
+            }
+        }
+
+        private void DoRepairButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DoServiceButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
