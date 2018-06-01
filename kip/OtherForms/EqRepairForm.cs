@@ -88,10 +88,20 @@ namespace kip
                                     where eqType.EquipmentType.name == NodeText
                                     select eqType;
                 var nonWorked = from eq in equipments
-                                where !eq.isWorking
+                                where eq.isFree
                                 select eq;
                 foreach (var block in nonWorked)
-                    NotWorkedList.Items.Add(block.EquipmentType.name + " " + block.number);
+                {
+                    string str = String.Format(" {0:P2}", block.GetRemainingLife());
+                    var color = block.GetColor();
+                    if (!block.isWorking)
+                    {
+                        color = Color.DarkRed;
+                        str = " неиспр.";
+                    }
+                    NotWorkedList.Items.Add(block.EquipmentType.name + " " + block.number + str).ForeColor = color;
+                }
+                    
             }
 
             foreach(ListViewItem item in InRepair.Items)

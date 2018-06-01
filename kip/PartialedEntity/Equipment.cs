@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,6 +72,28 @@ namespace kip
 
                 view.Sort(view.Columns["type"], ListSortDirection.Ascending);
             }
+        }
+
+        public float GetRemainingLife()
+        {
+            float x = (this.serviceDate - DateTime.Today).Days;
+            float y = this.EquipmentType.servicePeriod;
+            float j = x / y;
+            float rem = x/y + 1;
+            return rem;
+        }
+
+        public Color GetColor()
+        {
+            float rm = GetRemainingLife();
+            int red, green, blue;
+            if (rm > 0.95) {        red = 0;    green = 128;    blue = 128; }
+            else if (rm > 0.8) {    red = 0;    green = 128;    blue = 0;   }
+            else if (rm > 0.6) {    red = 128;  green = 128;    blue = 0;   }
+            else if (rm > 0.4) {    red = 134;  green = 64;     blue = 0;   }
+            else if (rm > 0.2) {    red = 140;  green = 32;     blue = 0;   }
+            else {                  red = 139;  green = 0;      blue = 0;   }
+            return Color.FromArgb(red, green, blue);
         }
     }
 }
