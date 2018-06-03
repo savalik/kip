@@ -13,8 +13,14 @@ namespace kip
     {
         public static void OpenDocs(List<Items> items)
         {
-            SortedList(items);
-
+            try
+            {
+                SortedList(items);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
         }
 
         private static void SortedList(List<Items> items)
@@ -55,6 +61,7 @@ namespace kip
             };
 
             string[] dirs = Directory.GetFiles(Directory.GetCurrentDirectory() + @"\defectiveList\", sysType + "*");
+            if (dirs.Count() == 0) throw new Exception("Не найден файл дефектных ведомостей " + Directory.GetCurrentDirectory() + @"\defectiveList\" + sysType);
             string NameExcel = dirs.Last();
             Application ObjExcel = new Application();
             ObjExcel.Visible = true;
