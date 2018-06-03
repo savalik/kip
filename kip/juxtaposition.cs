@@ -161,8 +161,8 @@ namespace kip
                         //form.ShowDialog();
                         break;
                     case "Журнал проверки/ремонта":
-                        //form = new ReplacingLogForm(view);
-                        //form.ShowDialog();
+                        form = new ServiceLogForm(view);
+                        form.ShowDialog();
                         break;
                     default:
                         break;
