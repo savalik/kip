@@ -45,6 +45,7 @@
             this.DoServiceButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.CommentaryBox = new System.Windows.Forms.TextBox();
+            this.SaveComment = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // PositionLabel
@@ -203,14 +204,26 @@
             this.CommentaryBox.Location = new System.Drawing.Point(12, 327);
             this.CommentaryBox.Multiline = true;
             this.CommentaryBox.Name = "CommentaryBox";
-            this.CommentaryBox.Size = new System.Drawing.Size(457, 97);
+            this.CommentaryBox.Size = new System.Drawing.Size(457, 63);
             this.CommentaryBox.TabIndex = 22;
+            // 
+            // SaveComment
+            // 
+            this.SaveComment.Location = new System.Drawing.Point(12, 396);
+            this.SaveComment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SaveComment.Name = "SaveComment";
+            this.SaveComment.Size = new System.Drawing.Size(220, 30);
+            this.SaveComment.TabIndex = 23;
+            this.SaveComment.Text = "Сохранить комментарий";
+            this.SaveComment.UseVisualStyleBackColor = true;
+            this.SaveComment.Click += new System.EventHandler(this.SaveComment_Click);
             // 
             // EqRepairForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(778, 437);
+            this.Controls.Add(this.SaveComment);
             this.Controls.Add(this.CommentaryBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.DoServiceButton);
@@ -254,5 +267,6 @@
         private System.Windows.Forms.Button DoServiceButton;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox CommentaryBox;
+        private System.Windows.Forms.Button SaveComment;
     }
 }

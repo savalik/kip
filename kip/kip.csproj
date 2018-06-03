@@ -165,6 +165,7 @@
     <Compile Include="EquipmentType.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Events\Repair.cs" />
     <Compile Include="juxtaposition.cs" />
     <Compile Include="kip.Context.cs">
       <AutoGen>True</AutoGen>
