@@ -200,7 +200,7 @@ namespace kip
         public static void FillGrid(ListBox list, DataGridView view)
         {
             var str = "";
-            if (list.SelectedItem.ToString() != null)
+            if (list.SelectedItem != null)
                 str = list.SelectedItem.ToString();
             gridView = view;
             listBox = list;

@@ -12,8 +12,11 @@ namespace kip
 {
     public partial class EquipmentInstallForm : Form
     {
-        static int flag=0;
+        static int flag = 0;
         static Guid mvpsGuid;
+        private Worker worker;
+        private string input;
+        private Guid OutGuid = Guid.Empty;
 
         public EquipmentInstallForm()
         {
@@ -21,9 +24,16 @@ namespace kip
             FillForm();
         }
 
+        public EquipmentInstallForm(Worker worker)
+        {
+            InitializeComponent();
+            this.worker = worker;
+            FillForm();
+        }
+
         private void FillForm()
         {
-            using(kipEntities context = new kipEntities())
+            using (kipEntities context = new kipEntities())
             {
                 try
                 {
@@ -47,11 +57,22 @@ namespace kip
                     {
                         if (unicalSeries.Find(b => b == series) != series) unicalSeries.Add(series);
                     }
-                    foreach (string str in unicalSeries)
-                        MVPSSeriesBox.Items.Add(str);
+                    DateTime date = DateTime.Today.Date;
+                    var todayShedule = context.SheduleSet.Where(b => b.date == date).SingleOrDefault();
 
+                    foreach (string str in unicalSeries)
+                    {
+                        if (worker != null)
+                        {
+                            if (todayShedule != null)
+                                if (todayShedule.ContainSeries(str))
+                                    MVPSSeriesBox.Items.Add(str);
+                        }
+                        else
+                            MVPSSeriesBox.Items.Add(str);
+                    }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
@@ -60,7 +81,7 @@ namespace kip
 
         private void EquipmentInstallForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private bool CheckAllSelected()
@@ -124,7 +145,7 @@ namespace kip
                             MVPSNumberBox.Items.Add(MVPS.number);
 
 
-                        if (MVPSNumberBox.Items.Count > 0) 
+                        if (MVPSNumberBox.Items.Count > 0)
                         {
                             MVPSNumberBox.SelectedIndex = 0;
                             flag = 0;
@@ -141,7 +162,7 @@ namespace kip
                         MessageBox.Show(ex.Message);
                     }
                 }
-                
+
             }
         }
 
@@ -169,19 +190,19 @@ namespace kip
                         mvpsGrid.Rows.Clear();
                         foreach (var rule in rules)
                         {
-                            string cell1=null, cell2 = null,cell3 = null, cell4 = null;
+                            string cell1 = null, cell2 = null, cell3 = null, cell4 = null;
                             var block = mvps.Equipment.Where(b => b.EquipmentType == rule).SingleOrDefault();
                             Guid? cell0 = null;
                             cell1 = rule.name;
                             cell2 = rule.SystemType.name;
                             if (block != null)
                             {
-                                 cell0 = block.Id;
-                                 cell3 = block.number;
-                                 cell4 = block.serviceDate.ToString("dd.MM.yy");
+                                cell0 = block.Id;
+                                cell3 = block.number;
+                                cell4 = block.serviceDate.ToString("dd.MM.yy");
                             }
 
-                            mvpsGrid.Rows.Add(cell0,cell1,cell2,cell3,cell4);
+                            mvpsGrid.Rows.Add(cell0, cell1, cell2, cell3, cell4);
                             i++;
                         }
 
@@ -217,18 +238,18 @@ namespace kip
             if (flag < MVPSTypeBox.Items.Count)
                 if (MVPSNumberBox.SelectedIndex == -1)
                     //if (MVPSRoleBox.SelectedIndex != -1)
-                        if (MVPSNumberBox.Items.Count == 0)
-                            if (MVPSTypeBox.SelectedIndex < (MVPSTypeBox.Items.Count -1))
-                            {
-                                flag++;
-                                MVPSTypeBox.SelectedIndex += 1;
-                                
-                            }
-                            else
-                            {
-                                flag++;
-                                MVPSTypeBox.SelectedIndex = 0;
-                            }
+                    if (MVPSNumberBox.Items.Count == 0)
+                        if (MVPSTypeBox.SelectedIndex < (MVPSTypeBox.Items.Count - 1))
+                        {
+                            flag++;
+                            MVPSTypeBox.SelectedIndex += 1;
+
+                        }
+                        else
+                        {
+                            flag++;
+                            MVPSTypeBox.SelectedIndex = 0;
+                        }
         }
 
         private void MvpsGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -255,15 +276,25 @@ namespace kip
 
                     switch (result)
                     {
-                        case DialogResult.Yes:  
+                        case DialogResult.Yes:
                             equipment.isWorking = false;
                             equipment.isFree = true;
                             mvps.Equipment.Remove(equipment);
+                            if (worker != null)
+                            {
+                                OutGuid = equipment.Id;
+                                input = Microsoft.VisualBasic.Interaction.InputBox("Введите комментарий к замене", "Замена оборудования", "По сроку.", -1, -1);
+                            }
                             context.SaveChanges();
                             break;
                         case DialogResult.No:
                             equipment.isFree = true;
                             mvps.Equipment.Remove(equipment);
+                            if (worker != null)
+                            {
+                                OutGuid = equipment.Id;
+                                input = Microsoft.VisualBasic.Interaction.InputBox("Введите комментарий к замене", "Замена оборудования", "По сроку.", -1, -1);
+                            }
                             context.SaveChanges();
                             break;
                         case DialogResult.Cancel:
@@ -274,10 +305,34 @@ namespace kip
             }
         }
 
+        private void Replacing(kipEntities context, Guid InEquipment, Guid OutEquipment, MVPS mvps,string input)
+        {
+            
+            bool onShed = false;
+            if (input == "По сроку.") onShed = true;
+
+            Equipment InEq = context.EquipmentSet.Where(b => b.Id == InEquipment).Single();
+            Equipment OutEq = context.EquipmentSet.Where(b => b.Id == OutEquipment).Single();
+
+            Worker performer = context.WorkerSet.Where(b => b.Id == worker.Id).Single();
+
+            ReplacingLog replacing = new ReplacingLog
+            {
+                date = DateTime.Today.Date,
+                description = input,
+                Installed = InEq,
+                MVPS = mvps,
+                onShedule = onShed,
+                Removed = OutEq,
+                Worker = performer
+            };
+            context.ReplacingLogSet.Add(replacing);
+        }
+
         private void MvpsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
-            FillEquipmentGrid(mvpsGrid[1,e.RowIndex].Value.ToString());
+                FillEquipmentGrid(mvpsGrid[1, e.RowIndex].Value.ToString());
         }
 
         private void FillEquipmentGrid(string v)
@@ -288,7 +343,7 @@ namespace kip
                     var equipments = context.EquipmentSet.Where(b => (b.EquipmentType.name == v) && (b.isFree) && (b.isWorking)).ToList();
                     equipmentGrid.Rows.Clear();
                     foreach (var eq in equipments)
-                        equipmentGrid.Rows.Add(eq.Id, eq.EquipmentType.name ,eq.number.ToString(), eq.serviceDate.ToString("dd.MM.yy"));
+                        equipmentGrid.Rows.Add(eq.Id, eq.EquipmentType.name, eq.number.ToString(), eq.serviceDate.ToString("dd.MM.yy"));
                 }
                 catch (Exception ex)
                 {
@@ -300,9 +355,9 @@ namespace kip
         {
             if (CheckAllSelected() && CheckEmpty())
             {
-                if (equipmentGrid[0,e.RowIndex].Value.ToString() != "")
+                if (equipmentGrid[0, e.RowIndex].Value.ToString() != "")
                 {
-                    using(kipEntities context = new kipEntities())
+                    using (kipEntities context = new kipEntities())
                     {
                         Guid id = Guid.Parse(equipmentGrid[0, e.RowIndex].Value.ToString());
                         Equipment equipment = context.EquipmentSet.Where(b => b.Id == id).SingleOrDefault();
@@ -311,6 +366,15 @@ namespace kip
 
                         equipment.isFree = false;
                         mvps.Equipment.Add(equipment);
+
+                        if (worker != null)
+                        {
+                            if (OutGuid.Equals(Guid.Empty)) throw new Exception("Не найдена начатая замена. Если вы не снимали соотвествующее оборудование - обратитесь к мастеру или администратору");
+                            else
+                            {
+                                Replacing(context, equipment.Id, OutGuid, mvps, input);
+                            }
+                        }
 
                         context.SaveChanges();
                     }
@@ -327,8 +391,8 @@ namespace kip
             {
                 string value = "";
                 int row = mvpsGrid.CurrentRow.Index;
-                if(mvpsGrid[3, row].Value != null)
-                value = mvpsGrid[3, row].Value.ToString();
+                if (mvpsGrid[3, row].Value != null)
+                    value = mvpsGrid[3, row].Value.ToString();
                 if (value != "") return false;
                 else return true;
             }
@@ -337,11 +401,6 @@ namespace kip
                 MessageBox.Show(ex.Message);
                 return true;
             }
-        }
-
-        private void MvpsGrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

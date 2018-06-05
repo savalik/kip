@@ -39,6 +39,7 @@
             this.dayMVPSList = new System.Windows.Forms.ListBox();
             this.OpenMasterForm = new System.Windows.Forms.Button();
             this.OpenEqRepairFormButton = new System.Windows.Forms.Button();
+            this.openReplacingForm = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -155,11 +156,23 @@
             this.OpenEqRepairFormButton.UseVisualStyleBackColor = true;
             this.OpenEqRepairFormButton.Click += new System.EventHandler(this.OpenEqRepairFormButton_Click);
             // 
+            // openReplacingForm
+            // 
+            this.openReplacingForm.Location = new System.Drawing.Point(369, 149);
+            this.openReplacingForm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.openReplacingForm.Name = "openReplacingForm";
+            this.openReplacingForm.Size = new System.Drawing.Size(128, 66);
+            this.openReplacingForm.TabIndex = 11;
+            this.openReplacingForm.Text = "Открыть окно слесаря РПС";
+            this.openReplacingForm.UseVisualStyleBackColor = true;
+            this.openReplacingForm.Click += new System.EventHandler(this.openReplacingForm_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(779, 278);
+            this.Controls.Add(this.openReplacingForm);
             this.Controls.Add(this.OpenEqRepairFormButton);
             this.Controls.Add(this.OpenMasterForm);
             this.Controls.Add(this.dayMVPSList);
@@ -194,6 +207,7 @@
         private System.Windows.Forms.ListBox dayMVPSList;
         private System.Windows.Forms.Button OpenMasterForm;
         private System.Windows.Forms.Button OpenEqRepairFormButton;
+        private System.Windows.Forms.Button openReplacingForm;
     }
 }
 

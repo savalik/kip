@@ -79,6 +79,7 @@ namespace kip
 
         private void OpenMasterForm_Click(object sender, EventArgs e) { GetNextForm(4, worker); }
         private void OpenEqRepairFormButton_Click(object sender, EventArgs e) { GetNextForm(2, worker); }
+        private void openReplacingForm_Click(object sender, EventArgs e) { GetNextForm(3, worker); }
 
         private void GetNextForm(int position, Worker worker)
         {
@@ -107,7 +108,5 @@ namespace kip
                     break;
             }
         }
-
-        
     }
 }
