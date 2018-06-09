@@ -35,26 +35,16 @@ namespace kip
             {
                 var serviceLogId = context.ServiceLogSet.Where(b => b.Id == id).SingleOrDefault();
                 var eq = serviceLogId.Equipment;
+                this.Text = eq.EquipmentType.name + " №" + eq.number;
+
                 foreach(var _event in eq.InstallingLog)
                 {
-                    var row = new DataGridViewRow();
-
-                    row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.date.ToString("dd.MM.yy") });
-                    row.Cells.Add(new DataGridViewTextBoxCell { Value = "Установка " + _event.MVPS.GetSpec() });
-                    row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.Worker.GetFIO() });
-
-                    dataGridView1.Rows.Add(row);
+                    AddRow(_event,"Установка");
                 }
 
                 foreach (var _event in eq.RemovingLog)
                 {
-                    var row = new DataGridViewRow();
-
-                    row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.date.ToString("dd.MM.yy") });
-                    row.Cells.Add(new DataGridViewTextBoxCell { Value = "Снят " + _event.MVPS.GetSpec() });
-                    row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.Worker.GetFIO() });
-
-                    dataGridView1.Rows.Add(row);
+                    AddRow(_event, "Cнят");
                 }
 
                 foreach (var _event in eq.ServiceLog)
@@ -67,10 +57,52 @@ namespace kip
                     row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.date.ToString("dd.MM.yy") });
                     row.Cells.Add(new DataGridViewTextBoxCell { Value = str});
                     row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.Performer.GetFIO() });
+                    row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.description });
+                    row.DefaultCellStyle.BackColor = Color.ForestGreen;
 
                     dataGridView1.Rows.Add(row);
                 }
             }
+        }
+
+        private void AddRow(ReplacingLog _event, string str)
+        {
+            var row = new DataGridViewRow();
+
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.date.ToString("dd.MM.yy") });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = str +  " " + _event.MVPS.GetSpec() });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.Worker.GetFIO() });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.description });
+
+            if (_event.onShedule)
+                switch (str)
+                {
+                    case "Установка":
+                        row.DefaultCellStyle.BackColor = Color.DarkSeaGreen;
+                        break;
+                    case "Cнят":
+                        row.DefaultCellStyle.BackColor = Color.DarkCyan;
+                        break;
+                    default:
+                        break;
+                }
+            else
+            {
+                switch (str)
+                {
+                    case "Установка":
+                        row.DefaultCellStyle.BackColor = Color.DarkSeaGreen;
+                        break;
+                    case "Cнят":
+                        row.DefaultCellStyle.ForeColor = Color.White;
+                        row.DefaultCellStyle.BackColor = Color.DarkRed;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            dataGridView1.Rows.Add(row);
         }
     }
 }
