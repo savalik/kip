@@ -127,7 +127,7 @@ namespace kip
                     var type = vs[0];
                     var number = vs[1];
                     Equipment eq = context.EquipmentSet.Where(b => b.EquipmentType.name == type  && b.number == number).Single();
-                    Form form = new ServiceLogForm(eq.ServiceLog.First().Id);
+                    Form form = new ServiceLogForm(eq.Id);
                     form.Show();
                 }
             }

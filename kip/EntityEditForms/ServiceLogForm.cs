@@ -30,6 +30,12 @@ namespace kip
             FillForm(id);
         }
 
+        public ServiceLogForm(Guid id)
+        {
+            InitializeComponent();
+            FillForm(id);
+        }
+
         private void ServiceLogForm_Load(object sender, EventArgs e)
         {
 
@@ -41,36 +47,50 @@ namespace kip
             {
                 var service = context.ServiceLogSet.Where(b => b.Id == id).SingleOrDefault();
                 var eq = service.Equipment;
-                Text = eq.EquipmentType.name + " №" + eq.number;
-
-                foreach(var _event in eq.InstallingLog)
-                {
-                    AddRow(_event,"Установка");
-                }
-
-                foreach (var _event in eq.RemovingLog)
-                {
-                    AddRow(_event, "Cнят");
-                }
-
-                foreach (var _event in eq.ServiceLog)
-                {
-                    var row = new DataGridViewRow();
-                    string str;
-                    if (_event.isRepair) str = "Ремонт";
-                    else str = "Проверка";
-
-                    row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.date.ToString("dd.MM.yy H:mm") });
-                    row.Cells.Add(new DataGridViewTextBoxCell { Value = str});
-                    row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.Performer.GetFIO() });
-                    row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.description });
-                    row.DefaultCellStyle.BackColor = Color.ForestGreen;
-
-                    dataGridView1.Rows.Add(row);
-                }
-
-                dataGridView1.Sort(dataGridView1.Columns["date"], ListSortDirection.Ascending);
+                FillByEquipment(eq);
             }
+        }
+
+        private void FillForm(Guid id)
+        {
+            using (kipEntities context = new kipEntities())
+            {
+                var eq = context.EquipmentSet.Where(b => b.Id == id).SingleOrDefault();
+                FillByEquipment(eq);
+            }
+        }
+
+        private void FillByEquipment(Equipment eq)
+        {
+            Text = eq.EquipmentType.name + " №" + eq.number;
+
+            foreach (var _event in eq.InstallingLog)
+            {
+                AddRow(_event, "Установка");
+            }
+
+            foreach (var _event in eq.RemovingLog)
+            {
+                AddRow(_event, "Cнят");
+            }
+
+            foreach (var _event in eq.ServiceLog)
+            {
+                var row = new DataGridViewRow();
+                string str;
+                if (_event.isRepair) str = "Ремонт";
+                else str = "Проверка";
+
+                row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.date.ToString("dd.MM.yy H:mm") });
+                row.Cells.Add(new DataGridViewTextBoxCell { Value = str });
+                row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.Performer.GetFIO() });
+                row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.description });
+                row.DefaultCellStyle.BackColor = Color.ForestGreen;
+
+                dataGridView1.Rows.Add(row);
+            }
+
+            dataGridView1.Sort(dataGridView1.Columns["date"], ListSortDirection.Ascending);
         }
 
         private void AddRow(ReplacingLog _event, string str)
