@@ -41,7 +41,7 @@ namespace kip
             {
                 var service = context.ServiceLogSet.Where(b => b.Id == id).SingleOrDefault();
                 var eq = service.Equipment;
-                this.Text = eq.EquipmentType.name + " №" + eq.number;
+                Text = eq.EquipmentType.name + " №" + eq.number;
 
                 foreach(var _event in eq.InstallingLog)
                 {
@@ -68,6 +68,8 @@ namespace kip
 
                     dataGridView1.Rows.Add(row);
                 }
+
+                dataGridView1.Sort(dataGridView1.Columns["date"], ListSortDirection.Ascending);
             }
         }
 
