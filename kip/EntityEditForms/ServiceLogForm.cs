@@ -60,7 +60,7 @@ namespace kip
                     if (_event.isRepair) str = "Ремонт";
                     else str = "Проверка";
 
-                    row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.date.ToString("dd.MM.yy") });
+                    row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.date.ToString("dd.MM.yy H:mm") });
                     row.Cells.Add(new DataGridViewTextBoxCell { Value = str});
                     row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.Performer.GetFIO() });
                     row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.description });
@@ -77,11 +77,18 @@ namespace kip
         {
             var row = new DataGridViewRow();
 
-            row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.date.ToString("dd.MM.yy") });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.date.ToString("dd.MM.yy H:mm") });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = str +  " " + _event.MVPS.GetSpec() });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.Worker.GetFIO() });
-            row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.description });
-
+            switch (str)
+            {
+                case "Установка":
+                    row.Cells.Add(new DataGridViewTextBoxCell { Value = "" });
+                    break;
+                default:
+                    row.Cells.Add(new DataGridViewTextBoxCell { Value = _event.description });
+                    break;
+            }
             if (_event.onShedule)
                 switch (str)
                 {

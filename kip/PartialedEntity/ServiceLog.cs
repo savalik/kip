@@ -17,7 +17,7 @@ namespace kip
             row.Cells.Add(new DataGridViewTextBoxCell { Value = Id });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = Equipment.EquipmentType.name });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = Equipment.number });
-            row.Cells.Add(new DataGridViewTextBoxCell { Value = date.ToString("dd.MM.yy") });
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = date.ToString("dd.MM.yy H: mm") });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = description });
             if (isRepair)
                 row.Cells.Add(new DataGridViewTextBoxCell { Value = "Ремонт" });

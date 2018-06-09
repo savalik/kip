@@ -318,7 +318,7 @@ namespace kip
 
             ReplacingLog replacing = new ReplacingLog
             {
-                date = DateTime.Today.Date,
+                date = DateTime.Now,
                 description = input,
                 Installed = InEq,
                 MVPS = mvps,

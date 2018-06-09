@@ -26,7 +26,7 @@ namespace kip
                         eq.serviceDate = DateTime.Today.Date;
                         var service = new ServiceLog
                         {
-                            date = DateTime.Today.Date,
+                            date = DateTime.Now,
                             description = descriptions[i++],
                             Equipment = eq,
                             isRepair = isRepair_,

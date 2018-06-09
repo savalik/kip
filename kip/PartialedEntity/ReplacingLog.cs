@@ -29,7 +29,7 @@ namespace kip
                 workerStr = Worker.GetFIO();
 
                 row.Cells.Add(new DataGridViewTextBoxCell { Value = Id });
-                row.Cells.Add(new DataGridViewTextBoxCell { Value = date.ToString("dd.MM.yy") });
+                row.Cells.Add(new DataGridViewTextBoxCell { Value = date.ToString("dd.MM.yy H:mm") });
                 row.Cells.Add(new DataGridViewTextBoxCell { Value = remStr });
                 row.Cells.Add(new DataGridViewTextBoxCell { Value = insStr });
                 row.Cells.Add(new DataGridViewTextBoxCell { Value = description });
