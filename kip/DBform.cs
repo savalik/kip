@@ -53,19 +53,22 @@ namespace kip
 
         private void DBform_Resize(object sender, EventArgs e)
         {
-
             int v = this.Width - 234;
             int x = 18 + v;
             int y = Height - 86;
             dataGridView1.Width = v;
             dataGridView1.Height = Height - 68;
 
-
             TableListBox.Location = new Point(x, TableListBox.Location.Y);
             AddButton.Location = new Point(x, y - 111);
             RemoveButton.Location = new Point(x, y -37);
             CloseButton.Location = new Point(x, y);
             EditButton.Location = new Point(x, y-74);
+        }
+
+        private void DataGridView1_CellDoubleClick(Object sender, DataGridViewCellEventArgs e)
+        {
+            EditButton_Click(sender, e);
         }
     }
 }
