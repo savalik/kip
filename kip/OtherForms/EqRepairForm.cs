@@ -85,6 +85,58 @@ namespace kip
             }
         }
 
+        private void InRepair_MouseClick(object sender, MouseEventArgs e) => ShowContextMenu(e, true);
+        private void NotWorkedList_MouseClick(object sender, MouseEventArgs e) => ShowContextMenu(e, false);
+
+        private void ShowContextMenu(MouseEventArgs e, bool isInRepairList)
+        {
+            string text="";
+            if (e.Button == MouseButtons.Right)
+            {
+                ContextMenuStrip contextMenuStrip = new ContextMenuStrip();
+                if (isInRepairList)
+                {
+                    if (InRepair.FocusedItem.Bounds.Contains(e.Location) == true)
+                    {
+                        text =  InRepair.SelectedItems[0].Text;
+                        contextMenuStrip.Items.Add("Показать историю");
+                    }
+                        
+                }
+                else
+                {
+                    if (NotWorkedList.FocusedItem.Bounds.Contains(e.Location) == true)
+                    {
+                        text = NotWorkedList.SelectedItems[0].Text;
+                        contextMenuStrip.Items.Add("Показать историю");
+                    }
+                }
+
+                contextMenuStrip.Click += (sender, x) => GetEventLog(text);
+                contextMenuStrip.Show(Cursor.Position);
+            }
+        }
+
+        private void GetEventLog(string text)
+        {
+            string[] vs = text.Split(' ');
+            try
+            {
+                using (kipEntities context = new kipEntities())
+                {
+                    var type = vs[0];
+                    var number = vs[1];
+                    Equipment eq = context.EquipmentSet.Where(b => b.EquipmentType.name == type  && b.number == number).Single();
+                    Form form = new ServiceLogForm(eq.ServiceLog.First().Id);
+                    form.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void FillNotWorkedList(string NodeText)
         {
             NotWorkedList.Items.Clear();

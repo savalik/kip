@@ -125,6 +125,7 @@
             this.NotWorkedList.UseCompatibleStateImageBehavior = false;
             this.NotWorkedList.View = System.Windows.Forms.View.List;
             this.NotWorkedList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotWorkedList_MouseDoubleClick);
+            this.NotWorkedList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NotWorkedList_MouseClick);
             // 
             // InRepair
             // 
@@ -136,6 +137,7 @@
             this.InRepair.View = System.Windows.Forms.View.List;
             this.InRepair.SelectedIndexChanged += new System.EventHandler(this.InRepair_SelectedIndexChanged);
             this.InRepair.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.InRepair_MouseDoubleClick);
+            this.InRepair.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InRepair_MouseClick);
             // 
             // label3
             // 

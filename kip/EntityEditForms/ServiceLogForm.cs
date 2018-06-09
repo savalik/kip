@@ -24,6 +24,12 @@ namespace kip
             FillForm((int)id);
         }
 
+        public ServiceLogForm(int id)
+        {
+            InitializeComponent();
+            FillForm(id);
+        }
+
         private void ServiceLogForm_Load(object sender, EventArgs e)
         {
 
@@ -33,8 +39,8 @@ namespace kip
         {
             using (kipEntities context = new kipEntities())
             {
-                var serviceLogId = context.ServiceLogSet.Where(b => b.Id == id).SingleOrDefault();
-                var eq = serviceLogId.Equipment;
+                var service = context.ServiceLogSet.Where(b => b.Id == id).SingleOrDefault();
+                var eq = service.Equipment;
                 this.Text = eq.EquipmentType.name + " №" + eq.number;
 
                 foreach(var _event in eq.InstallingLog)
