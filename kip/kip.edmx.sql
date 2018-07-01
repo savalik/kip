@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/20/2018 14:19:11
--- Generated from EDMX file: C:\Users\User\source\repos\kip\kip\kip.edmx
+-- Date Created: 07/01/2018 14:38:32
+-- Generated from EDMX file: C:\Users\urkaNote\source\repos\kip\kip\kip.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,47 +17,8 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_SystemTypeEquipmentType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[EquipmentTypeSet] DROP CONSTRAINT [FK_SystemTypeEquipmentType];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ManufacturerEquipmentType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[EquipmentTypeSet] DROP CONSTRAINT [FK_ManufacturerEquipmentType];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MVPSMVPSRole]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[MVPSSet] DROP CONSTRAINT [FK_MVPSMVPSRole];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MVPSTypeMVPS]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[MVPSSet] DROP CONSTRAINT [FK_MVPSTypeMVPS];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MVPSRoleEquipmentRule]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[EquipmentRuleSet] DROP CONSTRAINT [FK_MVPSRoleEquipmentRule];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MVPSTypeEquipmentRule]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[EquipmentRuleSet] DROP CONSTRAINT [FK_MVPSTypeEquipmentRule];
-GO
-IF OBJECT_ID(N'[dbo].[FK_EquipmentRuleEquipmentType_EquipmentRule]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[EquipmentRuleEquipmentType] DROP CONSTRAINT [FK_EquipmentRuleEquipmentType_EquipmentRule];
-GO
-IF OBJECT_ID(N'[dbo].[FK_EquipmentRuleEquipmentType_EquipmentType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[EquipmentRuleEquipmentType] DROP CONSTRAINT [FK_EquipmentRuleEquipmentType_EquipmentType];
-GO
-IF OBJECT_ID(N'[dbo].[FK_EquipmentTypeEquipment]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[EquipmentSet] DROP CONSTRAINT [FK_EquipmentTypeEquipment];
-GO
-IF OBJECT_ID(N'[dbo].[FK_EquipmentRuleMVPS]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[MVPSSet] DROP CONSTRAINT [FK_EquipmentRuleMVPS];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MVPSEquipment]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[EquipmentSet] DROP CONSTRAINT [FK_MVPSEquipment];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MVPSReplacingLog]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ReplacingLogSet] DROP CONSTRAINT [FK_MVPSReplacingLog];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PositionWorker]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[WorkerSet] DROP CONSTRAINT [FK_PositionWorker];
-GO
-IF OBJECT_ID(N'[dbo].[FK_WorkerReplacingLog]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ReplacingLogSet] DROP CONSTRAINT [FK_WorkerReplacingLog];
+IF OBJECT_ID(N'[dbo].[FK_EquipmentEquipmentEvent]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentEventSet] DROP CONSTRAINT [FK_EquipmentEquipmentEvent];
 GO
 IF OBJECT_ID(N'[dbo].[FK_EquipmentReplacingLog]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ReplacingLogSet] DROP CONSTRAINT [FK_EquipmentReplacingLog];
@@ -65,14 +26,80 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_EquipmentReplacingLog1]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ReplacingLogSet] DROP CONSTRAINT [FK_EquipmentReplacingLog1];
 GO
-IF OBJECT_ID(N'[dbo].[FK_EquipmentEquipmentEvent]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[EquipmentEventSet] DROP CONSTRAINT [FK_EquipmentEquipmentEvent];
+IF OBJECT_ID(N'[dbo].[FK_EquipmentRuleEquipmentType_EquipmentRule]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentRuleEquipmentType] DROP CONSTRAINT [FK_EquipmentRuleEquipmentType_EquipmentRule];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EquipmentRuleEquipmentType_EquipmentType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentRuleEquipmentType] DROP CONSTRAINT [FK_EquipmentRuleEquipmentType_EquipmentType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EquipmentRuleMVPS]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MVPSSet] DROP CONSTRAINT [FK_EquipmentRuleMVPS];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EquipmentServiceLog]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceLogSet] DROP CONSTRAINT [FK_EquipmentServiceLog];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EquipmentTypeEquipment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentSet] DROP CONSTRAINT [FK_EquipmentTypeEquipment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ManufacturerEquipmentType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentTypeSet] DROP CONSTRAINT [FK_ManufacturerEquipmentType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MVPSEquipment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentSet] DROP CONSTRAINT [FK_MVPSEquipment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MVPSMVPSRole]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MVPSSet] DROP CONSTRAINT [FK_MVPSMVPSRole];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MVPSReplacingLog]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ReplacingLogSet] DROP CONSTRAINT [FK_MVPSReplacingLog];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MVPSRoleEquipmentRule]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentRuleSet] DROP CONSTRAINT [FK_MVPSRoleEquipmentRule];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MVPSShedule_MVPS]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MVPSShedule] DROP CONSTRAINT [FK_MVPSShedule_MVPS];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MVPSShedule_Shedule]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MVPSShedule] DROP CONSTRAINT [FK_MVPSShedule_Shedule];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MVPSShedule1_MVPS]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MVPSShedule1] DROP CONSTRAINT [FK_MVPSShedule1_MVPS];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MVPSShedule1_Shedule]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MVPSShedule1] DROP CONSTRAINT [FK_MVPSShedule1_Shedule];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MVPSTypeEquipmentRule]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentRuleSet] DROP CONSTRAINT [FK_MVPSTypeEquipmentRule];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MVPSTypeMVPS]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MVPSSet] DROP CONSTRAINT [FK_MVPSTypeMVPS];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PositionWorker]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WorkerSet] DROP CONSTRAINT [FK_PositionWorker];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SystemTypeEquipmentType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentTypeSet] DROP CONSTRAINT [FK_SystemTypeEquipmentType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorkerReplacingLog]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ReplacingLogSet] DROP CONSTRAINT [FK_WorkerReplacingLog];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorkerServiceLog]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceLogSet] DROP CONSTRAINT [FK_WorkerServiceLog];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[EquipmentEventSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EquipmentEventSet];
+GO
+IF OBJECT_ID(N'[dbo].[EquipmentRuleEquipmentType]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EquipmentRuleEquipmentType];
+GO
+IF OBJECT_ID(N'[dbo].[EquipmentRuleSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EquipmentRuleSet];
+GO
 IF OBJECT_ID(N'[dbo].[EquipmentSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[EquipmentSet];
 GO
@@ -82,35 +109,38 @@ GO
 IF OBJECT_ID(N'[dbo].[ManufacturerSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ManufacturerSet];
 GO
-IF OBJECT_ID(N'[dbo].[SystemTypeSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SystemTypeSet];
-GO
 IF OBJECT_ID(N'[dbo].[MVPSRoleSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MVPSRoleSet];
-GO
-IF OBJECT_ID(N'[dbo].[MVPSTypeSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[MVPSTypeSet];
 GO
 IF OBJECT_ID(N'[dbo].[MVPSSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MVPSSet];
 GO
-IF OBJECT_ID(N'[dbo].[EquipmentRuleSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[EquipmentRuleSet];
+IF OBJECT_ID(N'[dbo].[MVPSShedule]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MVPSShedule];
 GO
-IF OBJECT_ID(N'[dbo].[ReplacingLogSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ReplacingLogSet];
+IF OBJECT_ID(N'[dbo].[MVPSShedule1]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MVPSShedule1];
 GO
-IF OBJECT_ID(N'[dbo].[WorkerSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[WorkerSet];
+IF OBJECT_ID(N'[dbo].[MVPSTypeSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MVPSTypeSet];
 GO
 IF OBJECT_ID(N'[dbo].[PositionSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PositionSet];
 GO
-IF OBJECT_ID(N'[dbo].[EquipmentEventSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[EquipmentEventSet];
+IF OBJECT_ID(N'[dbo].[ReplacingLogSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ReplacingLogSet];
 GO
-IF OBJECT_ID(N'[dbo].[EquipmentRuleEquipmentType]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[EquipmentRuleEquipmentType];
+IF OBJECT_ID(N'[dbo].[ServiceLogSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ServiceLogSet];
+GO
+IF OBJECT_ID(N'[dbo].[SheduleSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SheduleSet];
+GO
+IF OBJECT_ID(N'[dbo].[SystemTypeSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SystemTypeSet];
+GO
+IF OBJECT_ID(N'[dbo].[WorkerSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WorkerSet];
 GO
 
 -- --------------------------------------------------
@@ -137,6 +167,8 @@ CREATE TABLE [dbo].[EquipmentTypeSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [name] nvarchar(max)  NOT NULL,
     [description] nvarchar(max)  NULL,
+    [servicePeriod] int  NOT NULL,
+    [verfPeriod] int  NULL,
     [SystemType_Id] int  NOT NULL,
     [Manufacturer_Id] int  NOT NULL
 );
