@@ -1,6 +1,6 @@
-﻿namespace kip
+﻿namespace kip.EntityEditForms
 {
-    partial class TableForm
+    partial class PositionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,35 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.TableDataView = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.TableDataView)).BeginInit();
             this.SuspendLayout();
             // 
-            // TableDataView
-            // 
-            this.TableDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TableDataView.Location = new System.Drawing.Point(12, 46);
-            this.TableDataView.Name = "TableDataView";
-            this.TableDataView.RowTemplate.Height = 24;
-            this.TableDataView.Size = new System.Drawing.Size(768, 406);
-            this.TableDataView.TabIndex = 0;
-            // 
-            // TableForm
+            // PositionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 464);
-            this.Controls.Add(this.TableDataView);
-            this.Name = "TableForm";
-            this.Text = "TableForm";
-            this.Load += new System.EventHandler(this.TableForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.TableDataView)).EndInit();
+            this.ClientSize = new System.Drawing.Size(282, 255);
+            this.Name = "PositionForm";
+            this.Text = "Должность";
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView TableDataView;
     }
 }

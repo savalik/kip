@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace kip
+namespace kip.EntityEditForms
 {
-    public partial class EquipmentForm : Form
+    public partial class ReplacingLog : Form
     {
-        public EquipmentForm()
+        public ReplacingLog()
         {
             InitializeComponent();
         }

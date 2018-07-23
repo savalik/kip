@@ -25,8 +25,19 @@ namespace kip
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Equipment> Equipment { get; set; }
-        public virtual DbSet<EquipmentTypes> EquipmentTypes { get; set; }
-        public virtual DbSet<Manufacturers> Manufacturers { get; set; }
+        public virtual DbSet<Equipment> EquipmentSet { get; set; }
+        public virtual DbSet<EquipmentType> EquipmentTypeSet { get; set; }
+        public virtual DbSet<Manufacturer> ManufacturerSet { get; set; }
+        public virtual DbSet<SystemType> SystemTypeSet { get; set; }
+        public virtual DbSet<MVPSRole> MVPSRoleSet { get; set; }
+        public virtual DbSet<MVPSType> MVPSTypeSet { get; set; }
+        public virtual DbSet<MVPS> MVPSSet { get; set; }
+        public virtual DbSet<EquipmentRule> EquipmentRuleSet { get; set; }
+        public virtual DbSet<ReplacingLog> ReplacingLogSet { get; set; }
+        public virtual DbSet<Worker> WorkerSet { get; set; }
+        public virtual DbSet<Position> PositionSet { get; set; }
+        public virtual DbSet<EquipmentEvent> EquipmentEventSet { get; set; }
+        public virtual DbSet<ServiceLog> ServiceLogSet { get; set; }
+        public virtual DbSet<Shedule> SheduleSet { get; set; }
     }
 }

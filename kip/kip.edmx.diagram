@@ -4,12 +4,42 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0ef75f37a2d74b61b7a1172bce6dc294" Name="Diagram1">
-        <EntityTypeShape EntityType="kipModel.Equipment" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="kipModel.EquipmentTypes" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="kipModel.Manufacturers" Width="1.5" PointX="5.125" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="kipModel.FK_Equipment_EquipmentTypes" ManuallyRouted="false" />
-        <AssociationConnector Association="kipModel.FK_Equipment_Manufacturers" ManuallyRouted="false" />
+      <Diagram DiagramId="0ef75f37a2d74b61b7a1172bce6dc294" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="kipModel.Equipment" Width="1.5" PointX="3.625" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="kipModel.EquipmentType" Width="1.75" PointX="3.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="kipModel.Manufacturer" Width="1.5" PointX="1.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="kipModel.SystemType" Width="1.5" PointX="1.5" PointY="2.875" />
+        <AssociationConnector Association="kipModel.SystemTypeEquipmentType" />
+        <AssociationConnector Association="kipModel.ManufacturerEquipmentType" />
+        <EntityTypeShape EntityType="kipModel.MVPSRole" Width="1.5" PointX="1.5" PointY="6.875" />
+        <EntityTypeShape EntityType="kipModel.MVPSType" Width="1.5" PointX="1.5" PointY="9" />
+        <EntityTypeShape EntityType="kipModel.MVPS" Width="1.5" PointX="3.625" PointY="7.875" />
+        <AssociationConnector Association="kipModel.MVPSMVPSRole" />
+        <AssociationConnector Association="kipModel.MVPSTypeMVPS" />
+        <EntityTypeShape EntityType="kipModel.EquipmentRule" Width="1.5" PointX="5.875" PointY="3.5" />
+        <AssociationConnector Association="kipModel.MVPSRoleEquipmentRule" />
+        <AssociationConnector Association="kipModel.MVPSTypeEquipmentRule" />
+        <AssociationConnector Association="kipModel.EquipmentRuleEquipmentType" />
+        <AssociationConnector Association="kipModel.EquipmentTypeEquipment" />
+        <AssociationConnector Association="kipModel.EquipmentRuleMVPS" />
+        <AssociationConnector Association="kipModel.MVPSEquipment" />
+        <EntityTypeShape EntityType="kipModel.ReplacingLog" Width="1.5" PointX="5.75" PointY="5.875" />
+        <AssociationConnector Association="kipModel.MVPSReplacingLog" />
+        <EntityTypeShape EntityType="kipModel.Worker" Width="1.5" PointX="7.875" PointY="8.125" />
+        <EntityTypeShape EntityType="kipModel.Position" Width="1.5" PointX="7.875" PointY="6.25" />
+        <AssociationConnector Association="kipModel.PositionWorker" />
+        <AssociationConnector Association="kipModel.WorkerReplacingLog" />
+        <AssociationConnector Association="kipModel.EquipmentReplacingLog" />
+        <AssociationConnector Association="kipModel.EquipmentReplacingLog1" />
+        <EntityTypeShape EntityType="kipModel.EquipmentEvent" Width="1.5" PointX="7.875" PointY="4" />
+        <AssociationConnector Association="kipModel.EquipmentEquipmentEvent" />
+        <EntityTypeShape EntityType="kipModel.ServiceLog" Width="1.5" PointX="5.875" PointY="0.5" />
+        <AssociationConnector Association="kipModel.WorkerServiceLog" />
+        <AssociationConnector Association="kipModel.EquipmentServiceLog" />
+        <EntityTypeShape EntityType="kipModel.Shedule" Width="1.5" PointX="5.75" PointY="9" />
+        <AssociationConnector Association="kipModel.MVPSShedule" />
+        <AssociationConnector Association="kipModel.MVPSShedule1" ManuallyRouted="false" >
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -32,15 +32,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClassLibrary1, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resourses\ClassLibrary1.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="HibernatingRhinos.Profiler.Appender">
-      <HintPath>..\..\..\..\Downloads\EntityFramework.Profiler-v5.0-Build-5023\Appender\net46\HibernatingRhinos.Profiler.Appender.dll</HintPath>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -55,22 +60,120 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="zxing, Version=0.16.4.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.4\lib\net461\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.4.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.4\lib\net461\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataForTable.cs" />
+    <Compile Include="DBform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBform.Designer.cs">
+      <DependentUpon>DBform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DocsComponent\Docs.cs" />
+    <Compile Include="DocsComponent\Shedules.cs" />
+    <Compile Include="EntityEditForms\EquipmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\EquipmentForm.Designer.cs">
+      <DependentUpon>EquipmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityEditForms\EquipmentRuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\EquipmentRuleForm.Designer.cs">
+      <DependentUpon>EquipmentRuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityEditForms\EquipmentTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\EquipmentTypeForm.Designer.cs">
+      <DependentUpon>EquipmentTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityEditForms\ManufacturerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\ManufacturerForm.Designer.cs">
+      <DependentUpon>ManufacturerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityEditForms\MVPSForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\MVPSForm.Designer.cs">
+      <DependentUpon>MVPSForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityEditForms\MVPSRoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\MVPSRoleForm.Designer.cs">
+      <DependentUpon>MVPSRoleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityEditForms\MVPSTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\MVPSTypeForm.Designer.cs">
+      <DependentUpon>MVPSTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityEditForms\PositionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\PositionForm.Designer.cs">
+      <DependentUpon>PositionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityEditForms\ReplacingLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\ReplacingLog.Designer.cs">
+      <DependentUpon>ReplacingLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityEditForms\ServiceLogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\ServiceLogForm.Designer.cs">
+      <DependentUpon>ServiceLogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityEditForms\SheduleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\SheduleForm.Designer.cs">
+      <DependentUpon>SheduleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityEditForms\SystemTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\SystemTypeForm.Designer.cs">
+      <DependentUpon>SystemTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityEditForms\WorkerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntityEditForms\WorkerForm.Designer.cs">
+      <DependentUpon>WorkerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Equipment.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="EquipmentForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EquipmentForm.Designer.cs">
-      <DependentUpon>EquipmentForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EquipmentTypes.cs">
+    <Compile Include="EquipmentEvent.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="FillGrid.cs" />
+    <Compile Include="EquipmentInstallForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EquipmentInstallForm.Designer.cs">
+      <DependentUpon>EquipmentInstallForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentRule.cs">
+      <DependentUpon>kipEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentType.cs">
+      <DependentUpon>kipEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Events\Repair.cs" />
+    <Compile Include="juxtaposition.cs" />
     <Compile Include="kip.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -97,19 +200,136 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Manufacturers.cs">
+    <Compile Include="Manufacturer.cs">
+      <DependentUpon>kipEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVPS.cs">
+      <DependentUpon>kipEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVPSRole.cs">
+      <DependentUpon>kipEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVPSType.cs">
+      <DependentUpon>kipEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NetComponent\IPAnoncer.cs" />
+    <Compile Include="NetComponent\Receiver.cs" />
+    <Compile Include="OtherForms\EqRepairForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\EqRepairForm.Designer.cs">
+      <DependentUpon>EqRepairForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\MastersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\MastersForm.Designer.cs">
+      <DependentUpon>MastersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForms\ReplacingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForms\ReplacingForm.Designer.cs">
+      <DependentUpon>ReplacingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartialedEntity\Equipment.cs" />
+    <Compile Include="PartialedEntity\EquipmentRule.cs" />
+    <Compile Include="PartialedEntity\EquipmentType.cs" />
+    <Compile Include="PartialedEntity\Manufacturer.cs" />
+    <Compile Include="PartialedEntity\MVPS.cs" />
+    <Compile Include="PartialedEntity\MVPSRole.cs" />
+    <Compile Include="PartialedEntity\MVPSType.cs" />
+    <Compile Include="PartialedEntity\Position.cs" />
+    <Compile Include="PartialedEntity\ReplacingLog.cs" />
+    <Compile Include="PartialedEntity\ServiceLog.cs" />
+    <Compile Include="PartialedEntity\Shedule.cs" />
+    <Compile Include="PartialedEntity\SystemType.cs" />
+    <Compile Include="PartialedEntity\Worker.cs" />
+    <Compile Include="Position.cs">
       <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TableForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="ReplacingLog.cs">
+      <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="TableForm.Designer.cs">
-      <DependentUpon>TableForm.cs</DependentUpon>
+    <Compile Include="ServiceLog.cs">
+      <DependentUpon>kipEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Shedule.cs">
+      <DependentUpon>kipEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemType.cs">
+      <DependentUpon>kipEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Worker.cs">
+      <DependentUpon>kipEntities.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DBform.resx">
+      <DependentUpon>DBform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\EquipmentForm.resx">
+      <DependentUpon>EquipmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\EquipmentRuleForm.resx">
+      <DependentUpon>EquipmentRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\EquipmentTypeForm.resx">
+      <DependentUpon>EquipmentTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\ManufacturerForm.resx">
+      <DependentUpon>ManufacturerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\MVPSForm.resx">
+      <DependentUpon>MVPSForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\MVPSRoleForm.resx">
+      <DependentUpon>MVPSRoleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\MVPSTypeForm.resx">
+      <DependentUpon>MVPSTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\PositionForm.resx">
+      <DependentUpon>PositionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\ReplacingLog.resx">
+      <DependentUpon>ReplacingLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\ServiceLogForm.resx">
+      <DependentUpon>ServiceLogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\SheduleForm.resx">
+      <DependentUpon>SheduleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\SystemTypeForm.resx">
+      <DependentUpon>SystemTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityEditForms\WorkerForm.resx">
+      <DependentUpon>WorkerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EquipmentInstallForm.resx">
+      <DependentUpon>EquipmentInstallForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\EqRepairForm.resx">
+      <DependentUpon>EqRepairForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\MastersForm.resx">
+      <DependentUpon>MastersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForms\ReplacingForm.resx">
+      <DependentUpon>ReplacingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -120,9 +340,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TableForm.resx">
-      <DependentUpon>TableForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EntityDeploy Include="kip.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>kip.Designer.cs</LastGenOutput>
@@ -150,6 +367,7 @@
       <LastGenOutput>kip.Context.cs</LastGenOutput>
       <DependentUpon>kip.edmx</DependentUpon>
     </Content>
+    <Content Include="kip.edmx.sql" />
     <Content Include="kip.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>kip.edmx</DependentUpon>
@@ -160,9 +378,12 @@
       <LastGenOutput>kipEntities.cs</LastGenOutput>
       <DependentUpon>kip.edmx</DependentUpon>
     </Content>
+    <Content Include="Resourses\ClassLibrary1.dll" />
+    <Content Include="Resourses\ET2M460x460.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

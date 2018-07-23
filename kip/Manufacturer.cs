@@ -12,19 +12,21 @@ namespace kip
     using System;
     using System.Collections.Generic;
     
-    public partial class EquipmentTypes
+    public partial class Manufacturer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EquipmentTypes()
+        public Manufacturer()
         {
-            this.Equipments = new HashSet<Equipment>();
+            this.EquipmentType = new HashSet<EquipmentType>();
         }
     
-        public int id { get; set; }
-        public string type { get; set; }
-        public string description { get; set; }
+        public int Id { get; set; }
+        public string name { get; set; }
+        public string address { get; set; }
+        public string phone { get; set; }
+        public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipment> Equipments { get; set; }
+        public virtual ICollection<EquipmentType> EquipmentType { get; set; }
     }
 }

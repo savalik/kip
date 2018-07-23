@@ -12,35 +12,31 @@ namespace kip
     using System;
     using System.Collections.Generic;
     
-    public partial class Equipment
+    public partial class MVPS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Equipment()
+        public MVPS()
         {
-            this.InstallingLog = new HashSet<ReplacingLog>();
-            this.RemovingLog = new HashSet<ReplacingLog>();
-            this.EquipmentEvent = new HashSet<EquipmentEvent>();
-            this.ServiceLog = new HashSet<ServiceLog>();
+            this.Equipment = new HashSet<Equipment>();
+            this.ReplacingLog = new HashSet<ReplacingLog>();
+            this.Shedule_Maintenance = new HashSet<Shedule>();
+            this.Shedule_Repair = new HashSet<Shedule>();
         }
     
         public System.Guid Id { get; set; }
         public string number { get; set; }
-        public System.DateTime repairDate { get; set; }
-        public System.DateTime serviceDate { get; set; }
-        public Nullable<System.DateTime> nextVerificationDate { get; set; }
-        public Nullable<System.DateTime> termDate { get; set; }
-        public bool isWorking { get; set; }
-        public bool isFree { get; set; }
+        public string series { get; set; }
     
-        public virtual EquipmentType EquipmentType { get; set; }
-        public virtual MVPS MVPS { get; set; }
+        public virtual MVPSRole MVPSRole { get; set; }
+        public virtual MVPSType MVPSType { get; set; }
+        public virtual EquipmentRule EquipmentRule { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReplacingLog> InstallingLog { get; set; }
+        public virtual ICollection<Equipment> Equipment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReplacingLog> RemovingLog { get; set; }
+        public virtual ICollection<ReplacingLog> ReplacingLog { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EquipmentEvent> EquipmentEvent { get; set; }
+        public virtual ICollection<Shedule> Shedule_Maintenance { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServiceLog> ServiceLog { get; set; }
+        public virtual ICollection<Shedule> Shedule_Repair { get; set; }
     }
 }
